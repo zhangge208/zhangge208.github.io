@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Leetcode@Search in Rotated Sorted Array</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="../../../../theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="../../../../theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../../../../theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../../../../theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="../../../../theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../../../theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../../../theme/images/apple-touch-icon-114x114.png">
+
+    <link href="../../../../" type="application/atom+xml" rel="alternate" title="Ant ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="../../../../index.html">Ant </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="../../../../category/algorithm.html">
+						<i class="icon-folder-open icon-large"></i>Algorithm
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="../../../../archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Leetcode@Search in Rotated Sorted Array">
+                                        Leetcode@Search in Rotated Sorted Array
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-01-19T00:00:00+08:00">
+        <i class="icon-calendar"></i>2015-01-19
+</abbr>
+<span class="label">By</span>
+<a href="../../../../author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
+<span class="label">Category</span>
+<a href="../../../../category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+
+
+<span class="label">Tags</span>
+	<a href="../../../../tag/algorithm-leetcode.html"><i class="icon-tag"></i>Algorithm Leetcode</a>
+</footer><!-- /.post-info -->                </div>
+                <hr />
+<h1>题目</h1>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.
+You may assume no duplicate exists in the array.</p>
+<h1>解题思路</h1>
+<h2>直接搜索</h2>
+<p>时间复杂度O(n) 其实这是最容易想到的解法</p>
+<h3>代码</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span>{
+<span class="n">public:</span>
+    <span class="nb">int</span> <span class="n">search</span>(<span class="nb">int</span> <span class="n">A</span>[],<span class="nb">int</span> <span class="n">n</span>, <span class="nb">int</span> <span class="n">target</span>){
+        <span class="k">if</span>(<span class="n">A</span> == <span class="n">NULL</span> || <span class="n">n</span> &lt;= <span class="mi">0</span>)
+            <span class="k">return</span> -<span class="mi">1</span>:
+        <span class="k">for</span>(<span class="nb">int</span> <span class="n">i</span> = <span class="mi">0</span>;<span class="n">i</span> &lt; <span class="n">n</span>;<span class="n">i</span>++)
+            <span class="k">if</span>(<span class="n">A</span>[<span class="n">i</span>] == <span class="n">target</span>)
+        <span class="k">return</span> -<span class="mi">1</span>;
+    }
+};
+</pre></div>
+
+
+<h2>二分搜索</h2>
+<p>属于从有序数组中查找某个值的变形 时间复杂度O(logn)
+如果在l到r的区间内搜索，有如下两种情况：</p>
+<p>1.A[l] &lt; A[r] 那么表明区间是有序排列的，按照正常的二分搜索处理</p>
+<p>2.A[l] &gt; A[r] 这表明区间存在翻转，那么存在一个k，使得A[k]是区间内的最小值，这样，A[l]到A[k] 与A[k+1]到A[r]为两个有序数组</p>
+<p>所以只需要对A[mid]与A[r]作比较：</p>
+<ol>
+<li>如果A[mid] &gt; A[r] 表明一定存在翻转，接下来只需要判断target的位置，如果target位于A[l]和A[mid]之间 ，r = mid - 1，否则l = mid + 1</li>
+<li>r如果A[mid] &lt; A[r]  ，那么说明从m到r一定是有序的（没有受到rotate的影响），那么我们只需要判断target是不是在mid到r之间。如果target位于A[mid]和A[r]之间，正常二分搜索，把左边缘移到mid+1，l = mid + 1，否则，target在另一半，把右边缘移动到mid-1,r = mid - 1。</li>
+</ol>
+<h3>代码</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span>{
+<span class="n">public:</span>
+    <span class="nb">int</span> <span class="n">search</span>(<span class="nb">int</span> <span class="n">A</span>[], <span class="nb">int</span> <span class="n">n</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span>(<span class="n">NULL</span> == <span class="n">A</span> || <span class="mi">0</span> == <span class="n">n</span>)   
+            <span class="k">return</span> -<span class="mi">1</span>; 
+        <span class="nb">int</span> <span class="n">left</span> = <span class="mi">0</span>, <span class="n">right</span> = <span class="n">n-1</span>, <span class="n">mid</span> = <span class="mi">0</span>;  
+        <span class="k">while</span>(<span class="n">left</span> &lt;= <span class="n">right</span>) 
+        {  
+            <span class="n">mid</span> = <span class="n">left</span>+(<span class="n">right-left</span>) / <span class="mi">2</span>;  
+            <span class="k">if</span>(<span class="n">A</span>[<span class="n">mid</span>] == <span class="n">target</span>)  
+                <span class="k">return</span> <span class="n">mid</span>;  
+            <span class="k">else</span> <span class="k">if</span>(<span class="n">A</span>[<span class="n">mid</span>] &gt; <span class="n">A</span>[<span class="n">right</span>])//<span class="n">left</span>
+            {  
+                <span class="k">if</span>(<span class="n">A</span>[<span class="n">left</span>] &lt;= <span class="n">target</span> &amp;&amp; <span class="n">target</span> &lt; <span class="n">A</span>[<span class="n">mid</span>])  
+                    <span class="n">right</span> = <span class="n">mid</span> - <span class="mi">1</span>;  
+                <span class="k">else</span>  
+                    <span class="n">left</span> = <span class="n">mid</span> + <span class="mi">1</span>;  
+            }  
+            <span class="k">else</span><span class="o">//</span><span class="n">right</span>  
+            {  
+                <span class="k">if</span>(<span class="n">A</span>[<span class="n">mid</span>] &lt; <span class="n">target</span> &amp;&amp; <span class="n">target</span> &lt;= <span class="n">A</span>[<span class="n">right</span>])  
+                    <span class="n">left</span> = <span class="n">mid</span> + <span class="mi">1</span>;  
+                <span class="k">else</span>  
+                    <span class="n">right</span> = <span class="n">mid</span> - <span class="mi">1</span>;  
+            }  
+        }  
+        <span class="k">return</span> -<span class="mi">1</span>;  
+    }  
+};
+</pre></div>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="../../../../" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="https://github.com/zhangge208"><i class="icon-Github-sign icon-large"></i>Github</a></li>
+    <li><a href="http://www.linkedin.com/profile/view?id=222151936"><i class="icon-Linkedin-sign icon-large"></i>Linkedin</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="../../../../category/algorithm.html">
+    <i class="icon-folder-open icon-large"></i>Algorithm
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-0">
+    <a href="../../../../tag/algorithm-leetcode-dynamic-programming.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode Dynamic Programming
+    </a>
+</li>
+<li class="tag-4">
+    <a href="../../../../tag/algorithm-leetcode-heap.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode Heap
+    </a>
+</li>
+<li class="tag-2">
+    <a href="../../../../tag/algorithm-leetcode-linked-list.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode Linked List
+    </a>
+</li>
+<li class="tag-4">
+    <a href="../../../../tag/algorithm-leetcode-binary-search.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode Binary Search
+    </a>
+</li>
+<li class="tag-2">
+    <a href="../../../../tag/algorithm-leetcode.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode
+    </a>
+</li>
+<li class="tag-4">
+    <a href="../../../../tag/algorithm.html">
+        <i class="icon-tag icon-large"></i>Algorithm
+    </a>
+</li>
+<li class="tag-1">
+    <a href="../../../../tag/algorithm-leetcode-highfrequency.html">
+        <i class="icon-tag icon-large"></i>Algorithm Leetcode HighFrequency
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../theme/js/jquery-1.7.2.min.js"></script>
+    <script src="../../../../theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

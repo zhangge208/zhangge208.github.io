@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all-zh.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-06-02T00:00:00+08:00</updated><entry><title>Leetcode@Leetcode@Rotate List</title><link href="http://www.zhangge208.com/pages/2015/06/02/leetcodeleetcoderotate-list.html" rel="alternate"></link><updated>2015-06-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-02:pages/2015/06/02/leetcodeleetcoderotate-list.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Rotate List&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given a list, rotate the list to the right by k places, where k is non-negative.&lt;/p&gt;
+&lt;p&gt;For example:
+Given &lt;code&gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL&lt;/code&gt; and k = &lt;code&gt;2&lt;/code&gt;,
+return &lt;code&gt;4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;把问题分割，题目要求部分翻转，那么首先要得到开始翻转的位置
+这与Remove Nth Node From End of List的思路一致，运用快慢指针，得到要翻转的位置，这部分问题解决。然后就是链表的连接，由于翻转后并不知道头节点是谁，所以需要dummy node来解决这一问题。然后画个图，搞清每一步的连接。链表连接的问题还是要多画图分析。
+题目中有个小陷阱，就是翻转位置标识k，并没有说明k有多大，所以需要进行取余操作，那么就先需要知道链表的长度，链表长度的得到是很简单的，遍历一遍，拿一个计数器记录就好。
+关于边界的考虑，一定要记得异常处理，首先是链表判空；然后在进行快慢指针的过程时，要保证fast-&amp;gt;next不为空；在获取链表长度时也需要让链表head！= NULL。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;rotateRight&lt;/span&gt;(&lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;head&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;head&lt;/span&gt; == &lt;span class="n"&gt;NULL&lt;/span&gt; )
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;;
+        }
+
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; = &lt;span class="n"&gt;getlength&lt;/span&gt;(&lt;span class="n"&gt;head&lt;/span&gt;);
+        &lt;span class="n"&gt;k&lt;/span&gt; = &lt;span class="n"&gt;k&lt;/span&gt; % &lt;span class="n"&gt;length&lt;/span&gt;;
+
+        &lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;dummy&lt;/span&gt; = &lt;span class="nb"&gt;new&lt;/span&gt; &lt;span class="n"&gt;ListNode&lt;/span&gt;(-&lt;span class="mi"&gt;1&lt;/span&gt;);
+        &lt;span class="n"&gt;dummy-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt; = &lt;span class="n"&gt;head&lt;/span&gt;;
+        &lt;span class="n"&gt;head&lt;/span&gt; = &lt;span class="n"&gt;dummy&lt;/span&gt;;
+
+        &lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;fast&lt;/span&gt; = &lt;span class="n"&gt;dummy&lt;/span&gt;;
+        &lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;slow&lt;/span&gt; = &lt;span class="n"&gt;dummy&lt;/span&gt;;
+
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;k&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="n"&gt;fast&lt;/span&gt; = &lt;span class="n"&gt;fast-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+        }
+
+        &lt;span class="k"&gt;while&lt;/span&gt;(&lt;span class="n"&gt;fast-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt; != &lt;span class="n"&gt;NULL&lt;/span&gt;)
+        {
+            &lt;span class="n"&gt;fast&lt;/span&gt; = &lt;span class="n"&gt;fast-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+            &lt;span class="n"&gt;slow&lt;/span&gt; = &lt;span class="n"&gt;slow-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+        }
+
+        &lt;span class="n"&gt;fast-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt; = &lt;span class="n"&gt;dummy-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+        &lt;span class="n"&gt;dummy-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt; = &lt;span class="n"&gt;slow-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+        &lt;span class="n"&gt;slow-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt; = &lt;span class="n"&gt;NULL&lt;/span&gt;;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;dummy-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+    }
+&lt;span class="n"&gt;private:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;getlength&lt;/span&gt;(&lt;span class="n"&gt;ListNode&lt;/span&gt; *&lt;span class="n"&gt;head&lt;/span&gt;)
+    {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+
+        &lt;span class="k"&gt;while&lt;/span&gt;(&lt;span class="n"&gt;head&lt;/span&gt; != &lt;span class="n"&gt;NULL&lt;/span&gt;)
+        {
+            &lt;span class="n"&gt;length&lt;/span&gt;++;
+            &lt;span class="n"&gt;head&lt;/span&gt; = &lt;span class="n"&gt;head-&lt;/span&gt;&amp;gt;&lt;span class="k"&gt;next&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Linked List"></category></entry><entry><title>Leetcode@Remove Linked List Elements</title><link href="http://www.zhangge208.com/pages/2015/06/02/leetcoderemove-linked-list-elements.html" rel="alternate"></link><updated>2015-06-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-02:pages/2015/06/02/leetcoderemove-linked-list-elements.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Remove Linked List Elements&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Remove all elements from a linked list of integers that have value val.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Given:&lt;/em&gt;&lt;/strong&gt; 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Return:&lt;/em&gt;&lt;/strong&gt; 1 --&amp;gt; 2 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;基础的链表操作题目。首先考虑到头节点可能会被修改，所以要使用dummynode，然后根据判断条件进行remove即可，现指针节点为p，p的后继节点的值若与给定的val相等，则令p指向p后继的后继即可移除p现在的后继。注意边界条件的处理。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Definition for singly-linked list.&lt;/span&gt;
+&lt;span class="cm"&gt; * public class ListNode {&lt;/span&gt;
+&lt;span class="cm"&gt; *     int val;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode next;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode(int x) { val = x; }&lt;/span&gt;
+&lt;span class="cm"&gt; * }&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+public&lt;span class="w"&gt; &lt;/span&gt;class&lt;span class="w"&gt; &lt;/span&gt;Solution&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;public&lt;span class="w"&gt; &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;removeElements&lt;span class="o"&gt;(&lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;int&lt;span class="w"&gt; &lt;/span&gt;val&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;dummy&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;ListNode&lt;span class="o"&gt;(-&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;dummy&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;dummy&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;while&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="o"&gt;.&lt;/span&gt;val&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;val&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;else&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;dummy&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Linked List"></category></entry><entry><title>Leetcode@Kth Largest Element in an Array</title><link href="http://www.zhangge208.com/pages/2015/05/28/leetcodekth-largest-element-in-an-array.html" rel="alternate"></link><updated>2015-05-28T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-28:pages/2015/05/28/leetcodekth-largest-element-in-an-array.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Kth Largest Element in an Array&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.&lt;/p&gt;
+&lt;p&gt;For example,
+Given [3,2,1,5,6,4] and k = 2, return 5.&lt;/p&gt;
+&lt;p&gt;Note: 
+You may assume k is always valid, 1 ≤ k ≤ array's length.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;使用优先队列来解决。由于题目是求第k大的数，反过来也就是求第n-k+1小的数，那么只需要生成一个队长为k的优先队列，把n个数中k个最大的数放入队列中即可，此时返回队头即可。所以，对于nums中前k个数，我们全部放入优先队列中；对于剩下的n-k个元素，我们挨个将其与现有队头比较，如果比现有队头大，那么更新队头，原队头出队，元素入队。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;Integer&amp;gt;(k);
+        for (int i = 0; i &amp;lt; nums.length; i++){
+            if (queue.size() &amp;lt; k){
+                queue.add(nums[i]);
+            }
+            else{
+                if (nums[i] &amp;gt; queue.peek()){
+                    queue.remove();
+                    queue.add(nums[i]);
+                }
+            }
+        }
+        return queue.remove();
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Heap"></category></entry><entry><title>Leetcode@Best Time to Buy and Sell Stock I</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-i.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-i.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Best Time to Buy and Sell Stock I&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Say you have an array for which the ith element is the price of a given stock on day i.&lt;/p&gt;
+&lt;p&gt;If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;动态规划的想法，属于sequence DP&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;state：f[i]代表前i天的最大收益&lt;/li&gt;
+&lt;li&gt;function：f[i] = max(f[i-1],f[i-1]+prices[i]-prices[i-1])&lt;/li&gt;
+&lt;li&gt;intialize:f[0] = 0&lt;/li&gt;
+&lt;li&gt;answer:f[n] &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;代码&lt;/h2&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@Best Time to Buy and Sell Stock II</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Best Time to Buy and Sell Stock II&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Say you have an array for which the ith element is the price of a given stock on day i.&lt;/p&gt;
+&lt;p&gt;Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;贪心的想法，既然能交易多次，那就把所有赚钱的时间段赚取的利益相加。首先要构造一个差值数组（前缀和数组？），即price_diff[i] = prices[i] - prices[i-1],然后把全部price_diff &amp;gt; 0的部分相加，即为最大利益&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;maxProfit&lt;/span&gt;(&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;amp;prices&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;() &amp;lt; &lt;span class="mi"&gt;2&lt;/span&gt;) 
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;;
+        }
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;price_diff&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;cur_price&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;];
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;1&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;(); &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="n"&gt;price_diff&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;]-&lt;span class="n"&gt;cur_price&lt;/span&gt;;
+            &lt;span class="n"&gt;cur_price&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;];
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;price_diff&lt;/span&gt; &amp;gt; &lt;span class="mi"&gt;0&lt;/span&gt;) &lt;span class="nb"&gt;sum&lt;/span&gt; += &lt;span class="n"&gt;price_diff&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@Best Time to Buy and Sell Stock III</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-iii.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-iii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Best Time to Buy and Sell Stock III&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Say you have an array for which the ith element is the price of a given stock on day i.&lt;/p&gt;
+&lt;p&gt;Design an algorithm to find the maximum profit. You may complete at most two transactions.&lt;/p&gt;
+&lt;p&gt;Note:
+You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;动态规划+前后遍历&lt;/p&gt;
+&lt;p&gt;基本的想法是分成两个时间段，对于某一天j，计算之前的max profit和之后的max profit。&lt;/p&gt;
+&lt;p&gt;即寻找一个点j，将原来的prices[0..n-1]分割成[0..j]和[j..n-1]两个子区间，分别求两段最大的收益，l_profit和r_profit，profit = l_profit + r_profit。然后用O(n)的时间在[0...n-1]上选择使得profit最大的j，返回最大的profit。&lt;/p&gt;
+&lt;p&gt;对于点j，求price[0..j]的最大profit时，很多工作是重复的，在求price[0..j-1]的最大profit中已经做过了。Best Time to Buy and Sell Stock I的dp解法可以在O(1)的时间从price[0..j-1]推出price[0..j]的最大profit。
+难点在于如何从price[j..n-1]推出price[j+1..n-1]，反过来思考，我们可以用O(1)的时间由price[j+1..n-1]推出price[j..n-1]。
+所以进行前后遍历，即可得到结果。前后遍历的题目还有一些。&lt;/p&gt;
+&lt;p&gt;整体思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数组l[i]记录了price[0..i]的最大profit，&lt;/li&gt;
+&lt;li&gt;数组r[i]记录了price[i..n]的最大profit。&lt;/li&gt;
+&lt;li&gt;已知l[i]，求l[i+1]是简单的，同样已知r[i]，求r[i-1]也很容易。&lt;/li&gt;
+&lt;li&gt;用O(n)的时间找出最大的l[i]+r[i]，即为题目所求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;maxProfit&lt;/span&gt;(&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;amp;prices&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;() &amp;lt; &lt;span class="mi"&gt;2&lt;/span&gt;)
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;;
+        }
+        &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;());
+        &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;());
+        // &lt;span class="n"&gt;DP&lt;/span&gt; &lt;span class="nb"&gt;from&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="nb"&gt;to&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;;
+        &lt;span class="n"&gt;left&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;] = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;min_price&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;];
+        &lt;span class="k"&gt;for&lt;/span&gt; (&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;1&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;(); &lt;span class="n"&gt;i&lt;/span&gt;++) 
+        {
+            &lt;span class="n"&gt;min_price&lt;/span&gt; = &lt;span class="nb"&gt;min&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;], &lt;span class="n"&gt;min_price&lt;/span&gt;);
+            &lt;span class="n"&gt;left&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] = &lt;span class="nb"&gt;max&lt;/span&gt;(&lt;span class="n"&gt;left&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;], &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] - &lt;span class="n"&gt;min_price&lt;/span&gt;);            
+        }
+
+        //&lt;span class="n"&gt;DP&lt;/span&gt; &lt;span class="nb"&gt;from&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="nb"&gt;to&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;;
+        &lt;span class="n"&gt;right&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;] = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;max_price&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;() - &lt;span class="mi"&gt;1&lt;/span&gt;];
+        &lt;span class="k"&gt;for&lt;/span&gt; (&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;() - &lt;span class="mi"&gt;2&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;gt;= &lt;span class="mi"&gt;0&lt;/span&gt;; &lt;span class="n"&gt;i--&lt;/span&gt;)
+        {
+            &lt;span class="n"&gt;max_price&lt;/span&gt; = &lt;span class="nb"&gt;max&lt;/span&gt;(&lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;],&lt;span class="n"&gt;max_price&lt;/span&gt;);
+            &lt;span class="n"&gt;right&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] = &lt;span class="nb"&gt;max&lt;/span&gt;(&lt;span class="n"&gt;right&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;], &lt;span class="n"&gt;max_price&lt;/span&gt; - &lt;span class="n"&gt;prices&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;]);
+        }
+
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;profit&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;for&lt;/span&gt; (&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;prices&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;(); &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="n"&gt;profit&lt;/span&gt; = &lt;span class="nb"&gt;max&lt;/span&gt;(&lt;span class="n"&gt;left&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] +&lt;span class="n"&gt;right&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;], &lt;span class="n"&gt;profit&lt;/span&gt;);
+        }
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;profit&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@Factorial Trailing Zeroes</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodefactorial-trailing-zeroes.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodefactorial-trailing-zeroes.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Factorial Trailing Zeroes&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given an integer n, return the number of trailing zeroes in n!.&lt;/p&gt;
+&lt;p&gt;Note: Your solution should be in logarithmic time complexity.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;考虑n!的质数因子。后缀0总是由质因子2和质因子5相乘得来的。如果可以计算2和5的个数，问题就解决了。考虑到2的个数总是大于等于5的个数。因此只要计录5的个数就可以了。那么如何计算n!的质因子中所有5的个数便成为难点。一个简单的方法是计算(n/5),除此之外，还有一件事情要考虑。诸如25，125之类的数字有不止一个5。处理这个问题也很简单，首先对n除以5，移除所有的单个5，然后除以25，移除额外的5，以此类推，直到 n / 5 == 0。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;trailingZeroes&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;numzero&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;while&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; &amp;gt; &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="n"&gt;numzero&lt;/span&gt; = &lt;span class="n"&gt;numzero&lt;/span&gt; + &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;5&lt;/span&gt;;
+            &lt;span class="n"&gt;n&lt;/span&gt; = &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;5&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;numzero&lt;/span&gt;;
+
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Majority Element</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodemajority-element.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodemajority-element.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Majority Element&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.&lt;/p&gt;
+&lt;p&gt;You may assume that the array is non-empty and the majority element always exist in the array.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;抵消的思想，有一个假设的主元素candidate，计数器count，若为主元素，必须满足严格地大于n/2，那么当元素1（假设的主元素）与元素2不一样时，把这两个数均丢弃，count--,如果是主元素，仍然会剩下一些;当数1与数2相同时，count++;然而，在count == 0时，说明现在的元素并非是主元素，故令 candidate = num[i],重复以上过程。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;majorityElement&lt;/span&gt;(&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;amp;num&lt;/span&gt;) {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;candidate&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="nb"&gt;count&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;&lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="nb"&gt;num&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;(); &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="nb"&gt;count&lt;/span&gt; == &lt;span class="mi"&gt;0&lt;/span&gt;)
+            {
+                &lt;span class="n"&gt;candidate&lt;/span&gt; = &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;];
+            }
+
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;candidate&lt;/span&gt; == &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;])
+            {
+                &lt;span class="nb"&gt;count&lt;/span&gt;++;
+            }
+
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            {
+                &lt;span class="n"&gt;count--&lt;/span&gt;;
+            }
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;candidate&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Pow(x, n)</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodepowx-n.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodepowx-n.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Pow(x, n)&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Implement pow(x, n).&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;分治法&lt;/p&gt;
+&lt;p&gt;x^n = x^(n/2) * x^(n/2); x^(n/2) = x^(n/4) * x^(n/4)&lt;/p&gt;
+&lt;p&gt;不过有些细节需要注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;n = 0时 return 1&lt;/li&gt;
+&lt;li&gt;n &amp;lt; 0时 return 1 / power(x,-n)&lt;/li&gt;
+&lt;li&gt;n &amp;gt; 0时，令value = power(x,n/2),需要对n的奇偶性进行讨论。&lt;br /&gt;
+  n = 2k + 1时，返回 value * value * x；&lt;br /&gt;
+  n = 2k时，返回value * value &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="n"&gt;pow&lt;/span&gt;(&lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;n&lt;/span&gt; &amp;lt; &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; / &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;, -&lt;span class="n"&gt;n&lt;/span&gt;);
+        }
+        &lt;span class="k"&gt;else&lt;/span&gt;
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;,&lt;span class="n"&gt;n&lt;/span&gt;);
+        }
+    }
+&lt;span class="n"&gt;private:&lt;/span&gt;
+    //&lt;span class="n"&gt;divide&lt;/span&gt; &amp;amp; &lt;span class="n"&gt;conquer&lt;/span&gt;
+    &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;)
+    {
+        &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; == &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;else&lt;/span&gt;
+        {
+            &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; = &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;2&lt;/span&gt;);
+            &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; % &lt;span class="mi"&gt;2&lt;/span&gt; == &lt;span class="mi"&gt;0&lt;/span&gt;)
+            {
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="nb"&gt;value&lt;/span&gt;;
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            {
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="o"&gt;x&lt;/span&gt;;
+            }
+        }
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Single Number</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodesingle-number.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodesingle-number.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Single Number&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given an array of integers, every element appears twice except for one. Find that single one.&lt;/p&gt;
+&lt;p&gt;Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;异或运算特点（不进位加法）:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a ^ b = c ,a ^ c = b -&amp;gt; b ^ c = a&lt;/li&gt;
+&lt;li&gt;a ^ a = 0 （信息抵消）&lt;/li&gt;
+&lt;li&gt;a ^ 0 = a&lt;/li&gt;
+&lt;li&gt;(a ^ b) ^ c = a ^ (b ^ c)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据 a ^ a = 0,我们可以知道两个相同的数进行异或会相抵消，所以把数组中的所有数异或一遍即可得到答案&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;singleNumber&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;[], &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="nb"&gt;num&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;n&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="nb"&gt;num&lt;/span&gt; = &lt;span class="nb"&gt;num&lt;/span&gt; ^ &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;];
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;num&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Single Number II</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodesingle-number-ii.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodesingle-number-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Single Number II&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given an array of integers, every element appears three times except for one. Find that single one.&lt;/p&gt;
+&lt;p&gt;Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。&lt;/p&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Climbing Stairs</title><link href="http://www.zhangge208.com/pages/2015/05/25/leetcodeclimbing-stairs.html" rel="alternate"></link><updated>2015-05-25T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-25:pages/2015/05/25/leetcodeclimbing-stairs.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Climbing Stairs&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;You are climbing a stair case. It takes n steps to reach to the top.&lt;/p&gt;
+&lt;p&gt;Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;动态规划的思路，属于sequence DP&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;state: f[i]表示前i个位置，跳到第i个位置共有多少种方案&lt;/li&gt;
+&lt;li&gt;function: f[i] = f[i-1] + f[i-2] （跳一步和跳两步）&lt;/li&gt;
+&lt;li&gt;intialize: f[0] = 1, f[1] = 1&lt;/li&gt;
+&lt;li&gt;answer: f[n]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;小陷阱：动态分配数组的时候要记得数组的大小应为0-n+1&lt;/p&gt;
+&lt;p&gt;本题背后的故事实际上是斐波那契数列&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;climbStairs&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;(&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;);
+        &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;] = &lt;span class="mi"&gt;1&lt;/span&gt;;
+        &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="mi"&gt;1&lt;/span&gt;] = &lt;span class="mi"&gt;1&lt;/span&gt;;
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;2&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt; &amp;lt;= &lt;span class="n"&gt;n&lt;/span&gt;; &lt;span class="n"&gt;i&lt;/span&gt;++)
+        {
+            &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] = &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="n"&gt;i-1&lt;/span&gt;] + &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="n"&gt;i-2&lt;/span&gt;];
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;[&lt;span class="n"&gt;n&lt;/span&gt;];
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;节省空间的写法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;int climbStairs2(int n)  
+{  
+    vector&amp;lt;int&amp;gt; res(3);  
+    res[0] = 1;  
+    res[1] = 1;  
+    for (int i = 2; i &amp;lt;= n; i++)  
+    {  
+        res[i%3] = res[(i-1)%3] + res[(i-2)%3];  
+    }  
+    return res[n%3];  
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@Find Peak Element</title><link href="http://www.zhangge208.com/pages/2015/05/25/leetcodefind-peak-element.html" rel="alternate"></link><updated>2015-05-25T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-25:pages/2015/05/25/leetcodefind-peak-element.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Find Peak Element&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;A peak element is an element that is greater than its neighbors.&lt;/p&gt;
+&lt;p&gt;Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.&lt;/p&gt;
+&lt;p&gt;The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.&lt;/p&gt;
+&lt;p&gt;You may imagine that num[-1] = num[n] = -∞.&lt;/p&gt;
+&lt;p&gt;For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;寻找局部的最大值，二分搜索&lt;/p&gt;
+&lt;p&gt;我们需要对二分搜索的模板进行一下小小的改动&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果num[mid] &amp;gt; num[mid + 1]并且num[mid] &amp;gt; num[mid - 1],
+  那么返回mid，这是没问题的&lt;/li&gt;
+&lt;li&gt;如果num[mid] &amp;lt; num[mid + 1],那么说明若有解，则这个局部最大值在mid的右侧，&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;二分搜索的边界问题，我现在一直对这个不清楚&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;findPeakElement&lt;/span&gt;(&lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;amp;num&lt;/span&gt;) {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;low&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;, &lt;span class="n"&gt;high&lt;/span&gt; = &lt;span class="nb"&gt;num&lt;/span&gt;.&lt;span class="n"&gt;size&lt;/span&gt;() - &lt;span class="mi"&gt;1&lt;/span&gt;;
+        &lt;span class="k"&gt;while&lt;/span&gt; (&lt;span class="n"&gt;low&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;high&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;) {
+            &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="n"&gt;low&lt;/span&gt; + (&lt;span class="n"&gt;high&lt;/span&gt; - &lt;span class="n"&gt;low&lt;/span&gt; ) / &lt;span class="mi"&gt;2&lt;/span&gt;;
+            &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;gt; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;] &amp;amp;&amp;amp; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;gt; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;])
+            { 
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;;
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;lt; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;])
+            {
+                &lt;span class="n"&gt;low&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            { 
+                &lt;span class="n"&gt;high&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;;
+            }    
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;low&lt;/span&gt;] &amp;gt; &lt;span class="nb"&gt;num&lt;/span&gt;[&lt;span class="n"&gt;high&lt;/span&gt;] ? &lt;span class="n"&gt;low&lt;/span&gt; : &lt;span class="n"&gt;high&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Search"></category></entry><entry><title>Leetcode@House Robber I</title><link href="http://www.zhangge208.com/pages/2015/05/25/leetcodehouse-robber-i.html" rel="alternate"></link><updated>2015-05-25T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-25:pages/2015/05/25/leetcodehouse-robber-i.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@House Robber I&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.&lt;/p&gt;
+&lt;p&gt;Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;属于序列动态规划(Sequence Dp)&lt;/p&gt;
+&lt;p&gt;state：f[i]表示到第i个位置时可获得的最大利益&lt;/p&gt;
+&lt;p&gt;function：f[i] = max(f[i-1], f[i-2]+nums[i])&lt;/p&gt;
+&lt;p&gt;initialize: f[0] = nums[0], f[1] = max(f[0],nums[1])&lt;/p&gt;
+&lt;p&gt;answer:f[n-1]&lt;/p&gt;
+&lt;p&gt;异常处理，考虑边界情况，nums为空或长度为1的情况&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        int[] f = new int[nums.length];
+        for (int i = 0; i &amp;lt; nums.length; i++){
+            if (i == 0){
+                f[0] = nums[0];
+            }
+            else if (i == 1){
+                f[1] = Math.max(f[0],nums[1]);
+            }
+            else{
+                f[i] = Math.max(f[i - 1],f[i - 2]+nums[i]);
+            }
+        }
+        return f[nums.length - 1];
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@House Robber II</title><link href="http://www.zhangge208.com/pages/2015/05/25/leetcodehouse-robber-ii.html" rel="alternate"></link><updated>2015-05-25T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-25:pages/2015/05/25/leetcodehouse-robber-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@House Robber II&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Note: This is an extension of House Robber.&lt;/p&gt;
+&lt;p&gt;After robbing those houses on that street, the thief has found himself a new place for his thievery so that he will not get too much attention. This time, all houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, the security system for these houses remain the same as for those in the previous street.&lt;/p&gt;
+&lt;p&gt;Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;题目变化导致的特殊判断条件为是否抢劫第一件房屋。如果是，则不能抢最后一件房屋。否则，可以抢最后一间房屋。&lt;/p&gt;
+&lt;p&gt;以此为依据，将环形DP问题转化为两次序列DP问题&lt;/p&gt;
+&lt;p&gt;异常处理，考虑边界情况，nums为空或长度为1的情况&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        if (nums.length == 1){
+            return nums[0];
+        }
+        int prev = 0;
+        int cur = 0;
+        for (int i = 1; i &amp;lt; nums.length; i++){
+            int temp = cur;
+            cur = Math.max(cur, prev + nums[i]);
+            prev = temp;
+        }
+        int missing_first = cur;
+
+        prev = 0;
+        cur = 0;
+        for (int i = 0; i &amp;lt; nums.length - 1; i++){
+            int temp = cur;
+            cur = Math.max(cur, prev + nums[i]);
+            prev = temp;
+        }
+        int missing_last = cur;
+
+        return Math.max(missing_first,missing_last);
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Dynamic Programming"></category></entry><entry><title>Leetcode@Linked List Cycle</title><link href="http://www.zhangge208.com/pages/2015/01/19/leetcodelinked-list-cycle.html" rel="alternate"></link><updated>2015-01-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-19:pages/2015/01/19/leetcodelinked-list-cycle.html</id><summary type="html">&lt;h1&gt;题目&lt;/h1&gt;
+&lt;p&gt;Given a linked list, determine if it has a cycle in it.&lt;/p&gt;
+&lt;p&gt;Follow up:
+Can you solve it without using extra space?&lt;/p&gt;
+&lt;h1&gt;解题思路&lt;/h1&gt;
+&lt;p&gt;判断一个链表是否存在环。所谓有环，是指链表的尾节点指向了链表的某一个中间节点。不使用额外空间是要求算法的空间复杂度为O(1)。
+   一般标准的思路是使用快慢两个指针，fast指针每次走两步，slow指针每次走一步。fast和slow指针在初始时均指向头结点。由于fast指针的速度是slow指针的两倍，若链表存在环路，在进入环路后，两个指针一定会相遇，即某一时刻，若slow == fast ，表明链表存在环路。如无环，则有fast或fast.next  == None。这个思路下的算法复杂度为O(n)。
+   需要注意几个特殊点：1.非空链表才有存在环的可能，空链表是无环的  2.若链表只有一个节点，则属于环。&lt;/p&gt;
+&lt;h1&gt;代码&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Definition for singly-linked list.&lt;/span&gt;
+&lt;span class="cm"&gt; * struct ListNode {&lt;/span&gt;
+&lt;span class="cm"&gt; *     int val;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode *next;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode(int x) : val(x), next(NULL) {}&lt;/span&gt;
+&lt;span class="cm"&gt; * };&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+class&lt;span class="w"&gt; &lt;/span&gt;Solution&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nl"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;bool&lt;span class="w"&gt; &lt;/span&gt;hasCycle&lt;span class="o"&gt;(&lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;head&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;NULL&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;NULL&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;while&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;p&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;p&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;p&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;true&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;false&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode"></category></entry><entry><title>Leetcode@Search in Rotated Sorted Array</title><link href="http://www.zhangge208.com/pages/2015/01/19/leetcodesearch-in-rotated-sorted-array.html" rel="alternate"></link><updated>2015-01-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-19:pages/2015/01/19/leetcodesearch-in-rotated-sorted-array.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;题目&lt;/h1&gt;
+&lt;p&gt;Suppose a sorted array is rotated at some pivot unknown to you beforehand.&lt;/p&gt;
+&lt;p&gt;(i.e., &lt;code&gt;0 1 2 4 5 6 7&lt;/code&gt; might become &lt;code&gt;4 5 6 7 0 1 2&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;You are given a target value to search. If found in the array return its index, otherwise return -1.
+You may assume no duplicate exists in the array.&lt;/p&gt;
+&lt;h1&gt;解题思路&lt;/h1&gt;
+&lt;h2&gt;直接搜索&lt;/h2&gt;
+&lt;p&gt;时间复杂度O(n) 其实这是最容易想到的解法&lt;/p&gt;
+&lt;h3&gt;代码&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt;{
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;[],&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;){
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt; == &lt;span class="n"&gt;NULL&lt;/span&gt; || &lt;span class="n"&gt;n&lt;/span&gt; &amp;lt;= &lt;span class="mi"&gt;0&lt;/span&gt;)
+            &lt;span class="k"&gt;return&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;:
+        &lt;span class="k"&gt;for&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;&lt;span class="n"&gt;i&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;n&lt;/span&gt;;&lt;span class="n"&gt;i&lt;/span&gt;++)
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;i&lt;/span&gt;] == &lt;span class="n"&gt;target&lt;/span&gt;)
+        &lt;span class="k"&gt;return&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;;
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;二分搜索&lt;/h2&gt;
+&lt;p&gt;属于从有序数组中查找某个值的变形 时间复杂度O(logn)
+如果在l到r的区间内搜索，有如下两种情况：&lt;/p&gt;
+&lt;p&gt;1.A[l] &amp;lt; A[r] 那么表明区间是有序排列的，按照正常的二分搜索处理&lt;/p&gt;
+&lt;p&gt;2.A[l] &amp;gt; A[r] 这表明区间存在翻转，那么存在一个k，使得A[k]是区间内的最小值，这样，A[l]到A[k] 与A[k+1]到A[r]为两个有序数组&lt;/p&gt;
+&lt;p&gt;所以只需要对A[mid]与A[r]作比较：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果A[mid] &amp;gt; A[r] 表明一定存在翻转，接下来只需要判断target的位置，如果target位于A[l]和A[mid]之间 ，r = mid - 1，否则l = mid + 1&lt;/li&gt;
+&lt;li&gt;r如果A[mid] &amp;lt; A[r]  ，那么说明从m到r一定是有序的（没有受到rotate的影响），那么我们只需要判断target是不是在mid到r之间。如果target位于A[mid]和A[r]之间，正常二分搜索，把左边缘移到mid+1，l = mid + 1，否则，target在另一半，把右边缘移动到mid-1,r = mid - 1。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;代码&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt;{
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;[], &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;NULL&lt;/span&gt; == &lt;span class="n"&gt;A&lt;/span&gt; || &lt;span class="mi"&gt;0&lt;/span&gt; == &lt;span class="n"&gt;n&lt;/span&gt;)   
+            &lt;span class="k"&gt;return&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;; 
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;, &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;n-1&lt;/span&gt;, &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;  
+        &lt;span class="k"&gt;while&lt;/span&gt;(&lt;span class="n"&gt;left&lt;/span&gt; &amp;lt;= &lt;span class="n"&gt;right&lt;/span&gt;) 
+        {  
+            &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="n"&gt;left&lt;/span&gt;+(&lt;span class="n"&gt;right-left&lt;/span&gt;) / &lt;span class="mi"&gt;2&lt;/span&gt;;  
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] == &lt;span class="n"&gt;target&lt;/span&gt;)  
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;;  
+            &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;gt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;right&lt;/span&gt;])//&lt;span class="n"&gt;left&lt;/span&gt;
+            {  
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;] &amp;lt;= &lt;span class="n"&gt;target&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="n"&gt;target&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;])  
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;;  
+                &lt;span class="k"&gt;else&lt;/span&gt;  
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;  
+            }  
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;  
+            {  
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;lt; &lt;span class="n"&gt;target&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="n"&gt;target&lt;/span&gt; &amp;lt;= &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;right&lt;/span&gt;])  
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;  
+                &lt;span class="k"&gt;else&lt;/span&gt;  
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;;  
+            }  
+        }  
+        &lt;span class="k"&gt;return&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;;  
+    }  
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode"></category></entry><entry><title>Leetcode@Search in Rotated Sorted Array II</title><link href="http://www.zhangge208.com/pages/2015/01/19/leetcodesearch-in-rotated-sorted-array-ii.html" rel="alternate"></link><updated>2015-01-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-19:pages/2015/01/19/leetcodesearch-in-rotated-sorted-array-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;题目&lt;/h1&gt;
+&lt;p&gt;Follow up for "Search in Rotated Sorted Array":
+What if duplicates are allowed?&lt;/p&gt;
+&lt;p&gt;Would this affect the run-time complexity? How and why?&lt;/p&gt;
+&lt;p&gt;Write a function to determine if a given target is in the array.&lt;/p&gt;
+&lt;h1&gt;解题思路&lt;/h1&gt;
+&lt;p&gt;在上一题”Search in Rotated Array“中假设数组不会出现重复元素。但如果允许出现重复的元素，那么对中间和边缘相等的情况需要进行特殊的处理。原来的题目通过中间与边缘元素的比较来判断哪一半为有序的，但现在出现了重复，这导致若边缘与中间相等，将无法判断有序部分的情况，例如,原来为[1,2,3,4,4,4,4,4,4],翻转后变为[4,4,4,4,4,1,2,3,4],这样一来，无论中心边缘都相等，在寻找1或2时，根本无法判断应跳向哪一步。为解决这一问题，只有将边缘移动一步，直到边缘和中间不再相等，或者中间与边缘已经重合。在最坏情况时，即序列为同一元素时，时间复杂度会退化至O(n)。&lt;/p&gt;
+&lt;h1&gt;代码&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt;{
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;[], &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;NULL&lt;/span&gt; == &lt;span class="n"&gt;A&lt;/span&gt; || &lt;span class="mi"&gt;0&lt;/span&gt; == &lt;span class="n"&gt;n&lt;/span&gt;)  
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;;  
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;, &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;n-1&lt;/span&gt;, &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;  
+        &lt;span class="k"&gt;while&lt;/span&gt;(&lt;span class="n"&gt;left&lt;/span&gt; &amp;lt;= &lt;span class="n"&gt;right&lt;/span&gt;)  
+        {  
+            &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="n"&gt;left&lt;/span&gt;+(&lt;span class="n"&gt;right-left&lt;/span&gt;)/&lt;span class="mi"&gt;2&lt;/span&gt;;  
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] == &lt;span class="n"&gt;target&lt;/span&gt;)  
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;;
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;gt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+            {
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;target&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;amp;&amp;amp; &lt;span class="n"&gt;target&lt;/span&gt; &amp;gt;=&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+                {
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+                &lt;span class="k"&gt;else&lt;/span&gt;
+                {
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;]&amp;lt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+            {
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;target&lt;/span&gt; &amp;gt;&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;amp;&amp;amp; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;right&lt;/span&gt;] &amp;gt;= &lt;span class="n"&gt;target&lt;/span&gt; )
+                {
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; +&lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+                &lt;span class="k"&gt;else&lt;/span&gt;
+                {
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            {
+                &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;left&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;
+            }
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;;
+    }
+
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode"></category></entry><entry><title>来算法吧~</title><link href="http://www.zhangge208.com/pages/2015/01/04/lai-suan-fa-ba.html" rel="alternate"></link><updated>2015-01-04T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-04:pages/2015/01/04/lai-suan-fa-ba.html</id><summary type="html">&lt;p&gt;2015的第一季度要开始系统地学习算法，虽然只有不到一个月的假期！！！唉 ，不过把之前零零散散看的复习一下，然后还是有不少时间可是学到好多没看过的。不过呢，先慢慢来吧！
+   我是想每天坚持写，坚持看，对某一个算法先理解基本的思想，算法运行的实际过程，给出代码实现，其实语言神马的，根本就不重要。。。然后会慢慢地进行算法分析，只是数学这东西，唉，不说了，说多了都是泪。最后给一些能运用到这种算法思想的小例子。说白了，也就是把leetcode和挑战程序设计竞赛上面的题目做会。
+   就扯这么多吧！希望2015年，能够有突破性的进展！&lt;/p&gt;</summary><category term="Algorithm"></category></entry></feed>
