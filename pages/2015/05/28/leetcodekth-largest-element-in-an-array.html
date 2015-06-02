@@ -1,117 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="zh">
+<head>
     <meta charset="utf-8">
-    <title>Leetcode@Kth Largest Element in an Array</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant</title>
     <meta name="description" content="">
     <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le styles -->
-    <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css" type="text/css" />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-      .tag-1 {
-        font-size: 13pt;
-      }
-      .tag-2 {
-        font-size: 10pt;
-      }
-      .tag-2 {
-        font-size: 8pt;
-      }
-      .tag-4 {
-        font-size: 6pt;
-     }
-    </style>
-    <link href="../../../../theme/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="../../../../theme/css/font-awesome.css" rel="stylesheet">
-
-    <link href="../../../../theme/css/pygments.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="../../../../theme/html5.js"></script>
     <![endif]-->
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../../../../theme/images/favicon.ico">
-    <link rel="apple-touch-icon" href="../../../../theme/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../../../../theme/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../../../../theme/images/apple-touch-icon-114x114.png">
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
 
-    <link href="../../../../" type="application/atom+xml" rel="alternate" title="Ant ATOM Feed" />
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="../../../../index.html">Ant </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                          <li class="divider-vertical"></li>
-                  <li class="active">
-                    <a href="../../../../category/algorithm.html">
-						<i class="icon-folder-open icon-large"></i>Algorithm
-					</a>
-                  </li>
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
 
-                          <ul class="nav pull-right">
-                                <li><a href="../../../../archives.html"><i class="icon-th-list"></i>Archives</a></li>
-                          </ul>
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-            </ul>
-            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
-          </div><!--/.nav-collapse -->
+        <a class="brand" href="../../../..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
         </div>
-      </div>
+        
     </div>
+    </div>
+</div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to Leetcode@Kth Largest Element in an Array">
-                                        Leetcode@Kth Largest Element in an Array
-                                </a>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-28T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-28
-</abbr>
-<span class="label">By</span>
-<a href="../../../../author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="../../../../category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Leetcode@Kth Largest Element in an Array</h1>
+2015-05-28
+
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="../../../../tag/algorithm-leetcode-heap.html"><i class="icon-tag"></i>Algorithm Leetcode Heap</a>
-</footer><!-- /.post-info -->                </div>
-                <hr />
+        </div>
+	
+        <div><hr />
 <h1>Leetcode@Kth Largest Element in an Array</h1>
 <h2>题目</h2>
 <p>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
@@ -139,87 +91,84 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.</p>
         return queue.remove();
     }
 }
-</pre></div>
-                </div><!-- /.entry-content -->
-        </article>
-</section>
-        </div><!--/span-->
+</pre></div></div>
+	
+        <hr>
 
-                <div class="span3 well sidebar-nav" id="sidebar">
-<ul class="nav nav-list">
-<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
-<li><a href="../../../../" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="https://github.com/zhangge208"><i class="icon-Github-sign icon-large"></i>Github</a></li>
-    <li><a href="http://www.linkedin.com/profile/view?id=222151936"><i class="icon-Linkedin-sign icon-large"></i>Linkedin</a></li>
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Leetcode@Kth Largest Element in an Array';
 
-<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
-<li>
-<a href="../../../../category/algorithm.html">
-    <i class="icon-folder-open icon-large"></i>Algorithm
-</a>
-</li>
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
 
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-0">
-    <a href="../../../../tag/algorithm-leetcode-dynamic-programming.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Dynamic Programming
-    </a>
-</li>
-<li class="tag-4">
-    <a href="../../../../tag/algorithm-leetcode-heap.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Heap
-    </a>
-</li>
-<li class="tag-2">
-    <a href="../../../../tag/algorithm-leetcode-linked-list.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Linked List
-    </a>
-</li>
-<li class="tag-4">
-    <a href="../../../../tag/algorithm-leetcode-binary-search.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Binary Search
-    </a>
-</li>
-<li class="tag-2">
-    <a href="../../../../tag/algorithm-leetcode.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode
-    </a>
-</li>
-<li class="tag-4">
-    <a href="../../../../tag/algorithm.html">
-        <i class="icon-tag icon-large"></i>Algorithm
-    </a>
-</li>
-<li class="tag-1">
-    <a href="../../../../tag/algorithm-leetcode-highfrequency.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode HighFrequency
-    </a>
-</li>
-
-
-</ul>        </div><!--/.well -->
-
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <address id="about">
-                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
-                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
-        </address><!-- /#about -->
-
-        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
-                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
 
 
 
-    <!-- Le javascript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../../../theme/js/jquery-1.7.2.min.js"></script>
-    <script src="../../../../theme/js/bootstrap.min.js"></script>
-  </body>
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
 </html>

@@ -1,134 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="zh">
+<head>
     <meta charset="utf-8">
     <title>Ant</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le styles -->
-    <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css" />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-      .tag-1 {
-        font-size: 13pt;
-      }
-      .tag-2 {
-        font-size: 10pt;
-      }
-      .tag-2 {
-        font-size: 8pt;
-      }
-      .tag-4 {
-        font-size: 6pt;
-     }
-    </style>
-    <link href="./theme/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="./theme/css/font-awesome.css" rel="stylesheet">
-
-    <link href="./theme/css/pygments.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="./theme/html5.js"></script>
     <![endif]-->
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="./theme/images/favicon.ico">
-    <link rel="apple-touch-icon" href="./theme/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./theme/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./theme/images/apple-touch-icon-114x114.png">
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
 
-    <link href="./" type="application/atom+xml" rel="alternate" title="Ant ATOM Feed" />
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="./index.html">Ant </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                          <li class="divider-vertical"></li>
-                  <li >
-                    <a href="./category/algorithm.html">
-						<i class="icon-folder-open icon-large"></i>Algorithm
-					</a>
-                  </li>
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
 
-                          <ul class="nav pull-right">
-                                <li><a href="./archives.html"><i class="icon-th-list"></i>Archives</a></li>
-                          </ul>
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-            </ul>
-            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
-          </div><!--/.nav-collapse -->
+        <a class="brand" href=".">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
         </div>
-      </div>
+        
     </div>
+    </div>
+</div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="./pages/2015/05/26/leetcodesingle-number-ii.html">Leetcode@Single Number II</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-26T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-26
-</abbr>
-<span class="label">By</span>
-<a href="./author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="./category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/26/leetcodesingle-number-ii.html"><h2>Leetcode@Single Number II</h2></a>
+        <div class= "well small"> 2015-05-26
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="./tag/algorithm-leetcode-highfrequency.html"><i class="icon-tag"></i>Algorithm Leetcode HighFrequency</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><hr />
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@Single Number II</h1>
 <h2>题目</h2>
 <p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
 <p>Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
 <h2>思路</h2>
-<p>构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。</p>
-                        <a class="btn primary xsmall" href="./pages/2015/05/26/leetcodesingle-number-ii.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="./pages/2015/05/25/leetcodeclimbing-stairs.html">Leetcode@Climbing Stairs</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-25T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-25
-</abbr>
-<span class="label">By</span>
-<a href="./author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="./category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<p>构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodesingle-number-ii.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodeclimbing-stairs.html"><h2>Leetcode@Climbing Stairs</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="./tag/algorithm-leetcode-dynamic-programming.html"><i class="icon-tag"></i>Algorithm Leetcode Dynamic Programming</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><hr />
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@Climbing Stairs</h1>
 <h2>题目</h2>
 <p>You are climbing a stair case. It takes n steps to reach to the top.</p>
@@ -137,175 +101,150 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 <p>动态规划的思路，属于sequence DP</p>
 <ul>
 <li>state: f[i]表示前i个位置，跳到第i个位置共有多少种方案</li>
-<li>function ...</li></ul>
-                        <a class="btn primary xsmall" href="./pages/2015/05/25/leetcodeclimbing-stairs.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="./pages/2015/05/25/leetcodefind-peak-element.html">Leetcode@Find Peak Element</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-25T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-25
-</abbr>
-<span class="label">By</span>
-<a href="./author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="./category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<li>function ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodeclimbing-stairs.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodefind-peak-element.html"><h2>Leetcode@Find Peak Element</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="./tag/algorithm-leetcode-binary-search.html"><i class="icon-tag"></i>Algorithm Leetcode Binary Search</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><hr />
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@Find Peak Element</h1>
 <h2>题目</h2>
 <p>A peak element is an element that is greater than its neighbors.</p>
 <p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
-<p>The array may contain multiple peaks, in that case return the index to any one ...</p>
-                        <a class="btn primary xsmall" href="./pages/2015/05/25/leetcodefind-peak-element.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="./pages/2015/05/25/leetcodehouse-robber-i.html">Leetcode@House Robber I</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-25T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-25
-</abbr>
-<span class="label">By</span>
-<a href="./author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="./category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<p>The array may contain multiple peaks, in that case return the index to any one ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodefind-peak-element.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodehouse-robber-i.html"><h2>Leetcode@House Robber I</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="./tag/algorithm-leetcode-dynamic-programming.html"><i class="icon-tag"></i>Algorithm Leetcode Dynamic Programming</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><hr />
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@House Robber I</h1>
 <h2>题目</h2>
-<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the ...</p>
-                        <a class="btn primary xsmall" href="./pages/2015/05/25/leetcodehouse-robber-i.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="./pages/2015/05/25/leetcodehouse-robber-ii.html">Leetcode@House Robber II</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-05-25T00:00:00+08:00">
-        <i class="icon-calendar"></i>2015-05-25
-</abbr>
-<span class="label">By</span>
-<a href="./author/zhangge208.html"><i class="icon-user"></i>zhangge208</a>
-<span class="label">Category</span>
-<a href="./category/algorithm.html"><i class="icon-folder-open"></i>Algorithm</a>.
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodehouse-robber-i.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodehouse-robber-ii.html"><h2>Leetcode@House Robber II</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
 
 
-<span class="label">Tags</span>
-	<a href="./tag/algorithm-leetcode-dynamic-programming.html"><i class="icon-tag"></i>Algorithm Leetcode Dynamic Programming</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><hr />
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@House Robber II</h1>
 <h2>题目</h2>
 <p>Note: This is an extension of House Robber.</p>
-<p>After robbing those houses on that street, the thief has found himself a new place for his thievery so that he will not get too much attention. This time, all houses at this place are arranged in ...</p>
-                        <a class="btn primary xsmall" href="./pages/2015/05/25/leetcodehouse-robber-ii.html">more ...</a>
-                </div>
+<p>After robbing those houses on that street, the thief has found himself a new place for his thievery so that he will not get too much attention. This time, all houses at this place are arranged in ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodehouse-robber-ii.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev"><a href="./index2.html">&larr; Previous</a></li>
+
+    <li class=""><a href="./index.html">1</a></li>
+    <li class=""><a href="./index2.html">2</a></li>
+    <li class="active"><a href="./index3.html">3</a></li>
+    <li class=""><a href="./index4.html">4</a></li>
+
+    <li class="next"><a href="./index4.html">Next &rarr;</a></li>
+
+</ul>
+</div>
+ 
+  
         </div>
-        <hr />
+        
+        <div class="span3">
 
-        <div class="pagination">
-        <ul>
-                        <li class="prev"><a href="./index2.html">&larr; Previous</a></li>
-                        <li class=""><a href="./index.html">1</a></li>
-                        <li class=""><a href="./index2.html">2</a></li>
-                        <li class="active"><a href="./index3.html">3</a></li>
-                        <li class=""><a href="./index4.html">4</a></li>
-                        <li class="next"><a href="./index4.html">Next &rarr;</a></li>
-        </ul>
-        </div>
-
-        </div><!--/span-->
-
-                <div class="span3 well sidebar-nav" id="sidebar">
-<ul class="nav nav-list">
-<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
-<li><a href="./" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="https://github.com/zhangge208"><i class="icon-Github-sign icon-large"></i>Github</a></li>
-    <li><a href="http://www.linkedin.com/profile/view?id=222151936"><i class="icon-Linkedin-sign icon-large"></i>Linkedin</a></li>
-
-<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
-<li>
-<a href="./category/algorithm.html">
-    <i class="icon-folder-open icon-large"></i>Algorithm
-</a>
-</li>
-
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-0">
-    <a href="./tag/algorithm-leetcode-dynamic-programming.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Dynamic Programming
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/algorithm-leetcode-heap.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Heap
-    </a>
-</li>
-<li class="tag-2">
-    <a href="./tag/algorithm-leetcode-linked-list.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Linked List
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/algorithm-leetcode-binary-search.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode Binary Search
-    </a>
-</li>
-<li class="tag-2">
-    <a href="./tag/algorithm-leetcode.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/algorithm.html">
-        <i class="icon-tag icon-large"></i>Algorithm
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/algorithm-leetcode-highfrequency.html">
-        <i class="icon-tag icon-large"></i>Algorithm Leetcode HighFrequency
-    </a>
-</li>
-
-
-</ul>        </div><!--/.well -->
-
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <address id="about">
-                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
-                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
-        </address><!-- /#about -->
-
-        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
-                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
 
 
 
-    <!-- Le javascript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./theme/js/jquery-1.7.2.min.js"></script>
-    <script src="./theme/js/bootstrap.min.js"></script>
-  </body>
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/algorithm.html">Algorithm</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
 </html>
