@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all-zh.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-06-02T00:00:00+08:00</updated><entry><title>Leetcode@Leetcode@Rotate List</title><link href="http://www.zhangge208.com/pages/2015/06/02/leetcodeleetcoderotate-list.html" rel="alternate"></link><updated>2015-06-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-02:pages/2015/06/02/leetcodeleetcoderotate-list.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all-zh.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-06-10T00:00:00+08:00</updated><entry><title>Binary Tree</title><link href="http://www.zhangge208.com/pages/2015/06/10/binary-tree.html" rel="alternate"></link><updated>2015-06-10T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-10:pages/2015/06/10/binary-tree.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Binary Tree&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;讲义的思路为参加&lt;a href="http://www.jiuzhang.com"&gt;九章算法&lt;/a&gt;培训学习，部分代码、模板均有所参考&lt;/p&gt;
+&lt;p&gt;特别感谢前辈：&lt;a href="http://www.shuatiblog.com"&gt;http://www.shuatiblog.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Outline&lt;/h2&gt;
+&lt;p&gt;1.Binary Tree DFS Traversal&lt;/p&gt;
+&lt;p&gt;-preorder/inorder/postorder&lt;/p&gt;
+&lt;p&gt;-Divide &amp;amp; Conquer&lt;/p&gt;
+&lt;p&gt;-DFS Template&lt;/p&gt;
+&lt;p&gt;2.Binary Tree BFS Traversal&lt;/p&gt;
+&lt;p&gt;-BFS Template&lt;/p&gt;
+&lt;p&gt;3.Binary Search Tree&lt;/p&gt;
+&lt;h2&gt;Binary Tree DFS Traversal&lt;/h2&gt;
+&lt;h3&gt;三种基本遍历方法&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    A
+   / \
+  B   C
+ / \  
+D   E
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;前序(Preorder)：A BDE C&lt;/p&gt;
+&lt;p&gt;中序(Inorder)：DBE A C&lt;/p&gt;
+&lt;p&gt;后序(Postorder)：DEB C A&lt;/p&gt;
+&lt;h3&gt;递归 or 非递归？&lt;/h3&gt;
+&lt;p&gt;递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！&lt;/p&gt;
+&lt;h3&gt;Divide &amp;amp; Conquer Algorithm&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Merge Sort&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用于大多数的Binary Tree Problem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;分治法对于二叉树问题，进行如下的操作：&lt;/p&gt;
+&lt;p&gt;1.&lt;strong&gt;Divide&lt;/strong&gt;：对于左右子树分别去同时处理，将原问题划分成为更小的子问题&lt;/p&gt;
+&lt;p&gt;2.&lt;strong&gt;Conquer&lt;/strong&gt;：将子问题的解合并，返回问题的解&lt;/p&gt;
+&lt;h3&gt;Problem List&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Traversal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Preorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Inorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Postorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Divide &amp;amp; Conquer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Maximum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Minimum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Balanced Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Maximum Path Sum&lt;/a&gt; – &lt;strong&gt;the most important question&lt;/strong&gt; &lt;/p&gt;
+&lt;h3&gt;Binary Tree DFS Template&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Template 1:Traverse
+
+public class Solution {
+    public void traverse(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+    //do something with root
+    traverse(root.left);
+    //do something with root
+    traverse(root.right);
+    //do something with root
+    }
+}
+
+Template 2:Divide &amp;amp; Conquer
+
+public class Solution {
+    public ResultType traversal(TreeNode root) {
+        // null or leaf
+        if (root = null) {
+            //do something and return;
+        }
+
+        //Divide
+        ResultType left = traversal(root.left);
+        ResultType right = traversal(root.right);
+
+        //Conquer
+        ResultType result = Merge from left and right;
+        return result;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Leetcode@Leetcode@Rotate List</title><link href="http://www.zhangge208.com/pages/2015/06/02/leetcodeleetcoderotate-list.html" rel="alternate"></link><updated>2015-06-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-02:pages/2015/06/02/leetcodeleetcoderotate-list.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Leetcode@Rotate List&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
 &lt;p&gt;Given a list, rotate the list to the right by k places, where k is non-negative.&lt;/p&gt;

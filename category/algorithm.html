@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/06/02/leetcodeleetcoderotate-list.html"><h1>Leetcode@Leetcode@Rotate List</h1></a>
-2015-06-02
+            <a href="../pages/2015/06/10/binary-tree.html"><h1>Binary Tree</h1></a>
+2015-06-10
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,103 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Binary Tree</h1>
+<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
+<p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
+<h2>Outline</h2>
+<p>1.Binary Tree DFS Traversal</p>
+<p>-preorder/inorder/postorder</p>
+<p>-Divide &amp; Conquer</p>
+<p>-DFS Template</p>
+<p>2.Binary Tree BFS Traversal</p>
+<p>-BFS Template</p>
+<p>3.Binary Search Tree</p>
+<h2>Binary Tree DFS Traversal</h2>
+<h3>三种基本遍历方法</h3>
+<div class="highlight"><pre>    A
+   / \
+  B   C
+ / \  
+D   E
+</pre></div>
+
+
+<p>前序(Preorder)：A BDE C</p>
+<p>中序(Inorder)：DBE A C</p>
+<p>后序(Postorder)：DEB C A</p>
+<h3>递归 or 非递归？</h3>
+<p>递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！</p>
+<h3>Divide &amp; Conquer Algorithm</h3>
+<p><strong>Merge Sort</strong></p>
+<p><strong>Quick Sort</strong></p>
+<p><strong>适用于大多数的Binary Tree Problem</strong></p>
+<p>分治法对于二叉树问题，进行如下的操作：</p>
+<p>1.<strong>Divide</strong>：对于左右子树分别去同时处理，将原问题划分成为更小的子问题</p>
+<p>2.<strong>Conquer</strong>：将子问题的解合并，返回问题的解</p>
+<h3>Problem List</h3>
+<p><strong>Traversal</strong></p>
+<p><a href="http:">Binary Tree Preorder Traversal</a></p>
+<p><a href="http:">Binary Tree Inorder Traversal</a></p>
+<p><a href="http:">Binary Tree Postorder Traversal</a></p>
+<p><strong>Divide &amp; Conquer</strong></p>
+<p><a href="http:">Maximum Depth of Binary Tree</a></p>
+<p><a href="http:">Minimum Depth of Binary Tree</a></p>
+<p><a href="http:">Balanced Binary Tree</a></p>
+<p><a href="http:">Binary Tree Maximum Path Sum</a> – <strong>the most important question</strong> </p>
+<h3>Binary Tree DFS Template</h3>
+<div class="highlight"><pre>Template 1:Traverse
+
+public class Solution {
+    public void traverse(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+    //do something with root
+    traverse(root.left);
+    //do something with root
+    traverse(root.right);
+    //do something with root
+    }
+}
+
+Template 2:Divide &amp; Conquer
+
+public class Solution {
+    public ResultType traversal(TreeNode root) {
+        // null or leaf
+        if (root = null) {
+            //do something and return;
+        }
+
+        //Divide
+        ResultType left = traversal(root.left);
+        ResultType right = traversal(root.right);
+
+        //Conquer
+        ResultType result = Merge from left and right;
+        return result;
+    }
+}
+</pre></div></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/02/leetcodeleetcoderotate-list.html"><h2>Leetcode@Leetcode@Rotate List</h2></a>
+        <div class= "well small"> 2015-06-02
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@Rotate List</h1>
 <h2>题目</h2>
 <p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
@@ -78,61 +175,9 @@ Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and k = <code>2</code>,
 return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p>
 <h2>思路</h2>
 <p>把问题分割，题目要求部分翻转，那么首先要得到开始翻转的位置
-这与Remove Nth Node From End of List的思路一致，运用快慢指针，得到要翻转的位置，这部分问题解决。然后就是链表的连接，由于翻转后并不知道头节点是谁，所以需要dummy node来解决这一问题。然后画个图，搞清每一步的连接。链表连接的问题还是要多画图分析。
-题目中有个小陷阱，就是翻转位置标识k，并没有说明k有多大，所以需要进行取余操作，那么就先需要知道链表的长度，链表长度的得到是很简单的，遍历一遍，拿一个计数器记录就好。
-关于边界的考虑，一定要记得异常处理，首先是链表判空；然后在进行快慢指针的过程时，要保证fast-&gt;next不为空；在获取链表长度时也需要让链表head！= NULL。</p>
-<h2>代码</h2>
-<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
-<span class="n">public:</span>
-    <span class="n">ListNode</span> *<span class="n">rotateRight</span>(<span class="n">ListNode</span> *<span class="n">head</span>, <span class="nb">int</span> <span class="n">k</span>) {
-        <span class="k">if</span>(<span class="n">head</span> == <span class="n">NULL</span> )
-        {
-            <span class="k">return</span> <span class="n">head</span>;
-        }
-
-        <span class="nb">int</span> <span class="n">length</span> = <span class="n">getlength</span>(<span class="n">head</span>);
-        <span class="n">k</span> = <span class="n">k</span> % <span class="n">length</span>;
-
-        <span class="n">ListNode</span> *<span class="n">dummy</span> = <span class="nb">new</span> <span class="n">ListNode</span>(-<span class="mi">1</span>);
-        <span class="n">dummy-</span>&gt;<span class="k">next</span> = <span class="n">head</span>;
-        <span class="n">head</span> = <span class="n">dummy</span>;
-
-        <span class="n">ListNode</span> *<span class="n">fast</span> = <span class="n">dummy</span>;
-        <span class="n">ListNode</span> *<span class="n">slow</span> = <span class="n">dummy</span>;
-
-        <span class="k">for</span>(<span class="nb">int</span> <span class="n">i</span> = <span class="mi">0</span>; <span class="n">i</span> &lt; <span class="n">k</span>; <span class="n">i</span>++)
-        {
-            <span class="n">fast</span> = <span class="n">fast-</span>&gt;<span class="k">next</span>;
-        }
-
-        <span class="k">while</span>(<span class="n">fast-</span>&gt;<span class="k">next</span> != <span class="n">NULL</span>)
-        {
-            <span class="n">fast</span> = <span class="n">fast-</span>&gt;<span class="k">next</span>;
-            <span class="n">slow</span> = <span class="n">slow-</span>&gt;<span class="k">next</span>;
-        }
-
-        <span class="n">fast-</span>&gt;<span class="k">next</span> = <span class="n">dummy-</span>&gt;<span class="k">next</span>;
-        <span class="n">dummy-</span>&gt;<span class="k">next</span> = <span class="n">slow-</span>&gt;<span class="k">next</span>;
-        <span class="n">slow-</span>&gt;<span class="k">next</span> = <span class="n">NULL</span>;
-        <span class="k">return</span> <span class="n">dummy-</span>&gt;<span class="k">next</span>;
-    }
-<span class="n">private:</span>
-    <span class="nb">int</span> <span class="n">getlength</span>(<span class="n">ListNode</span> *<span class="n">head</span>)
-    {
-        <span class="nb">int</span> <span class="n">length</span> = <span class="mi">0</span>;
-
-        <span class="k">while</span>(<span class="n">head</span> != <span class="n">NULL</span>)
-        {
-            <span class="n">length</span>++;
-            <span class="n">head</span> = <span class="n">head-</span>&gt;<span class="k">next</span>;
-        }
-        <span class="k">return</span> <span class="n">length</span>;
-    }
-};
-</pre></div></div>
-        <hr />
-    </div>
-		
+这与Remove Nth Node From End of List的思路一致 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcodeleetcoderotate-list.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -207,28 +252,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <h2>题目</h2>
 <p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
 <p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-i.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html"><h2>Leetcode@Best Time to Buy and Sell Stock II</h2></a>
-        <div class= "well small"> 2015-05-26
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Best Time to Buy and Sell Stock II</h1>
-<h2>题目</h2>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
