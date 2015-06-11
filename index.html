@@ -73,6 +73,11 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 <h1>Binary Tree</h1>
 <p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
 <p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
+<h2>基础知识  （摘自<a href="algorithm.yuanbin.me">algorithm.yuanbin.me</a>)</h2>
+<p>二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆</p>
+<p>二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。</p>
+<p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k 的满二叉树中，序号为 1 至 n 的节点对应时，称之为完全二叉树。完全二叉树中重在节
+点标号对应。</p>
 <h2>Outline</h2>
 <p>1.Binary Tree DFS Traversal</p>
 <p>-preorder/inorder/postorder</p>
@@ -94,7 +99,14 @@ D   E
 <p>前序(Preorder)：A BDE C</p>
 <p>中序(Inorder)：DBE A C</p>
 <p>后序(Postorder)：DEB C A</p>
+<p><strong>Summary</strong></p>
+<ul>
+<li>前序（preorder）：先根节点，后左节点，最后右节点</li>
+<li>中序（inorder）：先左节点，再根节点，最后右节点</li>
+<li>后序（postorder）：先左节点，再右节点，最后根节点</li>
+</ul>
 <h3>递归 or 非递归？</h3>
+<p>树的遍历通常使用递归的方法进行理解和实现，在访问元素时也需要使用递归的思想去理解</p>
 <p>递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！</p>
 <h3>Divide &amp; Conquer Algorithm</h3>
 <p><strong>Merge Sort</strong></p>
