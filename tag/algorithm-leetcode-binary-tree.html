@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/06/10/binary-tree.html"><h1>Binary Tree</h1></a>
-2015-06-10
+            <a href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html"><h1>Leetcode@Binary Tree Preorder Traversal</h1></a>
+2015-06-11
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,92 +70,125 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
-<h1>Binary Tree</h1>
-<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
-<p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
-<h2>基础知识  （摘自<a href="algorithm.yuanbin.me">algorithm.yuanbin.me</a>)</h2>
-<p>二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆</p>
-<p>二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。</p>
-<p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k 的满二叉树中，序号为 1 至 n 的节点对应时，称之为完全二叉树。完全二叉树中重在节
-点标号对应。</p>
-<h2>Outline</h2>
-<p>1.Binary Tree DFS Traversal</p>
-<p>-preorder/inorder/postorder</p>
-<p>-Divide &amp; Conquer</p>
-<p>-DFS Template</p>
-<p>2.Binary Tree BFS Traversal</p>
-<p>-BFS Template</p>
-<p>3.Binary Search Tree</p>
-<h2>Binary Tree DFS Traversal</h2>
-<h3>三种基本遍历方法</h3>
-<div class="highlight"><pre>    A
-   / \
-  B   C
- / \  
-D   E
+<h1>Leetcode@Binary Tree Preorder Traversal</h1>
+<h2>题目</h2>
+<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>　　1
+ 　　\
+  　　2
+ 　　/
+　　3
 </pre></div>
 
 
-<p>前序(Preorder)：A BDE C</p>
-<p>中序(Inorder)：DBE A C</p>
-<p>后序(Postorder)：DEB C A</p>
-<p><strong>Summary</strong></p>
-<ul>
-<li>前序（preorder）：先根节点，后左节点，最后右节点</li>
-<li>中序（inorder）：先左节点，再根节点，最后右节点</li>
-<li>后序（postorder）：先左节点，再右节点，最后根节点</li>
-</ul>
-<h3>递归 or 非递归？</h3>
-<p>树的遍历通常使用递归的方法进行理解和实现，在访问元素时也需要使用递归的思想去理解</p>
-<p>递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！</p>
-<h3>Divide &amp; Conquer Algorithm</h3>
-<p><strong>Merge Sort</strong></p>
-<p><strong>Quick Sort</strong></p>
-<p><strong>适用于大多数的Binary Tree Problem</strong></p>
-<p>分治法对于二叉树问题，进行如下的操作：</p>
-<p>1.<strong>Divide</strong>：对于左右子树分别去同时处理，将原问题划分成为更小的子问题</p>
-<p>2.<strong>Conquer</strong>：将子问题的解合并，返回问题的解</p>
-<h3>Problem List</h3>
-<p><strong>Traversal</strong></p>
-<p><a href="http:">Binary Tree Preorder Traversal</a></p>
-<p><a href="http:">Binary Tree Inorder Traversal</a></p>
-<p><a href="http:">Binary Tree Postorder Traversal</a></p>
-<p><strong>Divide &amp; Conquer</strong></p>
-<p><a href="http:">Maximum Depth of Binary Tree</a></p>
-<p><a href="http:">Minimum Depth of Binary Tree</a></p>
-<p><a href="http:">Balanced Binary Tree</a></p>
-<p><a href="http:">Binary Tree Maximum Path Sum</a> – <strong>the most important question</strong> </p>
-<h3>Binary Tree DFS Template</h3>
-<div class="highlight"><pre>Template 1:Traverse
-
+<p>return [1,2,3].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<h2>思路</h2>
+<p>三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法</p>
+<h3>非递归</h3>
+<p>运用栈和迭代。值得注意的是，左右节点入栈的先后顺序，栈是先入后出的数据结构，为保证是前序遍历，所以右节点先入栈，然后左节点。</p>
+<h3>递归：遍历</h3>
+<p>运用遍历的方法</p>
+<p>先根再左最后右</p>
+<h3>递归：分治法</h3>
+<p>运用分治法，这是大多数树问题均可使用的办法</p>
+<p>分为左子树和右子树，不断地减小问题的规模</p>
+<p><strong>值得注意：</strong>
+(1)容器中addAll方法的使用，把一个容器中的所有元素加入到另一个容器的后面。</p>
+<p>(2)记得对于边界条件的处理、异常处理。</p>
+<h2>代码</h2>
+<div class="highlight"><pre>version 1：Non-recurison
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 public class Solution {
-    public void traverse(TreeNode root) {
-        if (root == null) {
-            return ;
+    public List&lt;Integer&gt; preorderTraversal(TreeNode root) {
+        Stack&lt;TreeNode&gt; stack = new Stack&lt;TreeNode&gt;();
+        List&lt;Integer&gt; preorder = new ArrayList&lt;Integer&gt;();
+
+        if (root == null){
+            return preorder;
         }
-    //do something with root
-    traverse(root.left);
-    //do something with root
-    traverse(root.right);
-    //do something with root
+
+        stack.push(root);
+
+        while (!stack.empty()){
+            TreeNode node = stack.pop();
+            preorder.add(node.val);
+
+            if (node.right != null){
+                stack.push(node.right);
+            }
+            if (node.left != null){
+                stack.push(node.left);
+            }
+        }
+        return preorder;
     }
 }
 
-Template 2:Divide &amp; Conquer
-
+version 2：Traverse
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 public class Solution {
-    public ResultType traversal(TreeNode root) {
-        // null or leaf
-        if (root = null) {
-            //do something and return;
+    public List&lt;Integer&gt; preorderTraversal(TreeNode root) {
+        ArrayList&lt;Integer&gt; preorder = new ArrayList&lt;Integer&gt;();
+        traverse(root,preorder);
+        return preorder;
+    }
+    private void traverse(TreeNode root, ArrayList&lt;Integer&gt;preorder){
+        if (root == null){
+            return ;
         }
 
+        preorder.add(root.val);
+        traverse(root.left,preorder);
+        traverse(root.right, preorder);
+
+    }
+}
+
+version 3：Divide &amp; Conquer
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&lt;Integer&gt; preorderTraversal(TreeNode root) {
+        ArrayList&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
+        if (root == null){
+            return result;
+        }
+        //Divide &amp; Conquer
+
         //Divide
-        ResultType left = traversal(root.left);
-        ResultType right = traversal(root.right);
+        ArrayList&lt;Integer&gt; left = preorderTraversal(root.left);
+        ArrayList&lt;Integer&gt; right = preorderTraversal(root.right);
 
         //Conquer
-        ResultType result = Merge from left and right;
+        result.add(root.val);
+        result.addAll(left);
+        result.addAll(right);
         return result;
     }
 }
@@ -163,6 +196,31 @@ public class Solution {
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/10/binary-tree.html"><h2>Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-10
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Binary Tree</h1>
+<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
+<p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
+<h2>基础知识  （摘自<a href="algorithm.yuanbin.me">algorithm.yuanbin.me</a>)</h2>
+<p>二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆</p>
+<p>二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。</p>
+<p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/10/binary-tree.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
