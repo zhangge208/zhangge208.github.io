@@ -59,6 +59,30 @@
  
 
     <div class='article'>
+        <a href="./pages/2015/05/26/leetcodefactorial-trailing-zeroes.html"><h2>Leetcode@Factorial Trailing Zeroes</h2></a>
+        <div class= "well small"> 2015-05-26
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Factorial Trailing Zeroes</h1>
+<h2>题目</h2>
+<p>Given an integer n, return the number of trailing zeroes in n!.</p>
+<p>Note: Your solution should be in logarithmic time complexity.</p>
+<h2>思路</h2>
+<p>考虑n!的质数因子。后缀0总是由质因子2和质因子5相乘得来的。如果可以计算2和5的个数，问题就解决了。考虑到2的个数总是大于等于5的个数。因此只要计录5的个数就可以了。那么如何计算n!的质因子中所有5的个数便成为难点。一个简单的方法是计算(n/5),除此之外，还有一件事情要考虑。诸如25，125之类的数字有不止一个5。处理这个问题也很简单，首先对n除以5，移除所有的单个5，然后除以25，移除额外的5，以此类推，直到 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodefactorial-trailing-zeroes.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./pages/2015/05/26/leetcodemajority-element.html"><h2>Leetcode@Majority Element</h2></a>
         <div class= "well small"> 2015-05-26
 
@@ -157,33 +181,6 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
 <h2>思路</h2>
 <p>构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodesingle-number-ii.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/05/25/leetcodeclimbing-stairs.html"><h2>Leetcode@Climbing Stairs</h2></a>
-        <div class= "well small"> 2015-05-25
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Climbing Stairs</h1>
-<h2>题目</h2>
-<p>You are climbing a stair case. It takes n steps to reach to the top.</p>
-<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
-<h2>思路</h2>
-<p>动态规划的思路，属于sequence DP</p>
-<ul>
-<li>state: f[i]表示前i个位置，跳到第i个位置共有多少种方案</li>
-<li>function ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodeclimbing-stairs.html">read more</a></div>
     </div>	
 				
 <div class="pagination">

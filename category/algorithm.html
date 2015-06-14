@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h1>Leetcode@Binary Tree Inorder Traversal</h1></a>
-2015-06-12
+            <a href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h1>Leetcode@Leetcode@Invert Binary Tree</h1></a>
+2015-06-13
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,72 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Leetcode@Invert Binary Tree</h1>
+<h2>题目</h2>
+<p>Invert a binary tree.</p>
+<div class="highlight"><pre>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</pre></div>
+
+
+<h2>思路</h2>
+<p>非递归的还没想出来，不会做，那就来递归的吧先，递归很简单，交换左右节点就跟交换a,b两个数一样，需要一个中间变量，先把左子树的指针赋给中间变量，然后交换。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right;</span>
+<span class="cm"> *     TreeNode(int x) { val = x; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span><span class="w"></span>
+public<span class="w"> </span>class<span class="w"> </span>Solution<span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>invertTree<span class="o">(</span>TreeNode<span class="w"> </span>root<span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>root<span class="w"> </span><span class="o">==</span><span class="w"> </span>null<span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="kr">return</span><span class="w"> </span>root<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span>TreeNode<span class="w"> </span>temp<span class="w"> </span><span class="o">=</span><span class="w"> </span>root<span class="o">.</span>left<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>root<span class="o">.</span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>root<span class="o">.</span>right<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>root<span class="o">.</span>right<span class="w"> </span><span class="o">=</span><span class="w"> </span>temp<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>invertTree<span class="o">(</span>root<span class="o">.</span>left<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>invertTree<span class="o">(</span>root<span class="o">.</span>right<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>root<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
+        <div class= "well small"> 2015-06-12
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Binary Tree Inorder Traversal</h1>
 <h2>题目</h2>
 <p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
@@ -86,106 +152,9 @@ Given binary tree {1,#,2,3},</p>
 <p>return [1,3,2].</p>
 <p>Note: Recursive solution is trivial, could you do it iteratively?</p>
 <h2>思路</h2>
-<p>三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法</p>
-<h3>非递归</h3>
-<p>运用栈和迭代。值得注意的是，入栈的先后顺序，栈是先入后出的数据结构，为保证是中序遍历，首先需要对左子树进行迭代并将非空节点入栈，直到节点为空，当前节点为空时进行出栈操作，并访问栈顶节点，将当前节点用右子节点代替。</p>
-<h3>递归：遍历</h3>
-<p>运用遍历的方法</p>
-<p>先左再中最后右</p>
-<h3>递归：分治法</h3>
-<p>运用分治法，这是大多数树问题均可使用的办法</p>
-<p>分为左子树和右子树，不断地减小问题的规模</p>
-<h2>代码</h2>
-<div class="highlight"><pre>version 1：Non-recursion（recommended）
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
-        Stack&lt;TreeNode&gt; stack = new Stack&lt;TreeNode&gt;();
-        List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
-        TreeNode cur = root;
-        while (cur != null || !stack.empty()){
-            while(cur != null){
-                stack.push(cur);
-                cur = cur.left;
-            }
-            cur = stack.pop();
-            result.add(cur.val);
-            cur = cur.right;
-
-        }
-        return result;
-    }
-}
-
-version 2：Traversal
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
-        List&lt;Integer&gt; inorderTraversal = new ArrayList&lt;Integer&gt;();
-        traversal(root,inorderTraversal);
-        return inorderTraversal;
-    }
-    private void traversal(TreeNode root,List&lt;Integer&gt; result){
-        if (root == null){
-            return;
-        }
-
-        traversal(root.left,result);
-        result.add(root.val);
-        traversal(root.right,result);
-
-    }
-}
-
-version 3：Divide &amp; Conquer
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
-        List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
-        if (root == null){
-            return result;
-        }
-        //Divide &amp; Conquer
-
-        //Divide
-        List&lt;Integer&gt; left = inorderTraversal(root.left);
-        List&lt;Integer&gt; right = inorderTraversal(root.right);
-        //Conquer
-        result.addAll(left);
-        result.add(root.val);
-        result.addAll(right);
-
-        return result;
-    }
-}
-</pre></div></div>
-        <hr />
-    </div>
-		
+<p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -271,35 +240,6 @@ return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p>
 <h2>思路</h2>
 <p>把问题分割，题目要求部分翻转，那么首先要得到开始翻转的位置
 这与Remove Nth Node From End of List的思路一致 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcodeleetcoderotate-list.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html"><h2>Leetcode@Remove Linked List Elements</h2></a>
-        <div class= "well small"> 2015-06-02
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Remove Linked List Elements</h1>
-<h2>题目</h2>
-<p>Remove all elements from a linked list of integers that have value val.</p>
-<p><strong>Example</strong></p>
-<p><strong><em>Given:</em></strong> 1 --&gt; 2 --&gt; 6 --&gt; 3 --&gt; 4 --&gt; 5 --&gt; 6, val = 6</p>
-<p><strong><em>Return:</em></strong> 1 --&gt; 2 --&gt; 3 --&gt; 4 --&gt; 5</p>
-<h2>思路</h2>
-<p>基础的链表操作题目。首先考虑到头节点可能会被修改，所以要使用dummynode，然后根据判断条件进行remove即可，现指针节点为p，p的后继节点的值若与给定的val相等，则令p指向p后继的后继即可移除p现在的后继。注意边界条件的处理。</p>
-<h2>代码</h2>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Definition for singly-linked list ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html">read more</a></div>
     </div>	
 				
 <div class="pagination">

@@ -59,6 +59,35 @@
  
 
     <div class='article'>
+        <a href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html"><h2>Leetcode@Remove Linked List Elements</h2></a>
+        <div class= "well small"> 2015-06-02
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Remove Linked List Elements</h1>
+<h2>题目</h2>
+<p>Remove all elements from a linked list of integers that have value val.</p>
+<p><strong>Example</strong></p>
+<p><strong><em>Given:</em></strong> 1 --&gt; 2 --&gt; 6 --&gt; 3 --&gt; 4 --&gt; 5 --&gt; 6, val = 6</p>
+<p><strong><em>Return:</em></strong> 1 --&gt; 2 --&gt; 3 --&gt; 4 --&gt; 5</p>
+<h2>思路</h2>
+<p>基础的链表操作题目。首先考虑到头节点可能会被修改，所以要使用dummynode，然后根据判断条件进行remove即可，现指针节点为p，p的后继节点的值若与给定的val相等，则令p指向p后继的后继即可移除p现在的后继。注意边界条件的处理。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked list ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2015/05/28/leetcodekth-largest-element-in-an-array.html"><h2>Leetcode@Kth Largest Element in an Array</h2></a>
         <div class= "well small"> 2015-05-28
 
@@ -143,30 +172,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
 <p>Note:
 You may not engage ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-iii.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/05/26/leetcodefactorial-trailing-zeroes.html"><h2>Leetcode@Factorial Trailing Zeroes</h2></a>
-        <div class= "well small"> 2015-05-26
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Factorial Trailing Zeroes</h1>
-<h2>题目</h2>
-<p>Given an integer n, return the number of trailing zeroes in n!.</p>
-<p>Note: Your solution should be in logarithmic time complexity.</p>
-<h2>思路</h2>
-<p>考虑n!的质数因子。后缀0总是由质因子2和质因子5相乘得来的。如果可以计算2和5的个数，问题就解决了。考虑到2的个数总是大于等于5的个数。因此只要计录5的个数就可以了。那么如何计算n!的质因子中所有5的个数便成为难点。一个简单的方法是计算(n/5),除此之外，还有一件事情要考虑。诸如25，125之类的数字有不止一个5。处理这个问题也很简单，首先对n除以5，移除所有的单个5，然后除以25，移除额外的5，以此类推，直到 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodefactorial-trailing-zeroes.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
