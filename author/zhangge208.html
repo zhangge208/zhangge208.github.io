@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h1>Leetcode@Leetcode@Invert Binary Tree</h1></a>
-2015-06-13
+            <a href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h1>Leetcode@Convert Sorted Array to Binary Search Tree</h1></a>
+2015-06-29
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,63 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Convert Sorted Array to Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<h2>思路</h2>
+<p>按照题目要求，第一想法是得到树的根节点，如果没有构建平衡二叉搜索树的要求，那很容易，联想BST和binary search的关系，选择排序数组中间元素作为根节点，元素左边的全部元素作为左子树，右边全部元素作为右子树，然后用同样的方法寻找根节点，递归。</p>
+<p>需要注意对边界的处理，必须满足BST的定义。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right;</span>
+<span class="cm"> *     TreeNode(int x) { val = x; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span><span class="w"></span>
+public<span class="w"> </span>class<span class="w"> </span>Solution<span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>sortedArrayToBST<span class="o">(</span>int<span class="err">[]</span><span class="w"> </span>nums<span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>nums<span class="w"> </span><span class="o">==</span><span class="w"> </span>null<span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="kr">return</span><span class="w"> </span>null<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>nums<span class="o">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span>private<span class="w"> </span>TreeNode<span class="w"> </span>buildTree<span class="o">(</span>int<span class="err">[]</span><span class="w"> </span>nums<span class="o">,</span><span class="w"> </span>int<span class="w"> </span>start<span class="o">,</span><span class="w"> </span>int<span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>start<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="kr">return</span><span class="w"> </span>null<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span>TreeNode<span class="w"> </span>node<span class="w"> </span><span class="o">=</span><span class="w"> </span>new<span class="w"> </span>TreeNode<span class="o">(</span>nums<span class="err">[</span><span class="o">(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="err">]</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>node<span class="o">.</span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,</span>start<span class="o">,</span><span class="w"> </span><span class="o">(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>node<span class="o">.</span>right<span class="w"> </span><span class="o">=</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>node<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="err">}</span><span class="w"></span>
+</pre></div></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h2>Leetcode@Leetcode@Invert Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Leetcode@Invert Binary Tree</h1>
 <h2>题目</h2>
 <p>Invert a binary tree.</p>
@@ -98,28 +155,9 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <span class="cm"> * public class TreeNode {</span>
 <span class="cm"> *     int val;</span>
 <span class="cm"> *     TreeNode left;</span>
-<span class="cm"> *     TreeNode right;</span>
-<span class="cm"> *     TreeNode(int x) { val = x; }</span>
-<span class="cm"> * }</span>
-<span class="cm"> */</span><span class="w"></span>
-public<span class="w"> </span>class<span class="w"> </span>Solution<span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>invertTree<span class="o">(</span>TreeNode<span class="w"> </span>root<span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>root<span class="w"> </span><span class="o">==</span><span class="w"> </span>null<span class="o">)</span><span class="err">{</span><span class="w"></span>
-<span class="w">            </span><span class="kr">return</span><span class="w"> </span>root<span class="err">;</span><span class="w"></span>
-<span class="w">        </span><span class="err">}</span><span class="w"></span>
-
-<span class="w">        </span>TreeNode<span class="w"> </span>temp<span class="w"> </span><span class="o">=</span><span class="w"> </span>root<span class="o">.</span>left<span class="err">;</span><span class="w"></span>
-<span class="w">        </span>root<span class="o">.</span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>root<span class="o">.</span>right<span class="err">;</span><span class="w"></span>
-<span class="w">        </span>root<span class="o">.</span>right<span class="w"> </span><span class="o">=</span><span class="w"> </span>temp<span class="err">;</span><span class="w"></span>
-<span class="w">        </span>invertTree<span class="o">(</span>root<span class="o">.</span>left<span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="w">        </span>invertTree<span class="o">(</span>root<span class="o">.</span>right<span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span>root<span class="err">;</span><span class="w"></span>
-<span class="w">    </span><span class="err">}</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
-</pre></div></div>
-        <hr />
-    </div>
-		
+<span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -213,31 +251,6 @@ Given binary tree {1,#,2,3},</p>
 <p>Note: Recursive solution is trivial, could you do it iteratively?</p>
 <h2>思路</h2>
 <p>三种做法：1.非递归（推荐） 2.递归 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/06/10/binary-tree.html"><h2>Binary Tree</h2></a>
-        <div class= "well small"> 2015-06-10
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Binary Tree</h1>
-<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
-<p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
-<h2>基础知识  （摘自<a href="algorithm.yuanbin.me">algorithm.yuanbin.me</a>)</h2>
-<p>二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆</p>
-<p>二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。</p>
-<p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/10/binary-tree.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
