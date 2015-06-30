@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/algorithm.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-06-29T00:00:00+08:00</updated><entry><title>Leetcode@Convert Sorted Array to Binary Search Tree</title><link href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html" rel="alternate"></link><updated>2015-06-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-29:pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/algorithm.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-06-30T00:00:00+08:00</updated><entry><title>Leetcode@Convert Sorted List to Binary Search Tree</title><link href="http://www.zhangge208.com/pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html" rel="alternate"></link><updated>2015-06-30T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-30:pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Convert Sorted List to Binary Search Tree&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;与&lt;a href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"&gt;Convert Sorted Array to Binary Search Tree&lt;/a&gt;的思路很像，首先是得找到根节点，但考虑到是链表，没法直接到中间的元素，只能依次移动指针，联想到中序遍历与BST的关系，我们依据inorder来构造BST，前半部分为左子树，然后根节点，后半部分为右子树。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Definition for singly-linked list.&lt;/span&gt;
+&lt;span class="cm"&gt; * public class ListNode {&lt;/span&gt;
+&lt;span class="cm"&gt; *     int val;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode next;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode(int x) { val = x; }&lt;/span&gt;
+&lt;span class="cm"&gt; * }&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Definition for a binary tree node.&lt;/span&gt;
+&lt;span class="cm"&gt; * public class TreeNode {&lt;/span&gt;
+&lt;span class="cm"&gt; *     int val;&lt;/span&gt;
+&lt;span class="cm"&gt; *     TreeNode left;&lt;/span&gt;
+&lt;span class="cm"&gt; *     TreeNode right;&lt;/span&gt;
+&lt;span class="cm"&gt; *     TreeNode(int x) { val = x; }&lt;/span&gt;
+&lt;span class="cm"&gt; * }&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+public&lt;span class="w"&gt; &lt;/span&gt;class&lt;span class="w"&gt; &lt;/span&gt;Solution&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;private&lt;span class="w"&gt; &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;current&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;public&lt;span class="w"&gt; &lt;/span&gt;TreeNode&lt;span class="w"&gt; &lt;/span&gt;sortedListToBST&lt;span class="o"&gt;(&lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;int&lt;span class="w"&gt; &lt;/span&gt;size&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;getLength&lt;span class="o"&gt;(&lt;/span&gt;head&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;current&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sortedListToBSTHelper&lt;span class="o"&gt;(&lt;/span&gt;size&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;private&lt;span class="w"&gt; &lt;/span&gt;int&lt;span class="w"&gt; &lt;/span&gt;getLength&lt;span class="o"&gt;(&lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;int&lt;span class="w"&gt; &lt;/span&gt;length&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;while&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;length&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;length&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;public&lt;span class="w"&gt; &lt;/span&gt;TreeNode&lt;span class="w"&gt; &lt;/span&gt;sortedListToBSTHelper&lt;span class="o"&gt;(&lt;/span&gt;int&lt;span class="w"&gt; &lt;/span&gt;size&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;size&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;null&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;TreeNode&lt;span class="w"&gt; &lt;/span&gt;left&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sortedListToBSTHelper&lt;span class="o"&gt;(&lt;/span&gt;size&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;TreeNode&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;TreeNode&lt;span class="o"&gt;(&lt;/span&gt;current&lt;span class="o"&gt;.&lt;/span&gt;val&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;current&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;current&lt;span class="o"&gt;.&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;TreeNode&lt;span class="w"&gt; &lt;/span&gt;right&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sortedListToBSTHelper&lt;span class="o"&gt;(&lt;/span&gt;size&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;size&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;left&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;left&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;right&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;right&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Leetcode@Convert Sorted Array to Binary Search Tree</title><link href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html" rel="alternate"></link><updated>2015-06-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-29:pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Convert Sorted Array to Binary Search Tree&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
 &lt;p&gt;Given an array where elements are sorted in ascending order, convert it to a height balanced BST.&lt;/p&gt;

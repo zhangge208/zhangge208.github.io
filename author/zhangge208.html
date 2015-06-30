@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h1>Leetcode@Convert Sorted Array to Binary Search Tree</h1></a>
-2015-06-29
+            <a href="../pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html"><h1>Leetcode@Convert Sorted List to Binary Search Tree</h1></a>
+2015-06-30
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,83 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Convert Sorted List to Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<h2>思路</h2>
+<p>与<a href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">Convert Sorted Array to Binary Search Tree</a>的思路很像，首先是得找到根节点，但考虑到是链表，没法直接到中间的元素，只能依次移动指针，联想到中序遍历与BST的关系，我们依据inorder来构造BST，前半部分为左子树，然后根节点，后半部分为右子树。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked list.</span>
+<span class="cm"> * public class ListNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     ListNode next;</span>
+<span class="cm"> *     ListNode(int x) { val = x; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right;</span>
+<span class="cm"> *     TreeNode(int x) { val = x; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span><span class="w"></span>
+public<span class="w"> </span>class<span class="w"> </span>Solution<span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>private<span class="w"> </span>ListNode<span class="w"> </span>current<span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>sortedListToBST<span class="o">(</span>ListNode<span class="w"> </span>head<span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>int<span class="w"> </span>size<span class="w"> </span><span class="o">=</span><span class="w"> </span>getLength<span class="o">(</span>head<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>current<span class="w"> </span><span class="o">=</span><span class="w"> </span>head<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>sortedListToBSTHelper<span class="o">(</span>size<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>private<span class="w"> </span>int<span class="w"> </span>getLength<span class="o">(</span>ListNode<span class="w"> </span>head<span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>int<span class="w"> </span>length<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="kr">while</span><span class="o">(</span>head<span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>null<span class="w"> </span><span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>length<span class="o">++</span><span class="err">;</span><span class="w"></span>
+<span class="w">            </span>head<span class="w"> </span><span class="o">=</span><span class="w"> </span>head<span class="o">.</span>next<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>length<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>sortedListToBSTHelper<span class="o">(</span>int<span class="w"> </span>size<span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>size<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="kr">return</span><span class="w"> </span>null<span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span>TreeNode<span class="w"> </span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>sortedListToBSTHelper<span class="o">(</span>size<span class="o">/</span><span class="m">2</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>TreeNode<span class="w"> </span>root<span class="w"> </span><span class="o">=</span><span class="w"> </span>new<span class="w"> </span>TreeNode<span class="o">(</span>current<span class="o">.</span>val<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>current<span class="w"> </span><span class="o">=</span><span class="w"> </span>current<span class="o">.</span>next<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>TreeNode<span class="w"> </span>right<span class="w"> </span><span class="o">=</span><span class="w"> </span>sortedListToBSTHelper<span class="o">(</span>size<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span>size<span class="o">/</span><span class="m">2</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>root<span class="o">.</span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>left<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>root<span class="o">.</span>right<span class="w"> </span><span class="o">=</span>right<span class="err">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span>root<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w">    </span>
+<span class="err">}</span><span class="w"></span>
+</pre></div></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted Array to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-29
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Convert Sorted Array to Binary Search Tree</h1>
 <h2>题目</h2>
 <p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
@@ -80,37 +157,9 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <div class="highlight"><pre><span class="cm">/**</span>
 <span class="cm"> * Definition for a binary tree node.</span>
 <span class="cm"> * public class TreeNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     TreeNode left;</span>
-<span class="cm"> *     TreeNode right;</span>
-<span class="cm"> *     TreeNode(int x) { val = x; }</span>
-<span class="cm"> * }</span>
-<span class="cm"> */</span><span class="w"></span>
-public<span class="w"> </span>class<span class="w"> </span>Solution<span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">    </span>public<span class="w"> </span>TreeNode<span class="w"> </span>sortedArrayToBST<span class="o">(</span>int<span class="err">[]</span><span class="w"> </span>nums<span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>nums<span class="w"> </span><span class="o">==</span><span class="w"> </span>null<span class="o">)</span><span class="err">{</span><span class="w"></span>
-<span class="w">            </span><span class="kr">return</span><span class="w"> </span>null<span class="err">;</span><span class="w"></span>
-<span class="w">        </span><span class="err">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>nums<span class="o">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="w">    </span><span class="err">}</span><span class="w"></span>
-<span class="w">    </span>private<span class="w"> </span>TreeNode<span class="w"> </span>buildTree<span class="o">(</span>int<span class="err">[]</span><span class="w"> </span>nums<span class="o">,</span><span class="w"> </span>int<span class="w"> </span>start<span class="o">,</span><span class="w"> </span>int<span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>start<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">            </span><span class="kr">return</span><span class="w"> </span>null<span class="err">;</span><span class="w"></span>
-<span class="w">        </span><span class="err">}</span><span class="w"></span>
-
-<span class="w">        </span>TreeNode<span class="w"> </span>node<span class="w"> </span><span class="o">=</span><span class="w"> </span>new<span class="w"> </span>TreeNode<span class="o">(</span>nums<span class="err">[</span><span class="o">(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="err">]</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="w">        </span>node<span class="o">.</span>left<span class="w"> </span><span class="o">=</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,</span>start<span class="o">,</span><span class="w"> </span><span class="o">(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="w">        </span>node<span class="o">.</span>right<span class="w"> </span><span class="o">=</span><span class="w"> </span>buildTree<span class="o">(</span>nums<span class="o">,(</span><span class="kr">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>start<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="w"> </span><span class="kr">end</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
-
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span>node<span class="err">;</span><span class="w"></span>
-<span class="w">    </span><span class="err">}</span><span class="w"></span>
-
-<span class="err">}</span><span class="w"></span>
-</pre></div></div>
-        <hr />
-    </div>
-		
+<span class="cm"> *     int ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -218,41 +267,6 @@ Given binary tree {1,#,2,3},</p>
 <p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html"><h2>Leetcode@Binary Tree Preorder Traversal</h2></a>
-        <div class= "well small"> 2015-06-11
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Binary Tree Preorder Traversal</h1>
-<h2>题目</h2>
-<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
-<p>For example:
-Given binary tree {1,#,2,3},</p>
-<div class="highlight"><pre>　　1
- 　　\
-  　　2
- 　　/
-　　3
-</pre></div>
-
-
-<p>return [1,2,3].</p>
-<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
-<h2>思路</h2>
-<p>三种做法：1.非递归（推荐） 2.递归 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -262,6 +276,7 @@ Given binary tree {1,#,2,3},</p>
     <li class=""><a href="../author/zhangge2083.html">3</a></li>
     <li class=""><a href="../author/zhangge2084.html">4</a></li>
     <li class=""><a href="../author/zhangge2085.html">5</a></li>
+    <li class=""><a href="../author/zhangge2086.html">6</a></li>
 
     <li class="next"><a href="../author/zhangge2082.html">Next &rarr;</a></li>
 

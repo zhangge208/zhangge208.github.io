@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.zhangge208.com/</loc>
-<lastmod>2015-06-28T20:35:52-00:00</lastmod>
+<lastmod>2015-06-30T06:55:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.zhangge208.com/archives.html</loc>
-<lastmod>2015-06-28T20:35:52-00:00</lastmod>
+<lastmod>2015-06-30T06:55:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.zhangge208.com/tags.html</loc>
-<lastmod>2015-06-28T20:35:52-00:00</lastmod>
+<lastmod>2015-06-30T06:55:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.zhangge208.com/categories.html</loc>
-<lastmod>2015-06-28T20:35:52-00:00</lastmod>
+<lastmod>2015-06-30T06:55:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.zhangge208.com/pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html</loc>
+<lastmod>2015-06-30T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -208,7 +215,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.zhangge208.com/category/algorithm.html</loc>
-<lastmod>2015-06-29T00:00:00+08:00</lastmod>
+<lastmod>2015-06-30T00:00:00+08:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -243,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.zhangge208.com/tag/algorithm-leetcode-binary-tree.html</loc>
-<lastmod>2015-06-29T00:00:00+08:00</lastmod>
+<lastmod>2015-06-30T00:00:00+08:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -271,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.zhangge208.com/author/zhangge208.html</loc>
-<lastmod>2015-06-29T00:00:00+08:00</lastmod>
+<lastmod>2015-06-30T00:00:00+08:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

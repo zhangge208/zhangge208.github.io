@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="./theme/html5.js"></script>
+    <script src="../../../../theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="./theme/bootstrap.min.css" rel="stylesheet">
-    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
         <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
@@ -35,7 +35,7 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href=".">Ant</a>
+        <a class="brand" href="../../../..">Ant</a>
 
         <div class="nav-collapse">
         <ul class="nav">
@@ -52,23 +52,17 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html"><h1>Leetcode@Convert Sorted List to Binary Search Tree</h1></a>
+            <h1>Leetcode@Convert Sorted List to Binary Search Tree</h1>
 2015-06-30
 
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
  
 
 
- 
         </div>
-        
+	
         <div><hr />
 <h1>Convert Sorted List to Binary Search Tree</h1>
 <h2>题目</h2>
@@ -128,162 +122,23 @@ public<span class="w"> </span>class<span class="w"> </span>Solution<span class="
 <span class="w">    </span><span class="err">}</span><span class="w">    </span>
 <span class="err">}</span><span class="w"></span>
 </pre></div></div>
-        <hr />
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Leetcode@Convert Sorted List to Binary Search Tree';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted Array to Binary Search Tree</h2></a>
-        <div class= "well small"> 2015-06-29
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Convert Sorted Array to Binary Search Tree</h1>
-<h2>题目</h2>
-<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
-<h2>思路</h2>
-<p>按照题目要求，第一想法是得到树的根节点，如果没有构建平衡二叉搜索树的要求，那很容易，联想BST和binary search的关系，选择排序数组中间元素作为根节点，元素左边的全部元素作为左子树，右边全部元素作为右子树，然后用同样的方法寻找根节点，递归。</p>
-<p>需要注意对边界的处理，必须满足BST的定义。</p>
-<h2>代码</h2>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Definition for a binary tree node.</span>
-<span class="cm"> * public class TreeNode {</span>
-<span class="cm"> *     int ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h2>Leetcode@Leetcode@Invert Binary Tree</h2></a>
-        <div class= "well small"> 2015-06-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Invert Binary Tree</h1>
-<h2>题目</h2>
-<p>Invert a binary tree.</p>
-<div class="highlight"><pre>     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-</pre></div>
-
-
-<p>to</p>
-<div class="highlight"><pre>     4
-   /   \
-  7     2
- / \   / \
-9   6 3   1
-</pre></div>
-
-
-<h2>思路</h2>
-<p>非递归的还没想出来，不会做，那就来递归的吧先，递归很简单，交换左右节点就跟交换a,b两个数一样，需要一个中间变量，先把左子树的指针赋给中间变量，然后交换。</p>
-<h2>代码</h2>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Definition for a binary tree node.</span>
-<span class="cm"> * public class TreeNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     TreeNode left;</span>
-<span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html"><h2>Leetcode@Validate Binary Search Tree</h2></a>
-        <div class= "well small"> 2015-06-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Validate Binary Search Tree</h1>
-<h2>题目</h2>
-<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
-<p>Assume a BST is defined as follows:</p>
-<ul>
-<li>The left subtree of a node contains only nodes with keys less - than the node's key.</li>
-<li>The right subtree of a node ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
-        <div class= "well small"> 2015-06-12
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Binary Tree Inorder Traversal</h1>
-<h2>题目</h2>
-<p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
-<p>For example:
-Given binary tree {1,#,2,3},</p>
-<div class="highlight"><pre>   1
-    \
-     2
-    /
-   3
-</pre></div>
-
-
-<p>return [1,3,2].</p>
-<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
-<h2>思路</h2>
-<p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="./index.html">1</a></li>
-    <li class=""><a href="./index2.html">2</a></li>
-    <li class=""><a href="./index3.html">3</a></li>
-    <li class=""><a href="./index4.html">4</a></li>
-    <li class=""><a href="./index5.html">5</a></li>
-    <li class=""><a href="./index6.html">6</a></li>
-
-    <li class="next"><a href="./index2.html">Next &rarr;</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">
@@ -294,8 +149,8 @@ Given binary tree {1,#,2,3},</p>
                 Site
                 </li>
             
-                <li><a href="./archives.html">Archives</a>
-                <li><a href="./tags.html">Tags</a>
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
 
 
 
@@ -311,7 +166,7 @@ Given binary tree {1,#,2,3},</p>
                 Categories
                 </li>
                 
-                <li><a href="./category/algorithm.html">Algorithm</a></li>
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
                    
             </ul>
             </div>
@@ -336,7 +191,7 @@ Given binary tree {1,#,2,3},</p>
     </div>     </div> 
 <footer>
 <br />
-<p><a href=".">Ant</a> &copy; zhangge208 2012</p>
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
 </footer>
 
 </div> <!-- /container -->
