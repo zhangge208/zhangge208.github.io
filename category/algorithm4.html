@@ -59,8 +59,8 @@
  
 
     <div class='article'>
-        <a href="../pages/2015/05/26/leetcodepowx-n.html"><h2>Leetcode@Pow(x, n)</h2></a>
-        <div class= "well small"> 2015-05-26
+        <a href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html"><h2>Leetcode@Binary Tree Preorder Traversal</h2></a>
+        <div class= "well small"> 2015-06-11
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -68,18 +68,23 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Pow(x, n)</h1>
+<h1>Leetcode@Binary Tree Preorder Traversal</h1>
 <h2>题目</h2>
-<p>Implement pow(x, n).</p>
+<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>　　1
+ 　　\
+  　　2
+ 　　/
+　　3
+</pre></div>
+
+
+<p>return [1,2,3].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
 <h2>思路</h2>
-<p>分治法</p>
-<p>x^n = x^(n/2) * x^(n/2); x^(n/2) = x^(n/4) * x^(n/4)</p>
-<p>不过有些细节需要注意：</p>
-<ul>
-<li>n = 0时 return 1</li>
-<li>n &lt; 0时 return 1 / power(x,-n)</li>
-<li>n &gt; 0时，令value = power(x,n/2),需要对n的奇偶性进行讨论。<br />
-  n = 2k ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodepowx-n.html">read more</a></div>
+<p>三种做法：1.非递归（推荐） 2.递归 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html">read more</a></div>
     </div>	
 				
 
@@ -89,8 +94,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/05/26/leetcodesingle-number.html"><h2>Leetcode@Single Number</h2></a>
-        <div class= "well small"> 2015-05-26
+        <a href="../pages/2015/06/10/binary-tree.html"><h2>Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-10
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -98,16 +103,13 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Single Number</h1>
-<h2>题目</h2>
-<p>Given an array of integers, every element appears twice except for one. Find that single one.</p>
-<p>Note:
-Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
-<h2>思路</h2>
-<p>异或运算特点（不进位加法）:</p>
-<ul>
-<li>a ^ b = c ,a ^ c = b -&gt; b ^ c = a</li>
-<li>a ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodesingle-number.html">read more</a></div>
+<h1>Binary Tree</h1>
+<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
+<p>特别感谢前辈：<a href="http://www.shuatiblog.com">http://www.shuatiblog.com/</a></p>
+<h2>基础知识  （摘自<a href="algorithm.yuanbin.me">algorithm.yuanbin.me</a>)</h2>
+<p>二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆</p>
+<p>二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。</p>
+<p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/10/binary-tree.html">read more</a></div>
     </div>	
 				
 
@@ -117,8 +119,8 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
  
 
     <div class='article'>
-        <a href="../pages/2015/05/26/leetcodesingle-number-ii.html"><h2>Leetcode@Single Number II</h2></a>
-        <div class= "well small"> 2015-05-26
+        <a href="../pages/2015/06/02/leetcodeleetcoderotate-list.html"><h2>Leetcode@Leetcode@Rotate List</h2></a>
+        <div class= "well small"> 2015-06-02
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -126,13 +128,15 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Single Number II</h1>
+<h1>Leetcode@Rotate List</h1>
 <h2>题目</h2>
-<p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
-<p>Note:
-Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
+<p>For example:
+Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and k = <code>2</code>,
+return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p>
 <h2>思路</h2>
-<p>构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。</p> <a class="btn btn-info xsmall" href="../pages/2015/05/26/leetcodesingle-number-ii.html">read more</a></div>
+<p>把问题分割，题目要求部分翻转，那么首先要得到开始翻转的位置
+这与Remove Nth Node From End of List的思路一致 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcodeleetcoderotate-list.html">read more</a></div>
     </div>	
 				
 
@@ -142,8 +146,8 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
  
 
     <div class='article'>
-        <a href="../pages/2015/05/25/leetcodeclimbing-stairs.html"><h2>Leetcode@Climbing Stairs</h2></a>
-        <div class= "well small"> 2015-05-25
+        <a href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html"><h2>Leetcode@Remove Linked List Elements</h2></a>
+        <div class= "well small"> 2015-06-02
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -151,15 +155,17 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Climbing Stairs</h1>
+<h1>Leetcode@Remove Linked List Elements</h1>
 <h2>题目</h2>
-<p>You are climbing a stair case. It takes n steps to reach to the top.</p>
-<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<p>Remove all elements from a linked list of integers that have value val.</p>
+<p><strong>Example</strong></p>
+<p><strong><em>Given:</em></strong> 1 --&gt; 2 --&gt; 6 --&gt; 3 --&gt; 4 --&gt; 5 --&gt; 6, val = 6</p>
+<p><strong><em>Return:</em></strong> 1 --&gt; 2 --&gt; 3 --&gt; 4 --&gt; 5</p>
 <h2>思路</h2>
-<p>动态规划的思路，属于sequence DP</p>
-<ul>
-<li>state: f[i]表示前i个位置，跳到第i个位置共有多少种方案</li>
-<li>function ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/05/25/leetcodeclimbing-stairs.html">read more</a></div>
+<p>基础的链表操作题目。首先考虑到头节点可能会被修改，所以要使用dummynode，然后根据判断条件进行remove即可，现指针节点为p，p的后继节点的值若与给定的val相等，则令p指向p后继的后继即可移除p现在的后继。注意边界条件的处理。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked list ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html">read more</a></div>
     </div>	
 				
 
@@ -169,8 +175,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/05/25/leetcodefind-peak-element.html"><h2>Leetcode@Find Peak Element</h2></a>
-        <div class= "well small"> 2015-05-25
+        <a href="../pages/2015/05/28/leetcodekth-largest-element-in-an-array.html"><h2>Leetcode@Kth Largest Element in an Array</h2></a>
+        <div class= "well small"> 2015-05-28
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -178,11 +184,13 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Find Peak Element</h1>
+<h1>Leetcode@Kth Largest Element in an Array</h1>
 <h2>题目</h2>
-<p>A peak element is an element that is greater than its neighbors.</p>
-<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
-<p>The array may contain multiple peaks, in that case return the index to any one ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/25/leetcodefind-peak-element.html">read more</a></div>
+<p>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
+<p>For example,
+Given [3,2,1,5,6,4] and k = 2, return 5.</p>
+<p>Note: 
+You ...</p> <a class="btn btn-info xsmall" href="../pages/2015/05/28/leetcodekth-largest-element-in-an-array.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -195,6 +203,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
     <li class="active"><a href="../category/algorithm4.html">4</a></li>
     <li class=""><a href="../category/algorithm5.html">5</a></li>
     <li class=""><a href="../category/algorithm6.html">6</a></li>
+    <li class=""><a href="../category/algorithm7.html">7</a></li>
+    <li class=""><a href="../category/algorithm8.html">8</a></li>
 
     <li class="next"><a href="../category/algorithm5.html">Next &rarr;</a></li>
 

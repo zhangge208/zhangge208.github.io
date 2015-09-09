@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Ant</title>
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../../..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Search Insert Position</h1>
+2015-09-09
+
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
+ 
+
+
+        </div>
+	
+        <div><hr />
+<h1>Search Insert Position</h1>
+<h2>题目</h2>
+<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p>Here are few examples.
+[1,3,5,6], 5 → 2</p>
+<p>[1,3,5,6], 2 → 1</p>
+<p>[1,3,5,6], 7 → 4</p>
+<p>[1,3,5,6], 0 → 0</p>
+<h2>代码</h2>
+<div class="highlight"><pre>version 1：first postion &gt;= target
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int start = 0;
+        int end = nums.length - 1;
+        while (start + 1 &lt; end) {
+            int mid = start + (end - start) / 2;
+            if (target &lt; nums[mid]) {
+                end = mid;
+            }
+            else if (target &gt; nums[mid]) {
+                start = mid;
+            }
+            else {
+                end = mid;
+            }
+        }
+
+        if (nums[start] &gt;= target) {
+            return start;
+        }
+        else if (nums[end] &gt;= target) {
+            return end;
+        }
+        //nums[end] &lt; target
+        else {
+            return end + 1;
+        }
+
+    }
+}
+
+version 2：last postion &lt; target
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        int start = 0;
+        int end = nums.length - 1;
+        while (start + 1 &lt; end) {
+            int mid = start + (end -start) / 2;
+            if (target &gt; nums[mid]) {
+                start = mid;
+            }
+            else {
+                end = mid;
+            }
+        }
+        if (target &lt; nums[0]) {
+            return 0;
+        }
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
+        }   
+        if (nums[end] &lt; target){
+            return end + 1;
+        }
+        return start + 1;
+    }
+ }
+</pre></div>
+
+
+<h2>思路</h2>
+<p>如果target在数组中，那么可直接运用二分搜索的模板，但需要处理的一个问题是，如果target不在数组中，那么应该把它放在哪里合适呢？
+直接地，有两种思路：</p>
+<p>1.找到first postion &gt;= target的地方，把target放在这个位置</p>
+<p>2.找到last postion &lt; target的地方，把target放在这个位置</p>
+<p>值得注意的是，对一些边界的问题需要进行考虑</p>
+<p>1.使用第一种思路时，要注意处理nums[end] &lt; target的情况</p>
+<p>2.使用第二种思路时，要注意处理target &lt; nums[0]的情况</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Search Insert Position';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
+
+
+
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

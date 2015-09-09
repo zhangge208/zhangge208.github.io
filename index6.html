@@ -59,17 +59,130 @@
  
 
     <div class='article'>
-        <a href="./pages/2015/01/04/lai-suan-fa-ba.html"><h2>来算法吧~</h2></a>
-        <div class= "well small"> 2015-01-04
+        <a href="./pages/2015/05/26/leetcodepowx-n.html"><h2>Leetcode@Pow(x, n)</h2></a>
+        <div class= "well small"> 2015-05-26
 
 by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
 
 
  </div>
-        <div class="summary"><p>2015的第一季度要开始系统地学习算法，虽然只有不到一个月的假期！！！唉 ，不过把之前零零散散看的复习一下，然后还是有不少时间可是学到好多没看过的。不过呢，先慢慢来吧！
-   我是想每天坚持写，坚持看，对某一个算法先理解基本的思想，算法运行的实际过程，给出代码实现，其实语言神马的，根本就不重要。。。然后会慢慢地进行算法分析，只是数学这东西，唉，不说了，说多了都是泪。最后给一些能运用到这种算法思想的小例子。说白了，也就是把leetcode和挑战程序设计竞赛上面的题目做会。
-   就扯这么多吧！希望2015年，能够有突破性的进展！</p> <a class="btn btn-info xsmall" href="./pages/2015/01/04/lai-suan-fa-ba.html">read more</a></div>
+        <div class="summary"><hr />
+<h1>Leetcode@Pow(x, n)</h1>
+<h2>题目</h2>
+<p>Implement pow(x, n).</p>
+<h2>思路</h2>
+<p>分治法</p>
+<p>x^n = x^(n/2) * x^(n/2); x^(n/2) = x^(n/4) * x^(n/4)</p>
+<p>不过有些细节需要注意：</p>
+<ul>
+<li>n = 0时 return 1</li>
+<li>n &lt; 0时 return 1 / power(x,-n)</li>
+<li>n &gt; 0时，令value = power(x,n/2),需要对n的奇偶性进行讨论。<br />
+  n = 2k ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodepowx-n.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/26/leetcodesingle-number.html"><h2>Leetcode@Single Number</h2></a>
+        <div class= "well small"> 2015-05-26
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Single Number</h1>
+<h2>题目</h2>
+<p>Given an array of integers, every element appears twice except for one. Find that single one.</p>
+<p>Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<h2>思路</h2>
+<p>异或运算特点（不进位加法）:</p>
+<ul>
+<li>a ^ b = c ,a ^ c = b -&gt; b ^ c = a</li>
+<li>a ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodesingle-number.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/26/leetcodesingle-number-ii.html"><h2>Leetcode@Single Number II</h2></a>
+        <div class= "well small"> 2015-05-26
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Single Number II</h1>
+<h2>题目</h2>
+<p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
+<p>Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<h2>思路</h2>
+<p>构造一个3进制的异或运算（XOR3），使得三个相同的数进行不进位加法（XOR3）后结果为0，与single number1的思路一样。</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodesingle-number-ii.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodeclimbing-stairs.html"><h2>Leetcode@Climbing Stairs</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Climbing Stairs</h1>
+<h2>题目</h2>
+<p>You are climbing a stair case. It takes n steps to reach to the top.</p>
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<h2>思路</h2>
+<p>动态规划的思路，属于sequence DP</p>
+<ul>
+<li>state: f[i]表示前i个位置，跳到第i个位置共有多少种方案</li>
+<li>function ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodeclimbing-stairs.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/05/25/leetcodefind-peak-element.html"><h2>Leetcode@Find Peak Element</h2></a>
+        <div class= "well small"> 2015-05-25
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Find Peak Element</h1>
+<h2>题目</h2>
+<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/25/leetcodefind-peak-element.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -82,8 +195,10 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
     <li class=""><a href="./index4.html">4</a></li>
     <li class=""><a href="./index5.html">5</a></li>
     <li class="active"><a href="./index6.html">6</a></li>
+    <li class=""><a href="./index7.html">7</a></li>
+    <li class=""><a href="./index8.html">8</a></li>
 
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+    <li class="next"><a href="./index7.html">Next &rarr;</a></li>
 
 </ul>
 </div>

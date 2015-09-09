@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Ant</title>
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../../..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Search for a Range</h1>
+2015-09-09
+
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
+ 
+
+
+        </div>
+	
+        <div><hr />
+<h1>Search for a Range</h1>
+<h2>题目</h2>
+<p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
+<p>Your algorithm's runtime complexity must be in the order of O(log n).</p>
+<p>If the target is not found in the array, return <code>[-1, -1]</code>.</p>
+<p>For example,
+Given <code>[5, 7, 7, 8, 8, 10]</code> and target value 8,
+return <code>[3, 4]</code>.</p>
+<h2>代码</h2>
+<div class="highlight"><pre>public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[2];
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        //search for left bound
+        int start = 0;
+        int end = nums.length - 1;
+        int mid = 0;
+        while (start + 1 &lt; end) {
+            mid = start + (end - start) / 2;
+            if (target == nums[mid]) {
+                end = mid;        
+            }
+            else if (target &gt; nums[mid]) {
+                start = mid;
+            }
+            else {
+                end = mid;
+            }
+        }
+        if (nums[start] == target) {
+            result[0] = start;
+        }
+        else if (nums[end] == target) {
+            result[0] = end;
+        }
+        else {
+            result[0] = result[1] = -1;
+            return result;
+        }
+
+        start = 0;
+        end = nums.length - 1;
+        while (start + 1 &lt; end) {
+            mid = start + (end - start) / 2;
+            if (target == nums[mid]) {
+                start = mid;        
+            }
+            else if (target &gt; nums[mid]) {
+                start = mid;
+            }
+            else {
+                end = mid;
+            }
+
+        }
+        if (nums[end] == target) {
+            result[1] = end;
+        }
+        else if (nums[start] == target){
+            result[1] = start;
+        }
+        else {
+            result[0] = result[1] = -1;
+            return result;
+        }
+        return result;
+
+    }
+}
+</pre></div>
+
+
+<h2>思路</h2>
+<p>这道题目是练习寻找二分搜索的边界。运用二分搜索模板可以找到左边界，那么该如何寻找右边界呢，只需要将模板稍稍修改即可，寻找左边界时，
+如果target == nums[mid]，那么令end = mid；寻找右边界时，
+如果target == nums[mid]，那么令start = mid。想想其中原因，若二分法的end越小，则越靠近左边，而start越大则越靠近右边。故寻找到了左右边界。<br />
+</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Search for a Range';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
+
+
+
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

@@ -59,8 +59,8 @@
  
 
     <div class='article'>
-        <a href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-i.html"><h2>Leetcode@Best Time to Buy and Sell Stock I</h2></a>
-        <div class= "well small"> 2015-05-26
+        <a href="./pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted List to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-30
 
 by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
@@ -68,80 +68,14 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Best Time to Buy and Sell Stock I</h1>
+<h1>Convert Sorted List to Binary Search Tree</h1>
 <h2>题目</h2>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-i.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html"><h2>Leetcode@Best Time to Buy and Sell Stock II</h2></a>
-        <div class= "well small"> 2015-05-26
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Best Time to Buy and Sell Stock II</h1>
-<h2>题目</h2>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-ii.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-iii.html"><h2>Leetcode@Best Time to Buy and Sell Stock III</h2></a>
-        <div class= "well small"> 2015-05-26
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Best Time to Buy and Sell Stock III</h1>
-<h2>题目</h2>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
-<p>Note:
-You may not engage ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodebest-time-to-buy-and-sell-stock-iii.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/05/26/leetcodefactorial-trailing-zeroes.html"><h2>Leetcode@Factorial Trailing Zeroes</h2></a>
-        <div class= "well small"> 2015-05-26
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Factorial Trailing Zeroes</h1>
-<h2>题目</h2>
-<p>Given an integer n, return the number of trailing zeroes in n!.</p>
-<p>Note: Your solution should be in logarithmic time complexity.</p>
+<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
 <h2>思路</h2>
-<p>考虑n!的质数因子。后缀0总是由质因子2和质因子5相乘得来的。如果可以计算2和5的个数，问题就解决了。考虑到2的个数总是大于等于5的个数。因此只要计录5的个数就可以了。那么如何计算n!的质因子中所有5的个数便成为难点。一个简单的方法是计算(n/5),除此之外，还有一件事情要考虑。诸如25，125之类的数字有不止一个5。处理这个问题也很简单，首先对n除以5，移除所有的单个5，然后除以25，移除额外的5，以此类推，直到 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodefactorial-trailing-zeroes.html">read more</a></div>
+<p>与<a href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">Convert Sorted Array to Binary Search Tree</a>的思路很像，首先是得找到根节点，但考虑到是链表，没法直接到中间的元素，只能依次移动指针，联想到中序遍历与BST的关系，我们依据inorder来构造BST，前半部分为左子树，然后根节点，后半部分为右子树。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html">read more</a></div>
     </div>	
 				
 
@@ -151,8 +85,8 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="./pages/2015/05/26/leetcodemajority-element.html"><h2>Leetcode@Majority Element</h2></a>
-        <div class= "well small"> 2015-05-26
+        <a href="./pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted Array to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-29
 
 by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
@@ -160,12 +94,124 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Leetcode@Majority Element</h1>
+<h1>Convert Sorted Array to Binary Search Tree</h1>
 <h2>题目</h2>
-<p>Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.</p>
-<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
 <h2>思路</h2>
-<p>抵消的思想，有一个假设的主元素candidate，计数器count，若为主元素，必须满足严格地大于n ...</p> <a class="btn btn-info xsmall" href="./pages/2015/05/26/leetcodemajority-element.html">read more</a></div>
+<p>按照题目要求，第一想法是得到树的根节点，如果没有构建平衡二叉搜索树的要求，那很容易，联想BST和binary search的关系，选择排序数组中间元素作为根节点，元素左边的全部元素作为左子树，右边全部元素作为右子树，然后用同样的方法寻找根节点，递归。</p>
+<p>需要注意对边界的处理，必须满足BST的定义。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h2>Leetcode@Leetcode@Invert Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Invert Binary Tree</h1>
+<h2>题目</h2>
+<p>Invert a binary tree.</p>
+<div class="highlight"><pre>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</pre></div>
+
+
+<h2>思路</h2>
+<p>非递归的还没想出来，不会做，那就来递归的吧先，递归很简单，交换左右节点就跟交换a,b两个数一样，需要一个中间变量，先把左子树的指针赋给中间变量，然后交换。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html"><h2>Leetcode@Validate Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Validate Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
+<p>Assume a BST is defined as follows:</p>
+<ul>
+<li>The left subtree of a node contains only nodes with keys less - than the node's key.</li>
+<li>The right subtree of a node ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
+        <div class= "well small"> 2015-06-12
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Binary Tree Inorder Traversal</h1>
+<h2>题目</h2>
+<p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>   1
+    \
+     2
+    /
+   3
+</pre></div>
+
+
+<p>return [1,3,2].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<h2>思路</h2>
+<p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -178,6 +224,8 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
     <li class=""><a href="./index4.html">4</a></li>
     <li class=""><a href="./index5.html">5</a></li>
     <li class=""><a href="./index6.html">6</a></li>
+    <li class=""><a href="./index7.html">7</a></li>
+    <li class=""><a href="./index8.html">8</a></li>
 
     <li class="next"><a href="./index4.html">Next &rarr;</a></li>
 
