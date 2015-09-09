@@ -99,7 +99,41 @@ expect：
 &lt;p&gt;&lt;a href=""&gt;Find Minimum in Rotated Sorted Array&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=""&gt;Find Minimum in Rotated Sorted Array II&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.zhangge208.com/pages/2015/09/09/minimum-size-subarray-sum.html"&gt;Minimum Size Subarray Sum&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.zhangge208.com/pages/2015/09/09/h-index-ii.html"&gt;H-Index II&lt;/a&gt;&lt;/p&gt;</summary><category term="Algorithm Binary Search"></category></entry><entry><title>Find Peak Element</title><link href="http://www.zhangge208.com/pages/2015/09/09/find-peak-element.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/find-peak-element.html</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;&lt;a href="http://www.zhangge208.com/pages/2015/09/09/h-index-ii.html"&gt;H-Index II&lt;/a&gt;&lt;/p&gt;</summary><category term="Algorithm Binary Search"></category></entry><entry><title>Find Minimum in Rotated Sorted Array</title><link href="http://www.zhangge208.com/pages/2015/09/09/find-minimum-in-rotated-sorted-array.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/find-minimum-in-rotated-sorted-array.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Find Minimum in Rotated Sorted Array&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Suppose a sorted array is rotated at some pivot unknown to you beforehand.&lt;/p&gt;
+&lt;p&gt;(i.e., &lt;code&gt;0 1 2 4 5 6 7&lt;/code&gt; might become &lt;code&gt;4 5 6 7 0 1 2&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Find the minimum element.&lt;/p&gt;
+&lt;p&gt;You may assume no duplicate exists in the array.&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int findMin(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        int start = 0;
+        int end = nums.length - 1;
+
+        while (start + 1 &amp;lt; end) {
+            int mid =start + (end - start) / 2;
+            if (nums[mid] &amp;gt; nums[end]) {
+                start = mid;
+            }
+            else {
+                end = mid;
+            }
+        }
+        return nums[start] &amp;lt; nums[end] ? nums[start] : nums[end];
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;与Search in Rotated Sorted Array很类似，但我们是需要寻找最小元素，那么最小元素的位置该如何确定？&lt;/p&gt;
+&lt;p&gt;只需判断nums[mid]和nums[end]的大小，如果nums[mid] &amp;gt; nums[end]，表明前半部分有序，那么最小元素一定在后半部分，反之nums[mid] &amp;lt; nums[end]表明后半部分有序，最小元素在前半部分，依据这个核心思路，利用二分搜索模板即可。&lt;/p&gt;</summary><category term="Algorithm Binary Search"></category></entry><entry><title>Find Peak Element</title><link href="http://www.zhangge208.com/pages/2015/09/09/find-peak-element.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/find-peak-element.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Find Peak Element&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
 &lt;p&gt;A peak element is an element that is greater than its neighbors.&lt;/p&gt;
