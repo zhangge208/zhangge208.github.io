@@ -59,7 +59,7 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/09/09/search-in-rotated-sorted-array.html"><h1>Search in Rotated Sorted Array</h1></a>
+            <a href="../pages/2015/09/09/binary-search.html"><h1>Binary Search</h1></a>
 2015-09-09
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
@@ -70,74 +70,132 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
-<h1>Search in Rotated Sorted Array</h1>
-<h2>题目</h2>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-<p>You may assume no duplicate exists in the array.</p>
-<h2>代码</h2>
-<div class="highlight"><pre>public class Solution {
-    public int search(int[] nums, int target) {
-        if (nums.length == 0 || nums == null) {
-            return -1;
+<h1>Binary Search</h1>
+<h2>基础模板</h2>
+<p><a href="http://www.lintcode.com/zh-cn/problem/binary-search/">Binary Search</a></p>
+<p>先给一个错误的示例，原来一直这样写，但在有重复元素时无法适用</p>
+<p>错误示例：</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
+            <span class="k">return</span> -<span class="mi">1</span>;
         }
 
-        int start = 0;
-        int end = nums.length - 1;
+        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
+        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
 
-        while (start + 1 &lt; end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] == target) {
-                end = mid;
+        <span class="k">while</span> (<span class="n">start</span> &lt;= <span class="nb">end</span>) {
+            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
+            <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] == <span class="n">target</span>) {
+                <span class="k">return</span> <span class="n">mid</span>;
             }
-            else if (nums[mid] &lt; nums[end]) {
-                if (nums[mid] &lt;= target &amp;&amp; target &lt;= nums[end]) {
-                    start = mid;
-                }
-                else {
-                    end = mid;
-                }
+            <span class="k">else</span> <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] &lt; <span class="n">target</span>) {
+                <span class="n">start</span> = <span class="n">mid</span>;
             }
-            // nums[mid] &gt; nums[start]
-            else {
-                if (nums[mid] &gt;= target &amp;&amp; target &gt;= nums[start]) {
-                    end = mid;
-                }
-                else {
-                    start = mid;
-                }
+            <span class="k">else</span> {
+                <span class="nb">end</span> = <span class="n">mid</span>;
             }
-        }
-
-        if (nums[start] == target) {
-            return start;
-        }
-        if (nums[end] == target) {
-            return end;
-        }
-
-        return -1;
-
+        } 
+        <span class="k">return</span> -<span class="mi">1</span>;
     }
 }
 </pre></div>
 
 
-<h2>思路</h2>
-<p>在数组发生旋转后会有两种情况产生，以[0,1,2,3,4,5,6]为例：</p>
+<p>考虑下面的测试用例：</p>
+<div class="highlight"><pre>input：
+[3,4,5,8,8,8,8,10,13,14], 8
+output：
+4
+expect：
+3
+</pre></div>
+
+
+<p>在有重复元素时会出现问题</p>
+<p><a href="http://www.jiuzhang.com/solutions/binary-search/">Binary Search模板（参考九章算法）</a>：</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
+            <span class="k">return</span> -<span class="mi">1</span>;
+        }
+
+        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
+        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
+
+        <span class="k">while</span> (<span class="n">start</span> + <span class="mi">1</span> &lt; <span class="nb">end</span>) {
+            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
+            <span class="k">if</span> (<span class="n">target</span> &lt; <span class="n">nums</span>[<span class="n">mid</span>]) {
+                <span class="nb">end</span> = <span class="n">mid</span>;
+            }
+            <span class="k">else</span> <span class="k">if</span> (<span class="n">target</span> &gt; <span class="n">nums</span>[<span class="n">mid</span>]) {
+                <span class="n">start</span> = <span class="n">mid</span>;
+            }
+            <span class="k">else</span> {
+                <span class="nb">end</span> = <span class="n">mid</span>;
+            }
+        }
+
+        <span class="k">if</span> (<span class="n">nums</span>[<span class="n">start</span>] == <span class="n">target</span>) {
+            <span class="k">return</span> <span class="n">start</span>;
+        }
+        <span class="k">if</span> (<span class="n">nums</span>[<span class="nb">end</span>] == <span class="n">target</span>) {
+            <span class="k">return</span> <span class="nb">end</span>;
+        }
+
+        <span class="k">return</span> -<span class="mi">1</span>;
+    }
+}
+</pre></div>
+
+
+<p>Keypoints：</p>
 <ol>
-<li>
-<p>旋转后形如[3,4,5,6,0,1,2],即较小的数发生了翻转，但前半部分仍然有序</p>
-</li>
-<li>
-<p>旋转后形如[5,6,0,1,2,3,4],即较大的数发生了翻转，但后半部分仍然有序</p>
-</li>
+<li>对输入做异常处理：数组为空或者数组长度为0。</li>
+<li>int mid = start + (end - start) / 2 这种表示方法可以防止两个整型值相加时溢出。</li>
+<li>Recursion or While-Loop：使用迭代而不是递归进行二分查找，因为工程中递归写法存在潜在溢出的可能</li>
+<li>while循环终止条件：while终止条件应为start + 1 &lt; end而不是start &lt;= end，start == end时可能出现死循环，即循环终止条件是相邻或相交元素时退出。配合while终止条件start + 1 &lt; end（相邻即退出）的赋值语句mid永远没有+1或者-1，这样不会死循环。</li>
+<li>迭代终止时target应为start或者end中的一个。循环终止条件有两个，具体应看是找第一个还是最后一个而定。</li>
 </ol>
-<p>为使用二分搜索，那么必须保持使用区间的有序性,所以要在nums[mid] &lt;= target &amp;&amp; target &lt;= nums[end] 或 nums[mid] &gt;= target &amp;&amp; target &gt;= nums[start]这两个有序部分进行二分搜索</p></div>
+<h2>Problem List</h2>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-insert-position.html">Search Insert Position</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-for-a-range.html">Search for a Range</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-in-rotated-sorted-array.html">Search in Rotated Sorted Array</a></p>
+<p><a href="">Search in Rotated Sorted Array II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-a-2d-matrix.html">Search a 2D Matrix</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-a-2d-matrix-ii.html">Search a 2D Matrix II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/first-bad-version.html">First Bad Version</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/find-peak-element.html">Find Peak Element</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/find-minimum-in-rotated-sorted-array.html">Find Minimum in Rotated Sorted Array</a></p>
+<p><a href="">Find Minimum in Rotated Sorted Array II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/minimum-size-subarray-sum.html">Minimum Size Subarray Sum</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/h-index-ii.html">H-Index II</a></p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/09/09/search-in-rotated-sorted-array.html"><h2>Search in Rotated Sorted Array</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Search in Rotated Sorted Array</h1>
+<h2>题目</h2>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>You are given a target value to search. If found in the array ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/search-in-rotated-sorted-array.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -203,6 +261,7 @@ What if duplicates are allowed?</p>
                 </li>
                 
                 <li><a href="../category/algorithm.html">Algorithm</a></li>
+                <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
                 <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
                    

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Ant</title>
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../../..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Backtracking</h1>
+2015-10-13
+
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
+ 
+
+
+        </div>
+	
+        <div><hr />
+<h1>Backtracking</h1>
+<h2>concept &amp;&amp; idea</h2>
+<h3>concept</h3>
+<p>回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。</p>
+<h3>idea</h3>
+<p>在包含问题的所有解的解空间树中，按照深度优先搜索的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。（其实回溯法就是对隐式图的深度优先搜索算法）。</p>
+<p>若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。</p>
+<p>而若使用回溯法求任一个解时，只要搜索到问题的一个解就可以结束。</p>
+<h2>step &amp;&amp; Template</h2>
+<h3>step</h3>
+<ul>
+<li>针对所给问题，确定问题的解空间：首先应明确定义问题的解空间，问题的解空间应至少包含问题的一个（最优）解。</li>
+<li>确定结点的扩展搜索规则</li>
+<li>以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索。</li>
+</ul>
+<h3>Template</h3>
+<p>以<a href="https://leetcode.com/problems/subsets/">Subsets</a>为例，给出Backtracking Template</p>
+<div class="highlight"><pre>public class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
+        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+        if (nums == null || nums.length == 0){
+            return result;
+        }
+        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+        Arrays.sort(nums);
+        subsetHelp(result, list, nums, 0);
+        return result;
+    }
+
+    private void subsetHelp(List&lt;List&lt;Integer&gt;&gt; result, List&lt;Integer&gt;list, int[] nums, int pos){
+        result.add(new ArrayList&lt;Integer&gt;(list));
+
+        for (int i = pos; i &lt; nums.length; i++){
+            list.add(nums[i]);
+            subsetHelp(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+
+        }
+    }
+}
+</pre></div>
+
+
+<p><strong>Note：</strong>很多题目的解法均是在这个模板的基础上，但剪枝的条件会有所不同</p>
+<h2>Problem List</h2>
+<p><a href="">Subsets</a></p>
+<p><a href="">Subsets II</a></p>
+<p><a href="">Permutations</a></p>
+<p><a href="">Permutations II</a></p>
+<p><a href="">Combinations</a></p>
+<p><a href="">Combination Sum</a></p>
+<p><a href="">Combination Sum II</a></p>
+<p><a href="">Combination Sum III</a></p>
+<p><a href="">Palindrome Partitioning</a></p>
+<p><a href="">Palindrome Partitioning II</a></p>
+<p><a href="">Restore IP Addresses</a></p>
+<p>Letter Combinations of a Phone Number</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Backtracking';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
+
+
+
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
+                <li><a href="../../../../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
+                <li><a href="../../../../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
+                <li><a href="../../../../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

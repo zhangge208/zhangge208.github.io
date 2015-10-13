@@ -1,5 +1,405 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/zhangge208.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-09-09T00:00:00+08:00</updated><entry><title>Binary Search</title><link href="http://www.zhangge208.com/pages/2015/09/09/binary-search.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/binary-search.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/zhangge208.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-10-13T00:00:00+08:00</updated><entry><title>Backtracking</title><link href="http://www.zhangge208.com/pages/2015/10/13/backtracking.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/backtracking.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Backtracking&lt;/h1&gt;
+&lt;h2&gt;concept &amp;amp;&amp;amp; idea&lt;/h2&gt;
+&lt;h3&gt;concept&lt;/h3&gt;
+&lt;p&gt;回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。&lt;/p&gt;
+&lt;h3&gt;idea&lt;/h3&gt;
+&lt;p&gt;在包含问题的所有解的解空间树中，按照深度优先搜索的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。（其实回溯法就是对隐式图的深度优先搜索算法）。&lt;/p&gt;
+&lt;p&gt;若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。&lt;/p&gt;
+&lt;p&gt;而若使用回溯法求任一个解时，只要搜索到问题的一个解就可以结束。&lt;/p&gt;
+&lt;h2&gt;step &amp;amp;&amp;amp; Template&lt;/h2&gt;
+&lt;h3&gt;step&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;针对所给问题，确定问题的解空间：首先应明确定义问题的解空间，问题的解空间应至少包含问题的一个（最优）解。&lt;/li&gt;
+&lt;li&gt;确定结点的扩展搜索规则&lt;/li&gt;
+&lt;li&gt;以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Template&lt;/h3&gt;
+&lt;p&gt;以&lt;a href="https://leetcode.com/problems/subsets/"&gt;Subsets&lt;/a&gt;为例，给出Backtracking Template&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; subsets(int[] nums) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        if (nums == null || nums.length == 0){
+            return result;
+        }
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        Arrays.sort(nums);
+        subsetHelp(result, list, nums, 0);
+        return result;
+    }
+
+    private void subsetHelp(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt;list, int[] nums, int pos){
+        result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+
+        for (int i = pos; i &amp;lt; nums.length; i++){
+            list.add(nums[i]);
+            subsetHelp(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Note：&lt;/strong&gt;很多题目的解法均是在这个模板的基础上，但剪枝的条件会有所不同&lt;/p&gt;
+&lt;h2&gt;Problem List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=""&gt;Subsets&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Subsets II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Permutations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Permutations II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Combinations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Combination Sum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Combination Sum II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Combination Sum III&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Palindrome Partitioning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Palindrome Partitioning II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;Restore IP Addresses&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Letter Combinations of a Phone Number&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Combination Sum</title><link href="http://www.zhangge208.com/pages/2015/10/13/combination-sum.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/combination-sum.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Combination Sum&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;same&lt;/strong&gt; repeated number may be chosen from C unlimited number of times.&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All numbers (including target) will be positive integers.&lt;/li&gt;
+&lt;li&gt;Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).&lt;/li&gt;
+&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, given candidate set &lt;code&gt;2,3,6,7&lt;/code&gt; and target &lt;code&gt;7&lt;/code&gt;, 
+A solution set is: &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[7]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[2, 2, 3]&lt;/code&gt; &lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; combinationSum(int[] candidates, int target) {
+        if (candidates.length == 0 || candidates == null) {
+            return null;
+        } 
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        Arrays.sort(candidates);
+        helper(result, list,candidates, target, 0);
+        return result;
+    }
+
+    private void helper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result,List&amp;lt;Integer&amp;gt; list, int[] candidates, int target, int pos ) {
+        if (target == 0) {
+            result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+            return;
+        }
+        else if (target &amp;lt; 0) {
+            return;
+        }
+
+        for(int i = pos; i &amp;lt; candidates.length; i++) {
+            list.add(candidates[i]);
+            helper(result, list, candidates, target - candidates[i],i);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;subsets template，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;must:&lt;/p&gt;
+&lt;p&gt;else if (target &amp;lt; 0) {
+            return;
+        }
+in order to avoid stackoverflow&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;helper(result, list, candidates, target - candidates[i],&lt;strong&gt;i&lt;/strong&gt;);
+  这里为什么是i而不是i + 1，因为题目中说C中的元素可以重复取无限次，那么如果写为i + 1的话，这个元素将不能再次被取到&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Arrays.sort(candidates);Sort array first!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Combination Sum II</title><link href="http://www.zhangge208.com/pages/2015/10/13/combination-sum-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/combination-sum-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Combination Sum II&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.&lt;/p&gt;
+&lt;p&gt;Each number in C may only be used once in the combination.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All numbers (including target) will be positive integers.&lt;/li&gt;
+&lt;li&gt;Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).&lt;/li&gt;
+&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, given candidate set &lt;code&gt;10,1,2,7,6,1,5&lt;/code&gt; and target &lt;code&gt;8&lt;/code&gt;, 
+A solution set is: 
+&lt;code&gt;[1, 7]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[1, 2, 5]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[2, 6]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[1, 1, 6]&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; combinationSum2(int[] candidates, int target) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        Arrays.sort(candidates);
+        helper(result, list,candidates, target, 0);
+        return result;
+    }
+    private void helper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list, int[] candidates, int target, int pos) {
+        if (target == 0) {
+            result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+            return;
+        }
+        else if (target &amp;lt; 0) {
+            return;
+        }
+
+        for (int i = pos; i &amp;lt; candidates.length; i++) {
+            if (i &amp;gt; pos &amp;amp;&amp;amp; candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            list.add(candidates[i]);
+            helper(result, list, candidates, target - candidates[i], i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;reference: &lt;a href="http://www.shuatiblog.com/blog/2014/05/13/Combination-Sum-II/"&gt;http://www.shuatiblog.com/blog/2014/05/13/Combination-Sum-II/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;the main part of is same as “Combination Sum”&lt;/strong&gt;,there is only some code that needs to be modified.&lt;/p&gt;
+&lt;p&gt;Considering Each number in C may only be used once in the combination. When going into the next recursive call, instead of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;helper(result, list, candidates, target - candidates[i], i);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Change it to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;helper(result, list, candidates, target - candidates[i], i + 1);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In addition,we take over this test case:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[1,1] 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;in order to ensure that the solution set must not contain duplicate combinations, instead of getting next element right away, we get the element with different value.&lt;/p&gt;
+&lt;p&gt;add some code as below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;if (i &amp;gt; pos &amp;amp;&amp;amp; candidates[i] == candidates[i - 1]) {
+                continue;
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Combination Sum III</title><link href="http://www.zhangge208.com/pages/2015/10/13/combination-sum-iii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/combination-sum-iii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Combination Sum III&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Find all possible combinations of &lt;strong&gt;k&lt;/strong&gt; numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.&lt;/p&gt;
+&lt;p&gt;Ensure that numbers within the set are sorted in ascending order.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; combinationSum3(int k, int n) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        int[] nums = new int[9];
+        for (int i = 1; i &amp;lt;= 9; i++) {
+            nums[i - 1] = i;
+        }
+        helper(result, list, nums, k, n, 0);
+        return result;
+    }
+    private void helper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list, int[] nums, int size, int target, int pos) {
+        if (list.size() == size &amp;amp;&amp;amp; target == 0) {
+            result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+            return;
+        }
+        else if (target &amp;lt; 0) {
+            return;
+        }
+        for (int i = pos; i &amp;lt; nums.length; i++) {
+            list.add(nums[i]);
+            helper(result, list, nums, size, target - nums[i], i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Permutations</title><link href="http://www.zhangge208.com/pages/2015/10/13/permutations.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/permutations.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Permutations&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a collection of numbers, return all possible permutations.&lt;/p&gt;
+&lt;p&gt;For example,
+&lt;code&gt;[1,2,3]&lt;/code&gt; have the following permutations:
+&lt;code&gt;[1,2,3]&lt;/code&gt;, &lt;code&gt;[1,3,2]&lt;/code&gt;, &lt;code&gt;[2,1,3]&lt;/code&gt;, &lt;code&gt;[2,3,1]&lt;/code&gt;, &lt;code&gt;[3,1,2]&lt;/code&gt;, and &lt;code&gt;[3,2,1]&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; permute(int[] nums) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        if (nums == null &amp;amp;&amp;amp; nums.length == 0){
+            return result;
+        }
+
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        permuteHelper(result, list, nums);
+        return result;
+    }
+    private void permuteHelper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list, int[] nums){
+        if (list.size() == nums.length) {
+            result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+        }
+
+        for(int i = 0; i &amp;lt; nums.length; i++) {
+            if (list.contains(nums[i])) {
+                continue;
+            }
+            list.add(nums[i]);
+            permuteHelper(result, list, nums);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Permutations II</title><link href="http://www.zhangge208.com/pages/2015/10/13/permutations-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/permutations-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Permutations II&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a collection of numbers that might contain duplicates, return all possible unique permutations.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[1,1,2]&lt;/code&gt; have the following unique permutations:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[1,1,2]&lt;/code&gt;,&lt;code&gt;[1,2,1]&lt;/code&gt;, and &lt;code&gt;[2,1,1]&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; permuteUnique(int[] nums) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+
+        if (nums == null || nums.length == 0){
+            return result;
+        }
+
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        int[] visited = new int[nums.length];
+        Arrays.sort(nums);
+        permuteHelper(result, list,visited, nums);
+        return result; 
+    }
+    public void permuteHelper( List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list,int[] visited, int[] nums){
+
+        if (list.size() == nums.length){
+            result.add(new ArrayList(list));
+            return;
+        }
+        for (int i = 0; i &amp;lt; nums.length; i++){
+            if (visited[i] == 1 ||(i != 0 &amp;amp;&amp;amp; nums[i] == nums[i - 1] &amp;amp;&amp;amp; visited[i - 1] == 0)){
+                continue;
+            }
+            visited[i] = 1;
+            list.add(nums[i]);
+            permuteHelper(result, list,visited, nums);
+            list.remove(list.size() - 1);
+            visited[i] = 0;
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Subsets</title><link href="http://www.zhangge208.com/pages/2015/10/13/subsets.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Subsets&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a set of distinct integers, nums, return all possible subsets.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;
+- Elements in a subset must be in non-descending order.
+- The solution set must not contain duplicate subsets.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;If &lt;strong&gt;nums&lt;/strong&gt; = &lt;code&gt;[1,2,3]&lt;/code&gt;, a solution is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; subsets(int[] nums) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        if (nums == null || nums.length == 0){
+            return result;
+        }
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        Arrays.sort(nums);
+        subsetHelp(result, list, nums, 0);
+        return result;
+    }
+
+    private void subsetHelp(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt;list, int[] nums, int pos){
+        result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+
+        for (int i = pos; i &amp;lt; nums.length; i++){
+            list.add(nums[i]);
+            subsetHelp(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+
+        } 
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;reference: &lt;a href="http://algorithm.yuanbin.me"&gt;http://algorithm.yuanbin.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;backtracking可用图示与函数运行的堆栈来理解，以[1, 2, 3]为例，下图为list及result的变化过程，箭头向下表示list.add及result.add操作，箭头向上表示list.remove操作&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://7xltae.com1.z0.glb.clouddn.com/subset.jpg" /&gt; &lt;br /&gt;
+&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Subsets II</title><link href="http://www.zhangge208.com/pages/2015/10/13/subsets-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Subsets II#&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; subsetsWithDup(int[] nums) {
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+
+        Arrays.sort(nums);
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        helper(result, list, nums, 0);
+        return result;
+    }
+    private void helper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list, int[] nums, int pos) {
+        result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+        for (int i = pos; i &amp;lt; nums.length; i++) {
+            if ( i != pos &amp;amp;&amp;amp; nums[i] == nums[i - 1]) {
+                continue;
+            }
+            list.add(nums[i]);
+            helper(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
+
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;the main part of code is same as the subset template，however，we should consider the element in input set will be selected by twice.&lt;/p&gt;
+&lt;p&gt;for example，input = {1，2，3，3}&lt;/p&gt;
+&lt;p&gt;Initialize the subset: {}&lt;/p&gt;
+&lt;p&gt;Added element “1”: {}, &lt;strong&gt;{“1”}&lt;/strong&gt; (1 more elements)&lt;/p&gt;
+&lt;p&gt;Added element “2”: {}, {“1”}, &lt;strong&gt;{“2”}, {“1”, “2”}&lt;/strong&gt; (2 more elements)&lt;/p&gt;
+&lt;p&gt;Added element “3”: {}, {“1”}, {“2”}, {“1”, “2”}, &lt;strong&gt;{“3”}, {“1”,“3”}, {“2”,“3”}, {“1”, “2”,“3”}&lt;/strong&gt; (4 more elements)&lt;/p&gt;
+&lt;p&gt;Added element “3”: {}, {“1”}, {“2”}, {“1”, “2”}, {“3”}, {“1”,“3”}, {“2”,“3”}, {“1”,“2”,“3”}, &lt;strong&gt;{“3”,“3”}, {“1”,“3”,“3”}, {“2”,“3”,“3”}, {“1”,“2”,“3”,“3”}&lt;/strong&gt; (4 more elements)&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Binary Search</title><link href="http://www.zhangge208.com/pages/2015/09/09/binary-search.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/binary-search.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Binary Search&lt;/h1&gt;
 &lt;h2&gt;基础模板&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.lintcode.com/zh-cn/problem/binary-search/"&gt;Binary Search&lt;/a&gt;&lt;/p&gt;

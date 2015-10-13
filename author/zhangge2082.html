@@ -59,8 +59,8 @@
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/minimum-size-subarray-sum.html"><h2>Minimum Size Subarray Sum</h2></a>
-        <div class= "well small"> 2015-09-09
+        <a href="../pages/2015/10/13/permutations-ii.html"><h2>Permutations II</h2></a>
+        <div class= "well small"> 2015-10-13
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -68,10 +68,16 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Minimum Size Subarray Sum</h1>
-<h2>题目</h2>
-<p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a subarray of which the sum ≥ <strong>s</strong>. If there isn't one, return 0 instead.</p>
-<p>For example, given the array <code>[2,3,1,2,4,3]</code> and <code>s ...</code></p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/minimum-size-subarray-sum.html">read more</a></div>
+<h1>Permutations II</h1>
+<h2>Problem</h2>
+<p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
+<p>For example,</p>
+<p><code>[1,1,2]</code> have the following unique permutations:</p>
+<p><code>[1,1,2]</code>,<code>[1,2,1]</code>, and <code>[2,1,1]</code>.</p>
+<h2>Code</h2>
+<div class="highlight"><pre>public class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; permuteUnique(int[] nums) {
+        List&lt;List ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/permutations-ii.html">read more</a></div>
     </div>	
 				
 
@@ -81,8 +87,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/search-a-2d-matrix.html"><h2>Search a 2D Matrix</h2></a>
-        <div class= "well small"> 2015-09-09
+        <a href="../pages/2015/10/13/subsets.html"><h2>Subsets</h2></a>
+        <div class= "well small"> 2015-10-13
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -90,11 +96,21 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Search a 2D Matrix</h1>
-<h2>题目</h2>
-<p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<p>Integers in each row are sorted from left to right.
-The first integer of each row is greater than the last integer of the ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/search-a-2d-matrix.html">read more</a></div>
+<h1>Subsets</h1>
+<h2>Problem</h2>
+<p>Given a set of distinct integers, nums, return all possible subsets.</p>
+<p><strong>Note:</strong>
+- Elements in a subset must be in non-descending order.
+- The solution set must not contain duplicate subsets.</p>
+<p>For example,</p>
+<p>If <strong>nums</strong> = <code>[1,2,3]</code>, a solution is:</p>
+<div class="highlight"><pre>[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2 ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/subsets.html">read more</a></div>
     </div>	
 				
 
@@ -104,8 +120,8 @@ The first integer of each row is greater than the last integer of the ...</p> <a
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/search-a-2d-matrix-ii.html"><h2>Search a 2D Matrix II</h2></a>
-        <div class= "well small"> 2015-09-09
+        <a href="../pages/2015/10/13/subsets-ii.html"><h2>Subsets II</h2></a>
+        <div class= "well small"> 2015-10-13
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -113,11 +129,23 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Search a 2D Matrix II</h1>
-<h2>题目</h2>
-<p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<p>Integers in each row are sorted in ascending from left to right.
-Integers in each column are sorted in ascending from top to ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/search-a-2d-matrix-ii.html">read more</a></div>
+<h1>Subsets II#</h1>
+<h2>Problem</h2>
+<h2>Code</h2>
+<div class="highlight"><pre>public class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {
+        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+
+        Arrays.sort(nums);
+        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+        helper(result, list, nums, 0);
+        return result;
+    }
+    private void helper(List ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/subsets-ii.html">read more</a></div>
     </div>	
 				
 
@@ -127,7 +155,7 @@ Integers in each column are sorted in ascending from top to ...</p> <a class="bt
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/search-for-a-range.html"><h2>Search for a Range</h2></a>
+        <a href="../pages/2015/09/09/binary-search.html"><h2>Binary Search</h2></a>
         <div class= "well small"> 2015-09-09
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
@@ -136,12 +164,26 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Search for a Range</h1>
-<h2>题目</h2>
-<p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
-<p>Your algorithm's runtime complexity must be in the order of O(log n).</p>
-<p>If the target is not found in the array, return <code>[-1, -1]</code>.</p>
-<p>For example ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/search-for-a-range.html">read more</a></div>
+<h1>Binary Search</h1>
+<h2>基础模板</h2>
+<p><a href="http://www.lintcode.com/zh-cn/problem/binary-search/">Binary Search</a></p>
+<p>先给一个错误的示例，原来一直这样写，但在有重复元素时无法适用</p>
+<p>错误示例：</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
+            <span class="k">return</span> -<span class="mi">1</span>;
+        }
+
+        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
+        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
+
+        <span class="k">while</span> (<span class="n">start</span> &lt;= <span class="nb">end</span>) {
+            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
+            <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] == <span class="n">target</span>) {
+                <span class="k">return</span> <span class="n">mid</span>;
+            }
+            <span class="k">else ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/09/09/binary-search.html">read more</a></div>
     </div>	
 				
 
@@ -151,7 +193,7 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/search-in-rotated-sorted-array.html"><h2>Search in Rotated Sorted Array</h2></a>
+        <a href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html"><h2>Find Minimum in Rotated Sorted Array</h2></a>
         <div class= "well small"> 2015-09-09
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
@@ -160,11 +202,12 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Search in Rotated Sorted Array</h1>
+<h1>Find Minimum in Rotated Sorted Array</h1>
 <h2>题目</h2>
 <p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
 <p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>You are given a target value to search. If found in the array ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/search-in-rotated-sorted-array.html">read more</a></div>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -178,6 +221,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
     <li class=""><a href="../author/zhangge2085.html">5</a></li>
     <li class=""><a href="../author/zhangge2086.html">6</a></li>
     <li class=""><a href="../author/zhangge2087.html">7</a></li>
+    <li class=""><a href="../author/zhangge2088.html">8</a></li>
+    <li class=""><a href="../author/zhangge2089.html">9</a></li>
 
     <li class="next"><a href="../author/zhangge2083.html">Next &rarr;</a></li>
 
@@ -213,6 +258,7 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
                 </li>
                 
                 <li><a href="../category/algorithm.html">Algorithm</a></li>
+                <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
                 <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
                    
