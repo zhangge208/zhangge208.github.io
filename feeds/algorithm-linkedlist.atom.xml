@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/algorithm-linkedlist.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-01-19T00:00:00+08:00</updated><entry><title>Leetcode@Linked List Cycle</title><link href="http://www.zhangge208.com/pages/2015/01/19/leetcodelinked-list-cycle.html" rel="alternate"></link><updated>2015-01-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-19:pages/2015/01/19/leetcodelinked-list-cycle.html</id><summary type="html">&lt;h1&gt;题目&lt;/h1&gt;
+&lt;p&gt;Given a linked list, determine if it has a cycle in it.&lt;/p&gt;
+&lt;p&gt;Follow up:
+Can you solve it without using extra space?&lt;/p&gt;
+&lt;h1&gt;解题思路&lt;/h1&gt;
+&lt;p&gt;判断一个链表是否存在环。所谓有环，是指链表的尾节点指向了链表的某一个中间节点。不使用额外空间是要求算法的空间复杂度为O(1)。
+   一般标准的思路是使用快慢两个指针，fast指针每次走两步，slow指针每次走一步。fast和slow指针在初始时均指向头结点。由于fast指针的速度是slow指针的两倍，若链表存在环路，在进入环路后，两个指针一定会相遇，即某一时刻，若slow == fast ，表明链表存在环路。如无环，则有fast或fast.next  == None。这个思路下的算法复杂度为O(n)。
+   需要注意几个特殊点：1.非空链表才有存在环的可能，空链表是无环的  2.若链表只有一个节点，则属于环。&lt;/p&gt;
+&lt;h1&gt;代码&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Definition for singly-linked list.&lt;/span&gt;
+&lt;span class="cm"&gt; * struct ListNode {&lt;/span&gt;
+&lt;span class="cm"&gt; *     int val;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode *next;&lt;/span&gt;
+&lt;span class="cm"&gt; *     ListNode(int x) : val(x), next(NULL) {}&lt;/span&gt;
+&lt;span class="cm"&gt; * };&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+class&lt;span class="w"&gt; &lt;/span&gt;Solution&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nl"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;bool&lt;span class="w"&gt; &lt;/span&gt;hasCycle&lt;span class="o"&gt;(&lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;head&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;NULL&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;ListNode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;NULL&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;while&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;p&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;p&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;p&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;next&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kr"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;q&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;true&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;false&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm LinkedList"></category></entry></feed>

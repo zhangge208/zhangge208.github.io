@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/algorithm-binary-search.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-09-09T00:00:00+08:00</updated><entry><title>Search in Rotated Sorted Array</title><link href="http://www.zhangge208.com/pages/2015/09/09/search-in-rotated-sorted-array.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/search-in-rotated-sorted-array.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Search in Rotated Sorted Array&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Suppose a sorted array is rotated at some pivot unknown to you beforehand.&lt;/p&gt;
+&lt;p&gt;(i.e., &lt;code&gt;0 1 2 4 5 6 7&lt;/code&gt; might become &lt;code&gt;4 5 6 7 0 1 2&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;You are given a target value to search. If found in the array return its index, otherwise return -1.&lt;/p&gt;
+&lt;p&gt;You may assume no duplicate exists in the array.&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int search(int[] nums, int target) {
+        if (nums.length == 0 || nums == null) {
+            return -1;
+        }
+
+        int start = 0;
+        int end = nums.length - 1;
+
+        while (start + 1 &amp;lt; end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                end = mid;
+            }
+            else if (nums[mid] &amp;lt; nums[end]) {
+                if (nums[mid] &amp;lt;= target &amp;amp;&amp;amp; target &amp;lt;= nums[end]) {
+                    start = mid;
+                }
+                else {
+                    end = mid;
+                }
+            }
+            // nums[mid] &amp;gt; nums[start]
+            else {
+                if (nums[mid] &amp;gt;= target &amp;amp;&amp;amp; target &amp;gt;= nums[start]) {
+                    end = mid;
+                }
+                else {
+                    start = mid;
+                }
+            }
+        }
+
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
+        }
+
+        return -1;
+
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;在数组发生旋转后会有两种情况产生，以[0,1,2,3,4,5,6]为例：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;旋转后形如[3,4,5,6,0,1,2],即较小的数发生了翻转，但前半部分仍然有序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;旋转后形如[5,6,0,1,2,3,4],即较大的数发生了翻转，但后半部分仍然有序&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为使用二分搜索，那么必须保持使用区间的有序性,所以要在nums[mid] &amp;lt;= target &amp;amp;&amp;amp; target &amp;lt;= nums[end] 或 nums[mid] &amp;gt;= target &amp;amp;&amp;amp; target &amp;gt;= nums[start]这两个有序部分进行二分搜索&lt;/p&gt;</summary><category term="Algorithm Binary Search"></category></entry><entry><title>Leetcode@Search in Rotated Sorted Array II</title><link href="http://www.zhangge208.com/pages/2015/01/19/leetcodesearch-in-rotated-sorted-array-ii.html" rel="alternate"></link><updated>2015-01-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-01-19:pages/2015/01/19/leetcodesearch-in-rotated-sorted-array-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;题目&lt;/h1&gt;
+&lt;p&gt;Follow up for "Search in Rotated Sorted Array":
+What if duplicates are allowed?&lt;/p&gt;
+&lt;p&gt;Would this affect the run-time complexity? How and why?&lt;/p&gt;
+&lt;p&gt;Write a function to determine if a given target is in the array.&lt;/p&gt;
+&lt;h1&gt;解题思路&lt;/h1&gt;
+&lt;p&gt;在上一题”Search in Rotated Array“中假设数组不会出现重复元素。但如果允许出现重复的元素，那么对中间和边缘相等的情况需要进行特殊的处理。原来的题目通过中间与边缘元素的比较来判断哪一半为有序的，但现在出现了重复，这导致若边缘与中间相等，将无法判断有序部分的情况，例如,原来为[1,2,3,4,4,4,4,4,4],翻转后变为[4,4,4,4,4,1,2,3,4],这样一来，无论中心边缘都相等，在寻找1或2时，根本无法判断应跳向哪一步。为解决这一问题，只有将边缘移动一步，直到边缘和中间不再相等，或者中间与边缘已经重合。在最坏情况时，即序列为同一元素时，时间复杂度会退化至O(n)。&lt;/p&gt;
+&lt;h1&gt;代码&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt;{
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;[], &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;NULL&lt;/span&gt; == &lt;span class="n"&gt;A&lt;/span&gt; || &lt;span class="mi"&gt;0&lt;/span&gt; == &lt;span class="n"&gt;n&lt;/span&gt;)  
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;;  
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;, &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;n-1&lt;/span&gt;, &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;  
+        &lt;span class="k"&gt;while&lt;/span&gt;(&lt;span class="n"&gt;left&lt;/span&gt; &amp;lt;= &lt;span class="n"&gt;right&lt;/span&gt;)  
+        {  
+            &lt;span class="n"&gt;mid&lt;/span&gt; = &lt;span class="n"&gt;left&lt;/span&gt;+(&lt;span class="n"&gt;right-left&lt;/span&gt;)/&lt;span class="mi"&gt;2&lt;/span&gt;;  
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] == &lt;span class="n"&gt;target&lt;/span&gt;)  
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;;
+            &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;gt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+            {
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;target&lt;/span&gt; &amp;lt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;amp;&amp;amp; &lt;span class="n"&gt;target&lt;/span&gt; &amp;gt;=&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+                {
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; - &lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+                &lt;span class="k"&gt;else&lt;/span&gt;
+                {
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;]&amp;lt; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;left&lt;/span&gt;])
+            {
+                &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;target&lt;/span&gt; &amp;gt;&lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;mid&lt;/span&gt;] &amp;amp;&amp;amp; &lt;span class="n"&gt;A&lt;/span&gt;[&lt;span class="n"&gt;right&lt;/span&gt;] &amp;gt;= &lt;span class="n"&gt;target&lt;/span&gt; )
+                {
+                    &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; +&lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+                &lt;span class="k"&gt;else&lt;/span&gt;
+                {
+                    &lt;span class="n"&gt;right&lt;/span&gt; = &lt;span class="n"&gt;mid&lt;/span&gt; -&lt;span class="mi"&gt;1&lt;/span&gt;;
+                }
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            {
+                &lt;span class="n"&gt;left&lt;/span&gt; = &lt;span class="n"&gt;left&lt;/span&gt; + &lt;span class="mi"&gt;1&lt;/span&gt;;
+            }
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;;
+    }
+
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Binary Search"></category></entry></feed>
