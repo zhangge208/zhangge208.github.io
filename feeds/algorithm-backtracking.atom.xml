@@ -533,5 +533,4 @@ A solution set is:
 &lt;p&gt;Added element “2”: {}, {1}, &lt;strong&gt;{2(1)}&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;{1, 2(1)}, {1, 2(2)} are duplicate subset, {1,2(1),2(2)}, {1,2(2),2(3)} are iterant, too. &lt;/p&gt;
 &lt;p&gt;We arrive ar a conclusion:we are only concerned with getting how many '2' rather than get which '2'&lt;br /&gt;
-&lt;/p&gt;
-&lt;p&gt;We only focused on selecting &lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry></feed>
+&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry></feed>

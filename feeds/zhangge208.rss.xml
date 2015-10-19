@@ -533,8 +533,7 @@ A solution set is:
 &lt;p&gt;Added element “2”: {}, {1}, &lt;strong&gt;{2(1)}&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;{1, 2(1)}, {1, 2(2)} are duplicate subset, {1,2(1),2(2)}, {1,2(2),2(3)} are iterant, too. &lt;/p&gt;
 &lt;p&gt;We arrive ar a conclusion:we are only concerned with getting how many '2' rather than get which '2'&lt;br /&gt;
-&lt;/p&gt;
-&lt;p&gt;We only focused on selecting &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zhangge208</dc:creator><pubDate>Tue, 13 Oct 2015 00:00:00 +0800</pubDate><guid>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets-ii.html</guid><category>Algorithm Backtracking</category></item><item><title>Binary Search</title><link>http://www.zhangge208.com/pages/2015/09/09/binary-search.html</link><description>&lt;hr /&gt;
+&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zhangge208</dc:creator><pubDate>Tue, 13 Oct 2015 00:00:00 +0800</pubDate><guid>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets-ii.html</guid><category>Algorithm Backtracking</category></item><item><title>Binary Search</title><link>http://www.zhangge208.com/pages/2015/09/09/binary-search.html</link><description>&lt;hr /&gt;
 &lt;h1&gt;Binary Search&lt;/h1&gt;
 &lt;h2&gt;基础模板&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.lintcode.com/zh-cn/problem/binary-search/"&gt;Binary Search&lt;/a&gt;&lt;/p&gt;
