@@ -54,8 +54,8 @@
         <div class="span9">
     <div class='article'>
         <div class="content-title">
-            <h1>Subsets II</h1>
-2015-10-13
+            <h1>Palindrome Partitioning</h1>
+2015-10-19
 
 by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
  
@@ -64,67 +64,59 @@ by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
         </div>
 	
         <div><hr />
-<h1>Subsets II#</h1>
+<h1>Palindrome Partitioning</h1>
 <h2>Problem</h2>
-<p>Given a collection of integers that might contain duplicates, nums, return all possible subsets.</p>
-<p>Note:
-- Elements in a subset must be in non-descending order.</p>
-<ul>
-<li>The solution set must not contain duplicate subsets.</li>
-</ul>
-<p>For example,</p>
-<p>If <strong>nums</strong> = <code>[1,2,2]</code>, a solution is:</p>
+<p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
+<p>Return all possible palindrome partitioning of s.</p>
+<p>For example, given s = <code>"aab"</code>,</p>
+<p>Return</p>
 <div class="highlight"><pre>[
-  [2],
-  [1],
-  [1,2,2],
-  [2,2],
-  [1,2],
-  []
+    [&quot;aa&quot;,&quot;b&quot;],
+    [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]
 ]
 </pre></div>
 
 
 <h2>Code</h2>
 <div class="highlight"><pre>public class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {
-        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;List&lt;Integer&gt;&gt;();
-
-        if (nums == null || nums.length == 0) {
-            return result;
-        }
-
-        Arrays.sort(nums);
-        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-        helper(result, list, nums, 0);
+    public List&lt;List&lt;String&gt;&gt; partition(String s) {
+        List&lt;List&lt;String&gt;&gt; result = new ArrayList&lt;List&lt;String&gt;&gt;();
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        helper(result, list, s, 0);
         return result;
     }
-    private void helper(List&lt;List&lt;Integer&gt;&gt; result, List&lt;Integer&gt; list, int[] nums, int pos) {
-        result.add(new ArrayList&lt;Integer&gt;(list));
-        for (int i = pos; i &lt; nums.length; i++) {
-            if ( i != pos &amp;&amp; nums[i] == nums[i - 1]) {
-                continue;
-            }
-            list.add(nums[i]);
-            helper(result, list, nums, i + 1);
-            list.remove(list.size() - 1);
+
+    private void helper(List&lt;List&lt;String&gt;&gt; result, List&lt;String&gt; list, String str, int pos) {
+        if (pos == str.length()) {
+            result.add(new ArrayList&lt;String&gt;(list));
+            return;
         }
 
+        for (int i = pos; i &lt; str.length(); i++) {
+            String sub = str.substring(pos, i + 1);
+            if (isPartition(sub)) {
+                list.add(sub);
+                helper(result, list, str, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+
+    private boolean isPartition(String str) {
+        int left = 0, right = str.length() - 1;
+        while (left &lt; right) {
+            if (str.charAt(left) != str.charAt(right)) 
+                return false;
+            left++;
+            right--;
+        }
+        return true;
     }
 }
 </pre></div>
 
 
-<h2>Solution and Analysis</h2>
-<p>The main part of code is same as the subset template，</p>
-<p>For example，input = {1，2(1)，2(2)，2(3)}</p>
-<p>Initialize the subset: {}</p>
-<p>Added element “1”: {}, <strong>{1}</strong> </p>
-<p>Added element “2”: {}, {1}, <strong>{2(1)}</strong></p>
-<p>{1, 2(1)}, {1, 2(2)} are duplicate subset, {1,2(1),2(2)}, {1,2(2),2(3)} are iterant, too. </p>
-<p>We arrive ar a conclusion:we are only concerned with getting how many '2' rather than get which '2'<br />
-</p>
-<p>We only focused on selecting </p></div>
+<h2>Solution and Analysis</h2></div>
 	
         <hr>
 
@@ -132,7 +124,7 @@ by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'zhangge208githubio'; 
-    var disqus_title = 'Subsets II';
+    var disqus_title = 'Palindrome Partitioning';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -106,7 +106,18 @@ by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
 </pre></div>
 
 
-<h2>Solution and Analysis</h2></div>
+<h2>Solution and Analysis</h2>
+<p>This question is based on Permutations, plus duplication avoidance.</p>
+<p>The idea is when getting element from remaining list and add to current list, check for duplication. If the number occured before, skip operation. (Don’t forget sorting is required at first).</p>
+<p>The key points to keep in mind:</p>
+<ul>
+<li>
+<p>Use another array to flag the ‘visited’ items</p>
+</li>
+<li>
+<p>Check items with same value, and <strong>ONLY USE THE FIRST INSTANCE OF THE SAME VALUE</strong>. Which is to say, if current = previous, but previous is not visited, do not use current number.</p>
+</li>
+</ul></div>
 	
         <hr>
 

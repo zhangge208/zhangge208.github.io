@@ -1,5 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/zhangge208.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-10-13T00:00:00+08:00</updated><entry><title>Backtracking</title><link href="http://www.zhangge208.com/pages/2015/10/13/backtracking.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/backtracking.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/zhangge208.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-10-19T00:00:00+08:00</updated><entry><title>Combinations</title><link href="http://www.zhangge208.com/pages/2015/10/19/combinations.html" rel="alternate"></link><updated>2015-10-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-19:pages/2015/10/19/combinations.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Combinations&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.&lt;/p&gt;
+&lt;p&gt;For example,
+If n = 4 and k = 2, a solution is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; combine(int n, int k) {
+        if (n == 0 || k == 0) {
+            return null;
+        }
+        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;();
+        List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();
+        helper(result, list, n, k, 1);
+        return result;
+    }
+
+    private void helper(List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; result, List&amp;lt;Integer&amp;gt; list, int n, int k, int start) {
+        if (list.size() == k) {
+            result.add(new ArrayList&amp;lt;Integer&amp;gt;(list));
+            return;
+        }
+
+        for (int i = start; i &amp;lt;= n; i++) {
+            list.add(i);
+            helper(result, list, n, k, i + 1);
+            list.remove(list.size() - 1);
+        }
+
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;The solution is standard, the main part of code is same as subsets template.&lt;/p&gt;
+&lt;p&gt;Noticing the condidtion that list is added to result.&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Palindrome Partitioning</title><link href="http://www.zhangge208.com/pages/2015/10/19/palindrome-partitioning.html" rel="alternate"></link><updated>2015-10-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-19:pages/2015/10/19/palindrome-partitioning.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Palindrome Partitioning&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a string s, partition s such that every substring of the partition is a palindrome.&lt;/p&gt;
+&lt;p&gt;Return all possible palindrome partitioning of s.&lt;/p&gt;
+&lt;p&gt;For example, given s = &lt;code&gt;"aab"&lt;/code&gt;,&lt;/p&gt;
+&lt;p&gt;Return&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[
+    [&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;],
+    [&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;]
+]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; partition(String s) {
+        List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; result = new ArrayList&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;();
+        List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();
+        helper(result, list, s, 0);
+        return result;
+    }
+
+    private void helper(List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; result, List&amp;lt;String&amp;gt; list, String str, int pos) {
+        if (pos == str.length()) {
+            result.add(new ArrayList&amp;lt;String&amp;gt;(list));
+            return;
+        }
+
+        for (int i = pos; i &amp;lt; str.length(); i++) {
+            String sub = str.substring(pos, i + 1);
+            if (isPartition(sub)) {
+                list.add(sub);
+                helper(result, list, str, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+
+    private boolean isPartition(String str) {
+        int left = 0, right = str.length() - 1;
+        while (left &amp;lt; right) {
+            if (str.charAt(left) != str.charAt(right)) 
+                return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Backtracking</title><link href="http://www.zhangge208.com/pages/2015/10/13/backtracking.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/backtracking.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Backtracking&lt;/h1&gt;
 &lt;h2&gt;concept &amp;amp;&amp;amp; idea&lt;/h2&gt;
 &lt;h3&gt;concept&lt;/h3&gt;
@@ -263,7 +364,9 @@ A solution set is:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Permutations II</title><link href="http://www.zhangge208.com/pages/2015/10/13/permutations-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/permutations-ii.html</id><summary type="html">&lt;hr /&gt;
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;The main part of code is same as the subset template,recursively add elements into a list, until all elements are added.Make sure that the list do not contain the current element.&lt;/p&gt;
+&lt;p&gt;Note:This type of permutation questions always requires add/remove before/after a recursion.&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Permutations II</title><link href="http://www.zhangge208.com/pages/2015/10/13/permutations-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/permutations-ii.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Permutations II&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Given a collection of numbers that might contain duplicates, return all possible unique permutations.&lt;/p&gt;
@@ -306,7 +409,18 @@ A solution set is:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Subsets</title><link href="http://www.zhangge208.com/pages/2015/10/13/subsets.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets.html</id><summary type="html">&lt;hr /&gt;
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;This question is based on Permutations, plus duplication avoidance.&lt;/p&gt;
+&lt;p&gt;The idea is when getting element from remaining list and add to current list, check for duplication. If the number occured before, skip operation. (Don’t forget sorting is required at first).&lt;/p&gt;
+&lt;p&gt;The key points to keep in mind:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Use another array to flag the ‘visited’ items&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check items with same value, and &lt;strong&gt;ONLY USE THE FIRST INSTANCE OF THE SAME VALUE&lt;/strong&gt;. Which is to say, if current = previous, but previous is not visited, do not use current number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Subsets</title><link href="http://www.zhangge208.com/pages/2015/10/13/subsets.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Subsets&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Given a set of distinct integers, nums, return all possible subsets.&lt;/p&gt;
@@ -362,6 +476,25 @@ A solution set is:
 &lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Subsets II</title><link href="http://www.zhangge208.com/pages/2015/10/13/subsets-ii.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/subsets-ii.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Subsets II#&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a collection of integers that might contain duplicates, nums, return all possible subsets.&lt;/p&gt;
+&lt;p&gt;Note:
+- Elements in a subset must be in non-descending order.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The solution set must not contain duplicate subsets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;If &lt;strong&gt;nums&lt;/strong&gt; = &lt;code&gt;[1,2,2]&lt;/code&gt;, a solution is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h2&gt;Code&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
     public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; subsetsWithDup(int[] nums) {
@@ -393,13 +526,15 @@ A solution set is:
 
 
 &lt;h2&gt;Solution and Analysis&lt;/h2&gt;
-&lt;p&gt;the main part of code is same as the subset template，however，we should consider the element in input set will be selected by twice.&lt;/p&gt;
-&lt;p&gt;for example，input = {1，2，3，3}&lt;/p&gt;
+&lt;p&gt;The main part of code is same as the subset template，&lt;/p&gt;
+&lt;p&gt;For example，input = {1，2(1)，2(2)，2(3)}&lt;/p&gt;
 &lt;p&gt;Initialize the subset: {}&lt;/p&gt;
-&lt;p&gt;Added element “1”: {}, &lt;strong&gt;{“1”}&lt;/strong&gt; (1 more elements)&lt;/p&gt;
-&lt;p&gt;Added element “2”: {}, {“1”}, &lt;strong&gt;{“2”}, {“1”, “2”}&lt;/strong&gt; (2 more elements)&lt;/p&gt;
-&lt;p&gt;Added element “3”: {}, {“1”}, {“2”}, {“1”, “2”}, &lt;strong&gt;{“3”}, {“1”,“3”}, {“2”,“3”}, {“1”, “2”,“3”}&lt;/strong&gt; (4 more elements)&lt;/p&gt;
-&lt;p&gt;Added element “3”: {}, {“1”}, {“2”}, {“1”, “2”}, {“3”}, {“1”,“3”}, {“2”,“3”}, {“1”,“2”,“3”}, &lt;strong&gt;{“3”,“3”}, {“1”,“3”,“3”}, {“2”,“3”,“3”}, {“1”,“2”,“3”,“3”}&lt;/strong&gt; (4 more elements)&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Binary Search</title><link href="http://www.zhangge208.com/pages/2015/09/09/binary-search.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/binary-search.html</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;Added element “1”: {}, &lt;strong&gt;{1}&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;Added element “2”: {}, {1}, &lt;strong&gt;{2(1)}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;{1, 2(1)}, {1, 2(2)} are duplicate subset, {1,2(1),2(2)}, {1,2(2),2(3)} are iterant, too. &lt;/p&gt;
+&lt;p&gt;We arrive ar a conclusion:we are only concerned with getting how many '2' rather than get which '2'&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;We only focused on selecting &lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Binary Search</title><link href="http://www.zhangge208.com/pages/2015/09/09/binary-search.html" rel="alternate"></link><updated>2015-09-09T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-09-09:pages/2015/09/09/binary-search.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Binary Search&lt;/h1&gt;
 &lt;h2&gt;基础模板&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.lintcode.com/zh-cn/problem/binary-search/"&gt;Binary Search&lt;/a&gt;&lt;/p&gt;
