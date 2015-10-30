@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ant</title><link>http://www.zhangge208.com/</link><description></description><atom:link href="http://www.zhangge208.com/feeds/zhangge208.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 19 Oct 2015 00:00:00 +0800</lastBuildDate><item><title>Combinations</title><link>http://www.zhangge208.com/pages/2015/10/19/combinations.html</link><description>&lt;hr /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ant</title><link>http://www.zhangge208.com/</link><description></description><atom:link href="http://www.zhangge208.com/feeds/zhangge208.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 Oct 2015 00:00:00 +0800</lastBuildDate><item><title>Roman to Integer</title><link>http://www.zhangge208.com/pages/2015/10/29/roman-to-integer.html</link><description>&lt;hr /&gt;
+&lt;h1&gt;Roman to Integer&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Given a roman numeral, convert it to an integer.&lt;/p&gt;
+&lt;p&gt;Input is guaranteed to be within the range from 1 to 3999.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int romanToInt(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        Map&amp;lt;Character, Integer&amp;gt; map = new HashMap&amp;lt;Character, Integer&amp;gt;();
+        map.put(&amp;#39;I&amp;#39;,1);
+        map.put(&amp;#39;V&amp;#39;,5);
+        map.put(&amp;#39;X&amp;#39;,10);
+        map.put(&amp;#39;L&amp;#39;,50);
+        map.put(&amp;#39;C&amp;#39;,100);
+        map.put(&amp;#39;D&amp;#39;,500);
+        map.put(&amp;#39;M&amp;#39;,1000);
+        int result = map.get(s.charAt(s.length() - 1)) ;
+        for (int i = s.length() - 1; i &amp;gt;= 1 ; i--) {
+            if (map.get(s.charAt(i - 1)) &amp;gt;= map.get(s.charAt(i))) {
+                result += map.get(s.charAt(i - 1));
+            }
+            else {
+                result -= map.get(s.charAt(i - 1));
+            }
+
+        }
+        return result;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;It`s boring so long as you know the rule that how to convert roman numeral to an integer.&lt;/p&gt;
+&lt;p&gt;The base:&lt;/p&gt;
+&lt;p&gt;I = 1&lt;/p&gt;
+&lt;p&gt;V = 5&lt;/p&gt;
+&lt;p&gt;X = 10&lt;/p&gt;
+&lt;p&gt;L = 50&lt;/p&gt;
+&lt;p&gt;C = 100&lt;/p&gt;
+&lt;p&gt;D = 500&lt;/p&gt;
+&lt;p&gt;M = 1000&lt;/p&gt;
+&lt;p&gt;So we need create a map to store key-value&lt;Character, Integer&gt;.&lt;/p&gt;
+&lt;p&gt;Rule:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If a lower value symbol is before a higher value one, it is subtracted. Otherwise it is added &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Order: Right to left&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zhangge208</dc:creator><pubDate>Thu, 29 Oct 2015 00:00:00 +0800</pubDate><guid>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/roman-to-integer.html</guid><category>Algorithm String &amp; Math</category></item><item><title>String to Integer (atoi)</title><link>http://www.zhangge208.com/pages/2015/10/29/string-to-integer-atoi.html</link><description>&lt;hr /&gt;
+&lt;h1&gt;String to Integer (atoi)&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;Implement atoi to convert a string to an integer.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hint:&lt;/strong&gt; Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt; It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Solution {
+    public int myAtoi(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        str = str.trim();
+        int sign = 1;
+        int index = 0;
+
+        if (str.charAt(index) == &amp;#39;+&amp;#39;) {
+            index++;
+        }
+        else if (str.charAt(index) == &amp;#39;-&amp;#39;) {
+            sign = -1;
+            index++;
+        }
+        long  num = 0;
+
+        for(int i = index; i &amp;lt; str.length(); i++) {
+            if (str.charAt(i) &amp;lt; &amp;#39;0&amp;#39; || str.charAt(i) &amp;gt; &amp;#39;9&amp;#39;)
+                break;
+            num = num * 10 + str.charAt(i) - &amp;#39;0&amp;#39;;
+
+            if (num &amp;gt; Integer.MAX_VALUE) {
+                break;
+            }
+        }
+
+        if (num * sign &amp;lt; Integer.MIN_VALUE) {
+            return  Integer.MIN_VALUE;
+        }    
+        if (num * sign &amp;gt; Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        }
+
+        return (int) num * sign;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Solution and Analysis&lt;/h2&gt;
+&lt;p&gt;There are some points we should focus as below：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The function first discards as many whitespace characters as necessary until the first non-whitespace character is found.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zhangge208</dc:creator><pubDate>Thu, 29 Oct 2015 00:00:00 +0800</pubDate><guid>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/string-to-integer-atoi.html</guid><category>Algorithm String &amp; Math</category></item><item><title>Combinations</title><link>http://www.zhangge208.com/pages/2015/10/19/combinations.html</link><description>&lt;hr /&gt;
 &lt;h1&gt;Combinations&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.&lt;/p&gt;

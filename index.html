@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2015/10/19/combinations.html"><h1>Combinations</h1></a>
-2015-10-19
+            <a href="./pages/2015/10/29/roman-to-integer.html"><h1>Roman to Integer</h1></a>
+2015-10-29
 
 by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,102 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Roman to Integer</h1>
+<h2>Problem</h2>
+<p>Given a roman numeral, convert it to an integer.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+<h2>Code</h2>
+<div class="highlight"><pre>public class Solution {
+    public int romanToInt(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        Map&lt;Character, Integer&gt; map = new HashMap&lt;Character, Integer&gt;();
+        map.put(&#39;I&#39;,1);
+        map.put(&#39;V&#39;,5);
+        map.put(&#39;X&#39;,10);
+        map.put(&#39;L&#39;,50);
+        map.put(&#39;C&#39;,100);
+        map.put(&#39;D&#39;,500);
+        map.put(&#39;M&#39;,1000);
+        int result = map.get(s.charAt(s.length() - 1)) ;
+        for (int i = s.length() - 1; i &gt;= 1 ; i--) {
+            if (map.get(s.charAt(i - 1)) &gt;= map.get(s.charAt(i))) {
+                result += map.get(s.charAt(i - 1));
+            }
+            else {
+                result -= map.get(s.charAt(i - 1));
+            }
+
+        }
+        return result;
+    }
+}
+</pre></div>
+
+
+<h2>Solution and Analysis</h2>
+<p>It`s boring so long as you know the rule that how to convert roman numeral to an integer.</p>
+<p>The base:</p>
+<p>I = 1</p>
+<p>V = 5</p>
+<p>X = 10</p>
+<p>L = 50</p>
+<p>C = 100</p>
+<p>D = 500</p>
+<p>M = 1000</p>
+<p>So we need create a map to store key-value<Character, Integer>.</p>
+<p>Rule:</p>
+<ul>
+<li>
+<p>If a lower value symbol is before a higher value one, it is subtracted. Otherwise it is added </p>
+</li>
+<li>
+<p>Order: Right to left</p>
+</li>
+</ul></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/10/29/string-to-integer-atoi.html"><h2>String to Integer (atoi)</h2></a>
+        <div class= "well small"> 2015-10-29
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>String to Integer (atoi)</h1>
+<h2>Problem</h2>
+<p>Implement atoi to convert a string to an integer.</p>
+<p><strong>Hint:</strong> Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
+<p><strong>Notes:</strong> It is intended for this problem to be specified ...</p> <a class="btn btn-info xsmall" href="./pages/2015/10/29/string-to-integer-atoi.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/10/19/combinations.html"><h2>Combinations</h2></a>
+        <div class= "well small"> 2015-10-19
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Combinations</h1>
 <h2>Problem</h2>
 <p>Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.</p>
@@ -88,39 +184,9 @@ If n = 4 and k = 2, a solution is:</p>
 
 <h2>Code</h2>
 <div class="highlight"><pre>public class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
-        if (n == 0 || k == 0) {
-            return null;
-        }
-        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;List&lt;Integer&gt;&gt;();
-        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-        helper(result, list, n, k, 1);
-        return result;
-    }
-
-    private void helper(List&lt;List&lt;Integer&gt;&gt; result, List&lt;Integer&gt; list, int n, int k, int start) {
-        if (list.size() == k) {
-            result.add(new ArrayList&lt;Integer&gt;(list));
-            return;
-        }
-
-        for (int i = start; i &lt;= n; i++) {
-            list.add(i);
-            helper(result, list, n, k, i + 1);
-            list.remove(list.size() - 1);
-        }
-
-    }
-}
-</pre></div>
-
-
-<h2>Solution and Analysis</h2>
-<p>The solution is standard, the main part of code is same as subsets template.</p>
-<p>Noticing the condidtion that list is added to result.</p></div>
-        <hr />
-    </div>
-		
+    public List&lt;List&lt;Integer ...</pre></div> <a class="btn btn-info xsmall" href="./pages/2015/10/19/combinations.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -192,56 +258,6 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 <div class="highlight"><pre>public class Solution ...</pre></div> <a class="btn btn-info xsmall" href="./pages/2015/10/13/backtracking.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/10/13/combination-sum.html"><h2>Combination Sum</h2></a>
-        <div class= "well small"> 2015-10-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Combination Sum</h1>
-<h2>Problem</h2>
-<p>Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>The <strong>same</strong> repeated number may be chosen from C unlimited number of times.</p>
-<p>Note:</p>
-<ul>
-<li>All numbers (including target) will be positive integers ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/10/13/combination-sum.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/10/13/combination-sum-ii.html"><h2>Combination Sum II</h2></a>
-        <div class= "well small"> 2015-10-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Combination Sum II</h1>
-<h2>Problem</h2>
-<p>Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>Each number in C may only be used once in the combination.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers (including target) will be positive integers ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/10/13/combination-sum-ii.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -255,6 +271,7 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
     <li class=""><a href="./index7.html">7</a></li>
     <li class=""><a href="./index8.html">8</a></li>
     <li class=""><a href="./index9.html">9</a></li>
+    <li class=""><a href="./index10.html">10</a></li>
 
     <li class="next"><a href="./index2.html">Next &rarr;</a></li>
 
@@ -293,6 +310,7 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
                 <li><a href="./category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
                 <li><a href="./category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="./category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
+                <li><a href="./category/algorithm-string-math.html">Algorithm String & Math</a></li>
                    
             </ul>
             </div>

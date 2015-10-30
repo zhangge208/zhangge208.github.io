@@ -59,6 +59,78 @@
  
 
     <div class='article'>
+        <a href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h2>Leetcode@Leetcode@Invert Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Invert Binary Tree</h1>
+<h2>题目</h2>
+<p>Invert a binary tree.</p>
+<div class="highlight"><pre>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</pre></div>
+
+
+<h2>思路</h2>
+<p>非递归的还没想出来，不会做，那就来递归的吧先，递归很简单，交换左右节点就跟交换a,b两个数一样，需要一个中间变量，先把左子树的指针赋给中间变量，然后交换。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/13/leetcodevalidate-binary-search-tree.html"><h2>Leetcode@Validate Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Validate Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
+<p>Assume a BST is defined as follows:</p>
+<ul>
+<li>The left subtree of a node contains only nodes with keys less - than the node's key.</li>
+<li>The right subtree of a node ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/06/13/leetcodevalidate-binary-search-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
         <div class= "well small"> 2015-06-12
 
@@ -147,62 +219,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <p>一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/10/binary-tree.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/06/02/leetcodeleetcoderotate-list.html"><h2>Leetcode@Leetcode@Rotate List</h2></a>
-        <div class= "well small"> 2015-06-02
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Rotate List</h1>
-<h2>题目</h2>
-<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
-<p>For example:
-Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and k = <code>2</code>,
-return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p>
-<h2>思路</h2>
-<p>把问题分割，题目要求部分翻转，那么首先要得到开始翻转的位置
-这与Remove Nth Node From End of List的思路一致 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcodeleetcoderotate-list.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html"><h2>Leetcode@Remove Linked List Elements</h2></a>
-        <div class= "well small"> 2015-06-02
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Remove Linked List Elements</h1>
-<h2>题目</h2>
-<p>Remove all elements from a linked list of integers that have value val.</p>
-<p><strong>Example</strong></p>
-<p><strong><em>Given:</em></strong> 1 --&gt; 2 --&gt; 6 --&gt; 3 --&gt; 4 --&gt; 5 --&gt; 6, val = 6</p>
-<p><strong><em>Return:</em></strong> 1 --&gt; 2 --&gt; 3 --&gt; 4 --&gt; 5</p>
-<h2>思路</h2>
-<p>基础的链表操作题目。首先考虑到头节点可能会被修改，所以要使用dummynode，然后根据判断条件进行remove即可，现指针节点为p，p的后继节点的值若与给定的val相等，则令p指向p后继的后继即可移除p现在的后继。注意边界条件的处理。</p>
-<h2>代码</h2>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Definition for singly-linked list ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/02/leetcoderemove-linked-list-elements.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="../author/zhangge2085.html">&larr; Previous</a></li>
@@ -216,6 +232,7 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
     <li class=""><a href="../author/zhangge2087.html">7</a></li>
     <li class=""><a href="../author/zhangge2088.html">8</a></li>
     <li class=""><a href="../author/zhangge2089.html">9</a></li>
+    <li class=""><a href="../author/zhangge20810.html">10</a></li>
 
     <li class="next"><a href="../author/zhangge2087.html">Next &rarr;</a></li>
 
@@ -254,6 +271,7 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
                 <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
                 <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
+                <li><a href="../category/algorithm-string-math.html">Algorithm String & Math</a></li>
                    
             </ul>
             </div>

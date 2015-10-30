@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/05/28/leetcodekth-largest-element-in-an-array.html"><h1>Leetcode@Kth Largest Element in an Array</h1></a>
-2015-05-28
+            <a href="../pages/2015/10/29/roman-to-integer.html"><h1>Roman to Integer</h1></a>
+2015-10-29
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,42 +70,91 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
-<h1>Leetcode@Kth Largest Element in an Array</h1>
-<h2>题目</h2>
-<p>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
-<p>For example,
-Given [3,2,1,5,6,4] and k = 2, return 5.</p>
-<p>Note: 
-You may assume k is always valid, 1 ≤ k ≤ array's length.</p>
-<h2>思路</h2>
-<p>使用优先队列来解决。由于题目是求第k大的数，反过来也就是求第n-k+1小的数，那么只需要生成一个队长为k的优先队列，把n个数中k个最大的数放入队列中即可，此时返回队头即可。所以，对于nums中前k个数，我们全部放入优先队列中；对于剩下的n-k个元素，我们挨个将其与现有队头比较，如果比现有队头大，那么更新队头，原队头出队，元素入队。</p>
-<h2>代码</h2>
+<h1>Roman to Integer</h1>
+<h2>Problem</h2>
+<p>Given a roman numeral, convert it to an integer.</p>
+<p>Input is guaranteed to be within the range from 1 to 3999.</p>
+<h2>Code</h2>
 <div class="highlight"><pre>public class Solution {
-    public int findKthLargest(int[] nums, int k) {
-        PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;Integer&gt;(k);
-        for (int i = 0; i &lt; nums.length; i++){
-            if (queue.size() &lt; k){
-                queue.add(nums[i]);
-            }
-            else{
-                if (nums[i] &gt; queue.peek()){
-                    queue.remove();
-                    queue.add(nums[i]);
-                }
-            }
+    public int romanToInt(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
         }
-        return queue.remove();
+        Map&lt;Character, Integer&gt; map = new HashMap&lt;Character, Integer&gt;();
+        map.put(&#39;I&#39;,1);
+        map.put(&#39;V&#39;,5);
+        map.put(&#39;X&#39;,10);
+        map.put(&#39;L&#39;,50);
+        map.put(&#39;C&#39;,100);
+        map.put(&#39;D&#39;,500);
+        map.put(&#39;M&#39;,1000);
+        int result = map.get(s.charAt(s.length() - 1)) ;
+        for (int i = s.length() - 1; i &gt;= 1 ; i--) {
+            if (map.get(s.charAt(i - 1)) &gt;= map.get(s.charAt(i))) {
+                result += map.get(s.charAt(i - 1));
+            }
+            else {
+                result -= map.get(s.charAt(i - 1));
+            }
+
+        }
+        return result;
     }
 }
-</pre></div></div>
+</pre></div>
+
+
+<h2>Solution and Analysis</h2>
+<p>It`s boring so long as you know the rule that how to convert roman numeral to an integer.</p>
+<p>The base:</p>
+<p>I = 1</p>
+<p>V = 5</p>
+<p>X = 10</p>
+<p>L = 50</p>
+<p>C = 100</p>
+<p>D = 500</p>
+<p>M = 1000</p>
+<p>So we need create a map to store key-value<Character, Integer>.</p>
+<p>Rule:</p>
+<ul>
+<li>
+<p>If a lower value symbol is before a higher value one, it is subtracted. Otherwise it is added </p>
+</li>
+<li>
+<p>Order: Right to left</p>
+</li>
+</ul></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/10/29/string-to-integer-atoi.html"><h2>String to Integer (atoi)</h2></a>
+        <div class= "well small"> 2015-10-29
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>String to Integer (atoi)</h1>
+<h2>Problem</h2>
+<p>Implement atoi to convert a string to an integer.</p>
+<p><strong>Hint:</strong> Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
+<p><strong>Notes:</strong> It is intended for this problem to be specified ...</p> <a class="btn btn-info xsmall" href="../pages/2015/10/29/string-to-integer-atoi.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
-    <li class="active"><a href="../tag/algorithm-leetcode-heap.html">1</a></li>
+    <li class="active"><a href="../category/algorithm-string-math.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; Next</a></li>
 
