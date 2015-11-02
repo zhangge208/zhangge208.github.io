@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-10-29T00:00:00+08:00</updated><entry><title>Roman to Integer</title><link href="http://www.zhangge208.com/pages/2015/10/29/roman-to-integer.html" rel="alternate"></link><updated>2015-10-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/roman-to-integer.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-11-02T00:00:00+08:00</updated><entry><title>Permutation Sequence</title><link href="http://www.zhangge208.com/pages/2015/11/02/permutation-sequence.html" rel="alternate"></link><updated>2015-11-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-11-02:pages/2015/11/02/permutation-sequence.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Permutation Sequence&lt;/h1&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;The set &lt;code&gt;[1,2,3,…,n]&lt;/code&gt; contains a total of n! unique permutations.&lt;/p&gt;
+&lt;p&gt;By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;"123"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"132"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"213"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"231"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"312"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"321"&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Given n and k, return the kth permutation sequence.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Given n will be between 1 and 9 inclusive.&lt;/p&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;p&gt;public class Solution {
+    public String getPermutation(int n, int k) {
+        List&lt;Integer&gt; nums = new ArrayList&lt;Integer&gt;();
+        if (n == 0){
+            return "";
+        }
+        for(int i = 0; i &amp;lt;= n; i++){
+            nums.add(i);
+        }
+        String res = "";&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    int factorial;
+    int index;
+
+    for (int i = n;i &amp;gt; 0;i--){
+        factorial = nFatorial(i - 1);
+        index = (int) Math.ceil(k / (double) factorial);
+
+        k = k % factorial;
+
+        res += nums.get(index);
+        nums.remove(index);
+        if (k == 0){
+            k = factorial;
+        }
+    }
+    return res;
+
+}
+ public int nFatorial(int n ) {
+    if(n == 0){
+        return 1;
+    }
+    return n * nFatorial(n - 1);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;}&lt;/p&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Roman to Integer</title><link href="http://www.zhangge208.com/pages/2015/10/29/roman-to-integer.html" rel="alternate"></link><updated>2015-10-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/roman-to-integer.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Roman to Integer&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Given a roman numeral, convert it to an integer.&lt;/p&gt;

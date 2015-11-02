@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/10/19/combinations.html"><h1>Combinations</h1></a>
-2015-10-19
+            <a href="../pages/2015/11/02/permutation-sequence.html"><h1>Permutation Sequence</h1></a>
+2015-11-02
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,79 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Permutation Sequence</h1>
+<h2>Problem</h2>
+<p>The set <code>[1,2,3,…,n]</code> contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):</p>
+<ol>
+<li><code>"123"</code></li>
+<li><code>"132"</code></li>
+<li><code>"213"</code></li>
+<li><code>"231"</code></li>
+<li><code>"312"</code></li>
+<li><code>"321"</code></li>
+</ol>
+<p>Given n and k, return the kth permutation sequence.</p>
+<p><strong>Note:</strong> Given n will be between 1 and 9 inclusive.</p>
+<h2>Code</h2>
+<p>public class Solution {
+    public String getPermutation(int n, int k) {
+        List<Integer> nums = new ArrayList<Integer>();
+        if (n == 0){
+            return "";
+        }
+        for(int i = 0; i &lt;= n; i++){
+            nums.add(i);
+        }
+        String res = "";</p>
+<div class="highlight"><pre>    int factorial;
+    int index;
+
+    for (int i = n;i &gt; 0;i--){
+        factorial = nFatorial(i - 1);
+        index = (int) Math.ceil(k / (double) factorial);
+
+        k = k % factorial;
+
+        res += nums.get(index);
+        nums.remove(index);
+        if (k == 0){
+            k = factorial;
+        }
+    }
+    return res;
+
+}
+ public int nFatorial(int n ) {
+    if(n == 0){
+        return 1;
+    }
+    return n * nFatorial(n - 1);
+}
+</pre></div>
+
+
+<p>}</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/10/19/combinations.html"><h2>Combinations</h2></a>
+        <div class= "well small"> 2015-10-19
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Combinations</h1>
 <h2>Problem</h2>
 <p>Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.</p>
@@ -88,39 +161,9 @@ If n = 4 and k = 2, a solution is:</p>
 
 <h2>Code</h2>
 <div class="highlight"><pre>public class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
-        if (n == 0 || k == 0) {
-            return null;
-        }
-        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;List&lt;Integer&gt;&gt;();
-        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-        helper(result, list, n, k, 1);
-        return result;
-    }
-
-    private void helper(List&lt;List&lt;Integer&gt;&gt; result, List&lt;Integer&gt; list, int n, int k, int start) {
-        if (list.size() == k) {
-            result.add(new ArrayList&lt;Integer&gt;(list));
-            return;
-        }
-
-        for (int i = start; i &lt;= n; i++) {
-            list.add(i);
-            helper(result, list, n, k, i + 1);
-            list.remove(list.size() - 1);
-        }
-
-    }
-}
-</pre></div>
-
-
-<h2>Solution and Analysis</h2>
-<p>The solution is standard, the main part of code is same as subsets template.</p>
-<p>Noticing the condidtion that list is added to result.</p></div>
-        <hr />
-    </div>
-		
+    public List&lt;List&lt;Integer ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/19/combinations.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -217,37 +260,13 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 <li>All numbers (including target) will be positive integers ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/10/13/combination-sum.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/10/13/combination-sum-ii.html"><h2>Combination Sum II</h2></a>
-        <div class= "well small"> 2015-10-13
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Combination Sum II</h1>
-<h2>Problem</h2>
-<p>Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
-<p>Each number in C may only be used once in the combination.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers (including target) will be positive integers ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/10/13/combination-sum-ii.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
     <li class="active"><a href="../tag/algorithm-backtracking.html">1</a></li>
     <li class=""><a href="../tag/algorithm-backtracking2.html">2</a></li>
+    <li class=""><a href="../tag/algorithm-backtracking3.html">3</a></li>
 
     <li class="next"><a href="../tag/algorithm-backtracking2.html">Next &rarr;</a></li>
 

@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2015/10/29/roman-to-integer.html"><h1>Roman to Integer</h1></a>
-2015-10-29
+            <a href="./pages/2015/11/02/permutation-sequence.html"><h1>Permutation Sequence</h1></a>
+2015-11-02
 
 by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,79 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Permutation Sequence</h1>
+<h2>Problem</h2>
+<p>The set <code>[1,2,3,…,n]</code> contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):</p>
+<ol>
+<li><code>"123"</code></li>
+<li><code>"132"</code></li>
+<li><code>"213"</code></li>
+<li><code>"231"</code></li>
+<li><code>"312"</code></li>
+<li><code>"321"</code></li>
+</ol>
+<p>Given n and k, return the kth permutation sequence.</p>
+<p><strong>Note:</strong> Given n will be between 1 and 9 inclusive.</p>
+<h2>Code</h2>
+<p>public class Solution {
+    public String getPermutation(int n, int k) {
+        List<Integer> nums = new ArrayList<Integer>();
+        if (n == 0){
+            return "";
+        }
+        for(int i = 0; i &lt;= n; i++){
+            nums.add(i);
+        }
+        String res = "";</p>
+<div class="highlight"><pre>    int factorial;
+    int index;
+
+    for (int i = n;i &gt; 0;i--){
+        factorial = nFatorial(i - 1);
+        index = (int) Math.ceil(k / (double) factorial);
+
+        k = k % factorial;
+
+        res += nums.get(index);
+        nums.remove(index);
+        if (k == 0){
+            k = factorial;
+        }
+    }
+    return res;
+
+}
+ public int nFatorial(int n ) {
+    if(n == 0){
+        return 1;
+    }
+    return n * nFatorial(n - 1);
+}
+</pre></div>
+
+
+<p>}</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/10/29/roman-to-integer.html"><h2>Roman to Integer</h2></a>
+        <div class= "well small"> 2015-10-29
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Roman to Integer</h1>
 <h2>Problem</h2>
 <p>Given a roman numeral, convert it to an integer.</p>
@@ -80,53 +153,9 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
         if (s == null || s.length() == 0) {
             return 0;
         }
-        Map&lt;Character, Integer&gt; map = new HashMap&lt;Character, Integer&gt;();
-        map.put(&#39;I&#39;,1);
-        map.put(&#39;V&#39;,5);
-        map.put(&#39;X&#39;,10);
-        map.put(&#39;L&#39;,50);
-        map.put(&#39;C&#39;,100);
-        map.put(&#39;D&#39;,500);
-        map.put(&#39;M&#39;,1000);
-        int result = map.get(s.charAt(s.length() - 1)) ;
-        for (int i = s.length() - 1; i &gt;= 1 ; i--) {
-            if (map.get(s.charAt(i - 1)) &gt;= map.get(s.charAt(i))) {
-                result += map.get(s.charAt(i - 1));
-            }
-            else {
-                result -= map.get(s.charAt(i - 1));
-            }
-
-        }
-        return result;
-    }
-}
-</pre></div>
-
-
-<h2>Solution and Analysis</h2>
-<p>It`s boring so long as you know the rule that how to convert roman numeral to an integer.</p>
-<p>The base:</p>
-<p>I = 1</p>
-<p>V = 5</p>
-<p>X = 10</p>
-<p>L = 50</p>
-<p>C = 100</p>
-<p>D = 500</p>
-<p>M = 1000</p>
-<p>So we need create a map to store key-value<Character, Integer>.</p>
-<p>Rule:</p>
-<ul>
-<li>
-<p>If a lower value symbol is before a higher value one, it is subtracted. Otherwise it is added </p>
-</li>
-<li>
-<p>Order: Right to left</p>
-</li>
-</ul></div>
-        <hr />
-    </div>
-		
+        Map&lt;Character, Integer&gt; map = new HashMap&lt;Character, Integer ...</pre></div> <a class="btn btn-info xsmall" href="./pages/2015/10/29/roman-to-integer.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -220,42 +249,6 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 <div class="highlight"><pre>public class Solution {
     public List&lt;List&lt;String&gt;&gt; partition(String s) {
         List&lt;List ...</pre></div> <a class="btn btn-info xsmall" href="./pages/2015/10/19/palindrome-partitioning.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/10/13/backtracking.html"><h2>Backtracking</h2></a>
-        <div class= "well small"> 2015-10-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Backtracking</h1>
-<h2>concept &amp;&amp; idea</h2>
-<h3>concept</h3>
-<p>回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。</p>
-<h3>idea</h3>
-<p>在包含问题的所有解的解空间树中，按照深度优先搜索的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。（其实回溯法就是对隐式图的深度优先搜索算法）。</p>
-<p>若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。</p>
-<p>而若使用回溯法求任一个解时，只要搜索到问题的一个解就可以结束。</p>
-<h2>Step &amp;&amp; Template</h2>
-<h3>Step</h3>
-<ul>
-<li>针对所给问题，确定问题的解空间：首先应明确定义问题的解空间，问题的解空间应至少包含问题的一个（最优）解。</li>
-<li>确定结点的扩展搜索规则</li>
-<li>以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索。</li>
-</ul>
-<h3>Template</h3>
-<p>以<a href="https://leetcode.com/problems/subsets/">Subsets</a>为例，给出Backtracking Template</p>
-<div class="highlight"><pre>public class Solution ...</pre></div> <a class="btn btn-info xsmall" href="./pages/2015/10/13/backtracking.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
