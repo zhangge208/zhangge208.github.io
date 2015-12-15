@@ -1,5 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all-zh.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-11-02T00:00:00+08:00</updated><entry><title>Permutation Sequence</title><link href="http://www.zhangge208.com/pages/2015/11/02/permutation-sequence.html" rel="alternate"></link><updated>2015-11-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-11-02:pages/2015/11/02/permutation-sequence.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/all-zh.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-12-15T00:00:00+08:00</updated><entry><title>Binary Tree</title><link href="http://www.zhangge208.com/pages/2015/12/15/binary-tree.html" rel="alternate"></link><updated>2015-12-15T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-12-15:pages/2015/12/15/binary-tree.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Binary Tree&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;讲义的思路为参加&lt;a href="http://www.jiuzhang.com"&gt;九章算法&lt;/a&gt;培训学习，部分代码、模板均有所参考&lt;/p&gt;
+&lt;p&gt;特别感谢前辈：&lt;a href="http://www.shuatiblog.com/"&gt;http://www.shuatiblog.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Outline&lt;/h2&gt;
+&lt;p&gt;1.Binary Tree DFS Traversal&lt;/p&gt;
+&lt;p&gt;-preorder/inorder/postorder&lt;/p&gt;
+&lt;p&gt;-Divide &amp;amp; Conquer&lt;/p&gt;
+&lt;p&gt;-DFS Template&lt;/p&gt;
+&lt;p&gt;2.Binary Tree BFS Traversal&lt;/p&gt;
+&lt;p&gt;-BFS Template&lt;/p&gt;
+&lt;p&gt;3.Binary Search Tree&lt;/p&gt;
+&lt;h2&gt;Binary Tree DFS Traversal&lt;/h2&gt;
+&lt;h3&gt;三种基本遍历方法&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    A
+   / \
+  B   C
+ / \  
+D   E
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;前序(Preorder)：A BDE C&lt;/p&gt;
+&lt;p&gt;中序(Inorder)：DBE A C&lt;/p&gt;
+&lt;p&gt;后序(Postorder)：DEB C A&lt;/p&gt;
+&lt;h3&gt;递归 or 非递归？&lt;/h3&gt;
+&lt;p&gt;递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！&lt;/p&gt;
+&lt;h3&gt;Divide &amp;amp; Conquer Algorithm&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Merge Sort&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用于大多数的Binary Tree Problem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;分治法对于二叉树问题，进行如下的操作：&lt;/p&gt;
+&lt;p&gt;1.&lt;strong&gt;Divide&lt;/strong&gt;：对于左右子树分别去同时处理，将原问题划分成为更小的子问题&lt;/p&gt;
+&lt;p&gt;2.&lt;strong&gt;Conquer&lt;/strong&gt;：将子问题的解合并，返回问题的解&lt;/p&gt;
+&lt;h3&gt;Binary Tree DFS Template&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Template 1:Traverse
+
+public class Solution {
+    public void traverse(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+    //do something with root
+    traverse(root.left);
+    //do something with root
+    traverse(root.right);
+    //do something with root
+    }
+}
+
+Template 2:Divide &amp;amp; Conquer
+
+public class Solution {
+    public ResultType traversal(TreeNode root) {
+        // null or leaf
+        if (root = null) {
+            //do something and return;
+        }
+
+        //Divide
+        ResultType left = traversal(root.left);
+        ResultType right = traversal(root.right);
+
+        //Conquer
+        ResultType result = Merge from left and right;
+        return result;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Problem List&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Traversal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Preorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Inorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Postorder Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Divide &amp;amp; Conquer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Maximum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Minimum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Balanced Binary Tree&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Maximum Path Sum&lt;/a&gt; – &lt;strong&gt;the most important question&lt;/strong&gt; &lt;/p&gt;</summary><category term="Algorithm Binary Tree"></category></entry><entry><title>Leetcode@Binary Tree Inorder Traversal</title><link href="http://www.zhangge208.com/pages/2015/12/15/leetcodebinary-tree-inorder-traversal.html" rel="alternate"></link><updated>2015-12-15T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-12-15:pages/2015/12/15/leetcodebinary-tree-inorder-traversal.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Binary Tree Inorder Traversal&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given a binary tree, return the inorder traversal of its nodes' values.&lt;/p&gt;
+&lt;p&gt;For example:
+Given binary tree {1,#,2,3},&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;   1
+    \
+     2
+    /
+   3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;return [1,3,2].&lt;/p&gt;
+&lt;p&gt;Note: Recursive solution is trivial, could you do it iteratively?&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法&lt;/p&gt;
+&lt;h3&gt;非递归&lt;/h3&gt;
+&lt;p&gt;运用栈和迭代。值得注意的是，入栈的先后顺序，栈是先入后出的数据结构，为保证是中序遍历，首先需要对左子树进行迭代并将非空节点入栈，直到节点为空，当前节点为空时进行出栈操作，并访问栈顶节点，将当前节点用右子节点代替。&lt;/p&gt;
+&lt;h3&gt;递归：遍历&lt;/h3&gt;
+&lt;p&gt;运用遍历的方法&lt;/p&gt;
+&lt;p&gt;先左再中最后右&lt;/p&gt;
+&lt;h3&gt;递归：分治法&lt;/h3&gt;
+&lt;p&gt;运用分治法，这是大多数树问题均可使用的办法&lt;/p&gt;
+&lt;p&gt;分为左子树和右子树，不断地减小问题的规模&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;version 1：Non-recursion（recommended）
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
+        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();
+        List&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
+        TreeNode cur = root;
+        while (cur != null || !stack.empty()){
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            result.add(cur.val);
+            cur = cur.right;
+
+        }
+        return result;
+    }
+}
+
+version 2：Traversal
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
+        List&amp;lt;Integer&amp;gt; inorderTraversal = new ArrayList&amp;lt;Integer&amp;gt;();
+        traversal(root,inorderTraversal);
+        return inorderTraversal;
+    }
+    private void traversal(TreeNode root,List&amp;lt;Integer&amp;gt; result){
+        if (root == null){
+            return;
+        }
+
+        traversal(root.left,result);
+        result.add(root.val);
+        traversal(root.right,result);
+
+    }
+}
+
+version 3：Divide &amp;amp; Conquer
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
+        List&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
+        if (root == null){
+            return result;
+        }
+        //Divide &amp;amp; Conquer
+
+        //Divide
+        List&amp;lt;Integer&amp;gt; left = inorderTraversal(root.left);
+        List&amp;lt;Integer&amp;gt; right = inorderTraversal(root.right);
+        //Conquer
+        result.addAll(left);
+        result.add(root.val);
+        result.addAll(right);
+
+        return result;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Binary Tree"></category></entry><entry><title>Leetcode@Binary Tree Preorder Traversal</title><link href="http://www.zhangge208.com/pages/2015/12/15/leetcodebinary-tree-preorder-traversal.html" rel="alternate"></link><updated>2015-12-15T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-12-15:pages/2015/12/15/leetcodebinary-tree-preorder-traversal.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Binary Tree Preorder Traversal&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given a binary tree, return the preorder traversal of its nodes' values.&lt;/p&gt;
+&lt;p&gt;For example:
+Given binary tree {1,#,2,3},&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;　　1
+ 　　\
+  　　2
+ 　　/
+　　3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;return [1,2,3].&lt;/p&gt;
+&lt;p&gt;Note: Recursive solution is trivial, could you do it iteratively?&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法&lt;/p&gt;
+&lt;h3&gt;非递归&lt;/h3&gt;
+&lt;p&gt;运用栈和迭代。值得注意的是，左右节点入栈的先后顺序，栈是先入后出的数据结构，为保证是前序遍历，所以右节点先入栈，然后左节点。&lt;/p&gt;
+&lt;h3&gt;递归：遍历&lt;/h3&gt;
+&lt;p&gt;运用遍历的方法&lt;/p&gt;
+&lt;p&gt;先根再左最后右&lt;/p&gt;
+&lt;h3&gt;递归：分治法&lt;/h3&gt;
+&lt;p&gt;运用分治法，这是大多数树问题均可使用的办法&lt;/p&gt;
+&lt;p&gt;分为左子树和右子树，不断地减小问题的规模&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;值得注意：&lt;/strong&gt;
+(1)容器中addAll方法的使用，把一个容器中的所有元素加入到另一个容器的后面。&lt;/p&gt;
+&lt;p&gt;(2)记得对于边界条件的处理、异常处理。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;version 1：Non-recurison
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
+        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();
+        List&amp;lt;Integer&amp;gt; preorder = new ArrayList&amp;lt;Integer&amp;gt;();
+
+        if (root == null){
+            return preorder;
+        }
+
+        stack.push(root);
+
+        while (!stack.empty()){
+            TreeNode node = stack.pop();
+            preorder.add(node.val);
+
+            if (node.right != null){
+                stack.push(node.right);
+            }
+            if (node.left != null){
+                stack.push(node.left);
+            }
+        }
+        return preorder;
+    }
+}
+
+version 2：Traverse
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
+        ArrayList&amp;lt;Integer&amp;gt; preorder = new ArrayList&amp;lt;Integer&amp;gt;();
+        traverse(root,preorder);
+        return preorder;
+    }
+    private void traverse(TreeNode root, ArrayList&amp;lt;Integer&amp;gt;preorder){
+        if (root == null){
+            return ;
+        }
+
+        preorder.add(root.val);
+        traverse(root.left,preorder);
+        traverse(root.right, preorder);
+
+    }
+}
+
+version 3：Divide &amp;amp; Conquer
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
+        ArrayList&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
+        if (root == null){
+            return result;
+        }
+        //Divide &amp;amp; Conquer
+
+        //Divide
+        ArrayList&amp;lt;Integer&amp;gt; left = preorderTraversal(root.left);
+        ArrayList&amp;lt;Integer&amp;gt; right = preorderTraversal(root.right);
+
+        //Conquer
+        result.add(root.val);
+        result.addAll(left);
+        result.addAll(right);
+        return result;
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Binary Tree"></category></entry><entry><title>Permutation Sequence</title><link href="http://www.zhangge208.com/pages/2015/11/02/permutation-sequence.html" rel="alternate"></link><updated>2015-11-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-11-02:pages/2015/11/02/permutation-sequence.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Permutation Sequence&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;The set &lt;code&gt;[1,2,3,…,n]&lt;/code&gt; contains a total of n! unique permutations.&lt;/p&gt;
@@ -107,7 +423,7 @@ We get the following sequence (ie, for n = 3):&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Order: Right to left&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Algorithm String &amp; Math"></category></entry><entry><title>String to Integer (atoi)</title><link href="http://www.zhangge208.com/pages/2015/10/29/string-to-integer-atoi.html" rel="alternate"></link><updated>2015-10-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/string-to-integer-atoi.html</id><summary type="html">&lt;hr /&gt;
+&lt;/ul&gt;</summary><category term="Algorithm String"></category></entry><entry><title>String to Integer (atoi)</title><link href="http://www.zhangge208.com/pages/2015/10/29/string-to-integer-atoi.html" rel="alternate"></link><updated>2015-10-29T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-29:pages/2015/10/29/string-to-integer-atoi.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;String to Integer (atoi)&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Implement atoi to convert a string to an integer.&lt;/p&gt;
@@ -173,7 +489,7 @@ We get the following sequence (ie, for n = 3):&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Algorithm String &amp; Math"></category></entry><entry><title>Combinations</title><link href="http://www.zhangge208.com/pages/2015/10/19/combinations.html" rel="alternate"></link><updated>2015-10-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-19:pages/2015/10/19/combinations.html</id><summary type="html">&lt;hr /&gt;
+&lt;/ul&gt;</summary><category term="Algorithm String"></category></entry><entry><title>Combinations</title><link href="http://www.zhangge208.com/pages/2015/10/19/combinations.html" rel="alternate"></link><updated>2015-10-19T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-19:pages/2015/10/19/combinations.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Combinations&lt;/h1&gt;
 &lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.&lt;/p&gt;
@@ -276,10 +592,10 @@ If n = 4 and k = 2, a solution is:&lt;/p&gt;
 
 &lt;h2&gt;Solution and Analysis&lt;/h2&gt;</summary><category term="Algorithm Backtracking"></category></entry><entry><title>Backtracking</title><link href="http://www.zhangge208.com/pages/2015/10/13/backtracking.html" rel="alternate"></link><updated>2015-10-13T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-10-13:pages/2015/10/13/backtracking.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Backtracking&lt;/h1&gt;
-&lt;h2&gt;concept &amp;amp;&amp;amp; idea&lt;/h2&gt;
-&lt;h3&gt;concept&lt;/h3&gt;
+&lt;h2&gt;Concept &amp;amp;&amp;amp; Idea&lt;/h2&gt;
+&lt;h3&gt;Concept&lt;/h3&gt;
 &lt;p&gt;回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。&lt;/p&gt;
-&lt;h3&gt;idea&lt;/h3&gt;
+&lt;h3&gt;Idea&lt;/h3&gt;
 &lt;p&gt;在包含问题的所有解的解空间树中，按照深度优先搜索的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。（其实回溯法就是对隐式图的深度优先搜索算法）。&lt;/p&gt;
 &lt;p&gt;若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。&lt;/p&gt;
 &lt;p&gt;而若使用回溯法求任一个解时，只要搜索到问题的一个解就可以结束。&lt;/p&gt;
@@ -1580,332 +1896,6 @@ public&lt;span class="w"&gt; &lt;/span&gt;class&lt;span class="w"&gt; &lt;/span&
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kr"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;isValidBST&lt;span class="o"&gt;(&lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;left&lt;span class="o"&gt;,&lt;/span&gt;min&lt;span class="o"&gt;,&lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;val&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;isValidBST&lt;span class="o"&gt;(&lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;right&lt;span class="o"&gt;,&lt;/span&gt;root&lt;span class="o"&gt;.&lt;/span&gt;val&lt;span class="o"&gt;,&lt;/span&gt;max&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Leetcode@Binary Tree Inorder Traversal</title><link href="http://www.zhangge208.com/pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html" rel="alternate"></link><updated>2015-06-12T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-12:pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html</id><summary type="html">&lt;hr /&gt;
-&lt;h1&gt;Binary Tree Inorder Traversal&lt;/h1&gt;
-&lt;h2&gt;题目&lt;/h2&gt;
-&lt;p&gt;Given a binary tree, return the inorder traversal of its nodes' values.&lt;/p&gt;
-&lt;p&gt;For example:
-Given binary tree {1,#,2,3},&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;   1
-    \
-     2
-    /
-   3
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;return [1,3,2].&lt;/p&gt;
-&lt;p&gt;Note: Recursive solution is trivial, could you do it iteratively?&lt;/p&gt;
-&lt;h2&gt;思路&lt;/h2&gt;
-&lt;p&gt;三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法&lt;/p&gt;
-&lt;h3&gt;非递归&lt;/h3&gt;
-&lt;p&gt;运用栈和迭代。值得注意的是，入栈的先后顺序，栈是先入后出的数据结构，为保证是中序遍历，首先需要对左子树进行迭代并将非空节点入栈，直到节点为空，当前节点为空时进行出栈操作，并访问栈顶节点，将当前节点用右子节点代替。&lt;/p&gt;
-&lt;h3&gt;递归：遍历&lt;/h3&gt;
-&lt;p&gt;运用遍历的方法&lt;/p&gt;
-&lt;p&gt;先左再中最后右&lt;/p&gt;
-&lt;h3&gt;递归：分治法&lt;/h3&gt;
-&lt;p&gt;运用分治法，这是大多数树问题均可使用的办法&lt;/p&gt;
-&lt;p&gt;分为左子树和右子树，不断地减小问题的规模&lt;/p&gt;
-&lt;h2&gt;代码&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;version 1：Non-recursion（recommended）
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
-        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();
-        List&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
-        TreeNode cur = root;
-        while (cur != null || !stack.empty()){
-            while(cur != null){
-                stack.push(cur);
-                cur = cur.left;
-            }
-            cur = stack.pop();
-            result.add(cur.val);
-            cur = cur.right;
-
-        }
-        return result;
-    }
-}
-
-version 2：Traversal
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
-        List&amp;lt;Integer&amp;gt; inorderTraversal = new ArrayList&amp;lt;Integer&amp;gt;();
-        traversal(root,inorderTraversal);
-        return inorderTraversal;
-    }
-    private void traversal(TreeNode root,List&amp;lt;Integer&amp;gt; result){
-        if (root == null){
-            return;
-        }
-
-        traversal(root.left,result);
-        result.add(root.val);
-        traversal(root.right,result);
-
-    }
-}
-
-version 3：Divide &amp;amp; Conquer
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {
-        List&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
-        if (root == null){
-            return result;
-        }
-        //Divide &amp;amp; Conquer
-
-        //Divide
-        List&amp;lt;Integer&amp;gt; left = inorderTraversal(root.left);
-        List&amp;lt;Integer&amp;gt; right = inorderTraversal(root.right);
-        //Conquer
-        result.addAll(left);
-        result.add(root.val);
-        result.addAll(right);
-
-        return result;
-    }
-}
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Leetcode@Binary Tree Preorder Traversal</title><link href="http://www.zhangge208.com/pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html" rel="alternate"></link><updated>2015-06-11T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-11:pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html</id><summary type="html">&lt;hr /&gt;
-&lt;h1&gt;Leetcode@Binary Tree Preorder Traversal&lt;/h1&gt;
-&lt;h2&gt;题目&lt;/h2&gt;
-&lt;p&gt;Given a binary tree, return the preorder traversal of its nodes' values.&lt;/p&gt;
-&lt;p&gt;For example:
-Given binary tree {1,#,2,3},&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;　　1
- 　　\
-  　　2
- 　　/
-　　3
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;return [1,2,3].&lt;/p&gt;
-&lt;p&gt;Note: Recursive solution is trivial, could you do it iteratively?&lt;/p&gt;
-&lt;h2&gt;思路&lt;/h2&gt;
-&lt;p&gt;三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法&lt;/p&gt;
-&lt;h3&gt;非递归&lt;/h3&gt;
-&lt;p&gt;运用栈和迭代。值得注意的是，左右节点入栈的先后顺序，栈是先入后出的数据结构，为保证是前序遍历，所以右节点先入栈，然后左节点。&lt;/p&gt;
-&lt;h3&gt;递归：遍历&lt;/h3&gt;
-&lt;p&gt;运用遍历的方法&lt;/p&gt;
-&lt;p&gt;先根再左最后右&lt;/p&gt;
-&lt;h3&gt;递归：分治法&lt;/h3&gt;
-&lt;p&gt;运用分治法，这是大多数树问题均可使用的办法&lt;/p&gt;
-&lt;p&gt;分为左子树和右子树，不断地减小问题的规模&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;值得注意：&lt;/strong&gt;
-(1)容器中addAll方法的使用，把一个容器中的所有元素加入到另一个容器的后面。&lt;/p&gt;
-&lt;p&gt;(2)记得对于边界条件的处理、异常处理。&lt;/p&gt;
-&lt;h2&gt;代码&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;version 1：Non-recurison
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
-        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();
-        List&amp;lt;Integer&amp;gt; preorder = new ArrayList&amp;lt;Integer&amp;gt;();
-
-        if (root == null){
-            return preorder;
-        }
-
-        stack.push(root);
-
-        while (!stack.empty()){
-            TreeNode node = stack.pop();
-            preorder.add(node.val);
-
-            if (node.right != null){
-                stack.push(node.right);
-            }
-            if (node.left != null){
-                stack.push(node.left);
-            }
-        }
-        return preorder;
-    }
-}
-
-version 2：Traverse
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
-        ArrayList&amp;lt;Integer&amp;gt; preorder = new ArrayList&amp;lt;Integer&amp;gt;();
-        traverse(root,preorder);
-        return preorder;
-    }
-    private void traverse(TreeNode root, ArrayList&amp;lt;Integer&amp;gt;preorder){
-        if (root == null){
-            return ;
-        }
-
-        preorder.add(root.val);
-        traverse(root.left,preorder);
-        traverse(root.right, preorder);
-
-    }
-}
-
-version 3：Divide &amp;amp; Conquer
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {
-        ArrayList&amp;lt;Integer&amp;gt; result = new ArrayList&amp;lt;Integer&amp;gt;();
-        if (root == null){
-            return result;
-        }
-        //Divide &amp;amp; Conquer
-
-        //Divide
-        ArrayList&amp;lt;Integer&amp;gt; left = preorderTraversal(root.left);
-        ArrayList&amp;lt;Integer&amp;gt; right = preorderTraversal(root.right);
-
-        //Conquer
-        result.add(root.val);
-        result.addAll(left);
-        result.addAll(right);
-        return result;
-    }
-}
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Binary Tree</title><link href="http://www.zhangge208.com/pages/2015/06/10/binary-tree.html" rel="alternate"></link><updated>2015-06-10T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-10:pages/2015/06/10/binary-tree.html</id><summary type="html">&lt;hr /&gt;
-&lt;h1&gt;Binary Tree&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;讲义的思路为参加&lt;a href="http://www.jiuzhang.com"&gt;九章算法&lt;/a&gt;培训学习，部分代码、模板均有所参考&lt;/p&gt;
-&lt;p&gt;特别感谢前辈：&lt;a href="http://www.shuatiblog.com"&gt;http://www.shuatiblog.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;基础知识  （摘自&lt;a href="algorithm.yuanbin.me"&gt;algorithm.yuanbin.me&lt;/a&gt;)&lt;/h2&gt;
-&lt;p&gt;二叉树是每个节点最多有两个子树的树结构，子树有左右之分，二叉树常被用于实现实现二叉查找树和二叉堆&lt;/p&gt;
-&lt;p&gt;二叉树的第i层至多有 2 个结点；深度为k的二叉树至多有 2 − 1 个结点；对任何一棵二叉树T，如果其终端结点数为 n , 度为2的结点数为 n , 则 n = n + 1。&lt;/p&gt;
-&lt;p&gt;一棵深度为 k, 且有 2 − 1 个节点称之为满二叉树；深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k 的满二叉树中，序号为 1 至 n 的节点对应时，称之为完全二叉树。完全二叉树中重在节
-点标号对应。&lt;/p&gt;
-&lt;h2&gt;Outline&lt;/h2&gt;
-&lt;p&gt;1.Binary Tree DFS Traversal&lt;/p&gt;
-&lt;p&gt;-preorder/inorder/postorder&lt;/p&gt;
-&lt;p&gt;-Divide &amp;amp; Conquer&lt;/p&gt;
-&lt;p&gt;-DFS Template&lt;/p&gt;
-&lt;p&gt;2.Binary Tree BFS Traversal&lt;/p&gt;
-&lt;p&gt;-BFS Template&lt;/p&gt;
-&lt;p&gt;3.Binary Search Tree&lt;/p&gt;
-&lt;h2&gt;Binary Tree DFS Traversal&lt;/h2&gt;
-&lt;h3&gt;三种基本遍历方法&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    A
-   / \
-  B   C
- / \  
-D   E
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;前序(Preorder)：A BDE C&lt;/p&gt;
-&lt;p&gt;中序(Inorder)：DBE A C&lt;/p&gt;
-&lt;p&gt;后序(Postorder)：DEB C A&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前序（preorder）：先根节点，后左节点，最后右节点&lt;/li&gt;
-&lt;li&gt;中序（inorder）：先左节点，再根节点，最后右节点&lt;/li&gt;
-&lt;li&gt;后序（postorder）：先左节点，再右节点，最后根节点&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;递归 or 非递归？&lt;/h3&gt;
-&lt;p&gt;树的遍历通常使用递归的方法进行理解和实现，在访问元素时也需要使用递归的思想去理解&lt;/p&gt;
-&lt;p&gt;递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！&lt;/p&gt;
-&lt;h3&gt;Divide &amp;amp; Conquer Algorithm&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Merge Sort&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;适用于大多数的Binary Tree Problem&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;分治法对于二叉树问题，进行如下的操作：&lt;/p&gt;
-&lt;p&gt;1.&lt;strong&gt;Divide&lt;/strong&gt;：对于左右子树分别去同时处理，将原问题划分成为更小的子问题&lt;/p&gt;
-&lt;p&gt;2.&lt;strong&gt;Conquer&lt;/strong&gt;：将子问题的解合并，返回问题的解&lt;/p&gt;
-&lt;h3&gt;Problem List&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Traversal&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.zhangge208.com/pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html"&gt;Binary Tree Preorder Traversal&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.zhangge208.com/pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"&gt;Binary Tree Inorder Traversal&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Postorder Traversal&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Divide &amp;amp; Conquer&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http:"&gt;Maximum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http:"&gt;Minimum Depth of Binary Tree&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http:"&gt;Balanced Binary Tree&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http:"&gt;Binary Tree Maximum Path Sum&lt;/a&gt; – &lt;strong&gt;the most important question&lt;/strong&gt; &lt;/p&gt;
-&lt;h3&gt;Binary Tree DFS Template&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Template 1:Traverse
-
-public class Solution {
-    public void traverse(TreeNode root) {
-        if (root == null) {
-            return ;
-        }
-    //do something with root
-    traverse(root.left);
-    //do something with root
-    traverse(root.right);
-    //do something with root
-    }
-}
-
-Template 2:Divide &amp;amp; Conquer
-
-public class Solution {
-    public ResultType traversal(TreeNode root) {
-        // null or leaf
-        if (root = null) {
-            //do something and return;
-        }
-
-        //Divide
-        ResultType left = traversal(root.left);
-        ResultType right = traversal(root.right);
-
-        //Conquer
-        ResultType result = Merge from left and right;
-        return result;
-    }
-}
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode Binary Tree"></category></entry><entry><title>Leetcode@Leetcode@Rotate List</title><link href="http://www.zhangge208.com/pages/2015/06/02/leetcodeleetcoderotate-list.html" rel="alternate"></link><updated>2015-06-02T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-06-02:pages/2015/06/02/leetcodeleetcoderotate-list.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Leetcode@Rotate List&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
@@ -2150,7 +2140,7 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
     }
 };
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Majority Element</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodemajority-element.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodemajority-element.html</id><summary type="html">&lt;hr /&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Math"></category></entry><entry><title>Leetcode@Majority Element</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodemajority-element.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodemajority-element.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Leetcode@Majority Element&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
 &lt;p&gt;Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.&lt;/p&gt;
@@ -2233,7 +2223,7 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
         }
     }
 };
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Leetcode HighFrequency"></category></entry><entry><title>Leetcode@Single Number</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodesingle-number.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodesingle-number.html</id><summary type="html">&lt;hr /&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Math"></category></entry><entry><title>Leetcode@Single Number</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodesingle-number.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodesingle-number.html</id><summary type="html">&lt;hr /&gt;
 &lt;h1&gt;Leetcode@Single Number&lt;/h1&gt;
 &lt;h2&gt;题目&lt;/h2&gt;
 &lt;p&gt;Given an array of integers, every element appears twice except for one. Find that single one.&lt;/p&gt;

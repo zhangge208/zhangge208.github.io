@@ -59,8 +59,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/11/02/permutation-sequence.html"><h1>Permutation Sequence</h1></a>
-2015-11-02
+            <a href="../pages/2015/12/15/binary-tree.html"><h1>Binary Tree</h1></a>
+2015-12-15
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -70,6 +70,175 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
+<h1>Binary Tree</h1>
+<p><strong>Note:</strong>讲义的思路为参加<a href="http://www.jiuzhang.com">九章算法</a>培训学习，部分代码、模板均有所参考</p>
+<p>特别感谢前辈：<a href="http://www.shuatiblog.com/">http://www.shuatiblog.com/</a></p>
+<h2>Outline</h2>
+<p>1.Binary Tree DFS Traversal</p>
+<p>-preorder/inorder/postorder</p>
+<p>-Divide &amp; Conquer</p>
+<p>-DFS Template</p>
+<p>2.Binary Tree BFS Traversal</p>
+<p>-BFS Template</p>
+<p>3.Binary Search Tree</p>
+<h2>Binary Tree DFS Traversal</h2>
+<h3>三种基本遍历方法</h3>
+<div class="highlight"><pre>    A
+   / \
+  B   C
+ / \  
+D   E
+</pre></div>
+
+
+<p>前序(Preorder)：A BDE C</p>
+<p>中序(Inorder)：DBE A C</p>
+<p>后序(Postorder)：DEB C A</p>
+<h3>递归 or 非递归？</h3>
+<p>递归的办法会很简单，一般来说不推荐，然而，Done is better than Perfect！</p>
+<h3>Divide &amp; Conquer Algorithm</h3>
+<p><strong>Merge Sort</strong></p>
+<p><strong>Quick Sort</strong></p>
+<p><strong>适用于大多数的Binary Tree Problem</strong></p>
+<p>分治法对于二叉树问题，进行如下的操作：</p>
+<p>1.<strong>Divide</strong>：对于左右子树分别去同时处理，将原问题划分成为更小的子问题</p>
+<p>2.<strong>Conquer</strong>：将子问题的解合并，返回问题的解</p>
+<h3>Binary Tree DFS Template</h3>
+<div class="highlight"><pre>Template 1:Traverse
+
+public class Solution {
+    public void traverse(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+    //do something with root
+    traverse(root.left);
+    //do something with root
+    traverse(root.right);
+    //do something with root
+    }
+}
+
+Template 2:Divide &amp; Conquer
+
+public class Solution {
+    public ResultType traversal(TreeNode root) {
+        // null or leaf
+        if (root = null) {
+            //do something and return;
+        }
+
+        //Divide
+        ResultType left = traversal(root.left);
+        ResultType right = traversal(root.right);
+
+        //Conquer
+        ResultType result = Merge from left and right;
+        return result;
+    }
+}
+</pre></div>
+
+
+<h3>Problem List</h3>
+<p><strong>Traversal</strong></p>
+<p><a href="http:">Binary Tree Preorder Traversal</a></p>
+<p><a href="http:">Binary Tree Inorder Traversal</a></p>
+<p><a href="http:">Binary Tree Postorder Traversal</a></p>
+<p><strong>Divide &amp; Conquer</strong></p>
+<p><a href="http:">Maximum Depth of Binary Tree</a></p>
+<p><a href="http:">Minimum Depth of Binary Tree</a></p>
+<p><a href="http:">Balanced Binary Tree</a></p>
+<p><a href="http:">Binary Tree Maximum Path Sum</a> – <strong>the most important question</strong> </p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/12/15/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
+        <div class= "well small"> 2015-12-15
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Binary Tree Inorder Traversal</h1>
+<h2>题目</h2>
+<p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>   1
+    \
+     2
+    /
+   3
+</pre></div>
+
+
+<p>return [1,3,2].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<h2>思路</h2>
+<p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/12/15/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/12/15/leetcodebinary-tree-preorder-traversal.html"><h2>Leetcode@Binary Tree Preorder Traversal</h2></a>
+        <div class= "well small"> 2015-12-15
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Binary Tree Preorder Traversal</h1>
+<h2>题目</h2>
+<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>　　1
+ 　　\
+  　　2
+ 　　/
+　　3
+</pre></div>
+
+
+<p>return [1,2,3].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<h2>思路</h2>
+<p>三种做法：1.非递归（推荐） 2.递归 ...</p> <a class="btn btn-info xsmall" href="../pages/2015/12/15/leetcodebinary-tree-preorder-traversal.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/11/02/permutation-sequence.html"><h2>Permutation Sequence</h2></a>
+        <div class= "well small"> 2015-11-02
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
 <h1>Permutation Sequence</h1>
 <h2>Problem</h2>
 <p>The set <code>[1,2,3,…,n]</code> contains a total of n! unique permutations.</p>
@@ -83,50 +252,9 @@ We get the following sequence (ie, for n = 3):</p>
 <li><code>"312"</code></li>
 <li><code>"321"</code></li>
 </ol>
-<p>Given n and k, return the kth permutation sequence.</p>
-<p><strong>Note:</strong> Given n will be between 1 and 9 inclusive.</p>
-<h2>Code</h2>
-<p>public class Solution {
-    public String getPermutation(int n, int k) {
-        List<Integer> nums = new ArrayList<Integer>();
-        if (n == 0){
-            return "";
-        }
-        for(int i = 0; i &lt;= n; i++){
-            nums.add(i);
-        }
-        String res = "";</p>
-<div class="highlight"><pre>    int factorial;
-    int index;
-
-    for (int i = n;i &gt; 0;i--){
-        factorial = nFatorial(i - 1);
-        index = (int) Math.ceil(k / (double) factorial);
-
-        k = k % factorial;
-
-        res += nums.get(index);
-        nums.remove(index);
-        if (k == 0){
-            k = factorial;
-        }
-    }
-    return res;
-
-}
- public int nFatorial(int n ) {
-    if(n == 0){
-        return 1;
-    }
-    return n * nFatorial(n - 1);
-}
-</pre></div>
-
-
-<p>}</p></div>
-        <hr />
-    </div>
-		
+<p>Given n and k, return the kth permutation sequence ...</p> <a class="btn btn-info xsmall" href="../pages/2015/11/02/permutation-sequence.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -154,101 +282,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
             return 0;
         }
         Map&lt;Character, Integer&gt; map = new HashMap&lt;Character, Integer ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/29/roman-to-integer.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/10/29/string-to-integer-atoi.html"><h2>String to Integer (atoi)</h2></a>
-        <div class= "well small"> 2015-10-29
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>String to Integer (atoi)</h1>
-<h2>Problem</h2>
-<p>Implement atoi to convert a string to an integer.</p>
-<p><strong>Hint:</strong> Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
-<p><strong>Notes:</strong> It is intended for this problem to be specified ...</p> <a class="btn btn-info xsmall" href="../pages/2015/10/29/string-to-integer-atoi.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/10/19/combinations.html"><h2>Combinations</h2></a>
-        <div class= "well small"> 2015-10-19
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Combinations</h1>
-<h2>Problem</h2>
-<p>Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.</p>
-<p>For example,
-If n = 4 and k = 2, a solution is:</p>
-<div class="highlight"><pre>[
-  [2,4],
-  [3,4],
-  [2,3],
-  [1,2],
-  [1,3],
-  [1,4],
-]
-</pre></div>
-
-
-<h2>Code</h2>
-<div class="highlight"><pre>public class Solution {
-    public List&lt;List&lt;Integer ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/19/combinations.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/10/19/palindrome-partitioning.html"><h2>Palindrome Partitioning</h2></a>
-        <div class= "well small"> 2015-10-19
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Palindrome Partitioning</h1>
-<h2>Problem</h2>
-<p>Given a string s, partition s such that every substring of the partition is a palindrome.</p>
-<p>Return all possible palindrome partitioning of s.</p>
-<p>For example, given s = <code>"aab"</code>,</p>
-<p>Return</p>
-<div class="highlight"><pre>[
-    [&quot;aa&quot;,&quot;b&quot;],
-    [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]
-]
-</pre></div>
-
-
-<h2>Code</h2>
-<div class="highlight"><pre>public class Solution {
-    public List&lt;List&lt;String&gt;&gt; partition(String s) {
-        List&lt;List ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/19/palindrome-partitioning.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -300,10 +333,12 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
                 </li>
                 
                 <li><a href="../category/algorithm.html">Algorithm</a></li>
-                <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
-                <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
-                <li><a href="../category/algorithm-string-math.html">Algorithm String & Math</a></li>
+                <li><a href="../category/backtracking.html">Backtracking</a></li>
+                <li><a href="../category/binary-search.html">Binary Search</a></li>
+                <li><a href="../category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="../category/math.html">Math</a></li>
+                <li><a href="../category/string.html">String</a></li>
                    
             </ul>
             </div>

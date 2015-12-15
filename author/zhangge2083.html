@@ -59,6 +59,80 @@
  
 
     <div class='article'>
+        <a href="../pages/2015/10/13/combination-sum-ii.html"><h2>Combination Sum II</h2></a>
+        <div class= "well small"> 2015-10-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Combination Sum II</h1>
+<h2>Problem</h2>
+<p>Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.</p>
+<p>Each number in C may only be used once in the combination.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including target) will be positive integers ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/10/13/combination-sum-ii.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/10/13/combination-sum-iii.html"><h2>Combination Sum III</h2></a>
+        <div class= "well small"> 2015-10-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Combination Sum III</h1>
+<h2>Problem</h2>
+<p>Find all possible combinations of <strong>k</strong> numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
+<p>Ensure that numbers within the set are sorted in ascending order ...</p> <a class="btn btn-info xsmall" href="../pages/2015/10/13/combination-sum-iii.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/10/13/permutations.html"><h2>Permutations</h2></a>
+        <div class= "well small"> 2015-10-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Permutations</h1>
+<h2>Problem</h2>
+<p>Given a collection of numbers, return all possible permutations.</p>
+<p>For example,
+<code>[1,2,3]</code> have the following permutations:
+<code>[1,2,3]</code>, <code>[1,3,2]</code>, <code>[2,1,3]</code>, <code>[2,3,1]</code>, <code>[3,1,2]</code>, and <code>[3,2,1]</code>.</p>
+<h2>Code</h2>
+<div class="highlight"><pre>public class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/permutations.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2015/10/13/permutations-ii.html"><h2>Permutations II</h2></a>
         <div class= "well small"> 2015-10-13
 
@@ -113,100 +187,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
   [2 ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/subsets.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/10/13/subsets-ii.html"><h2>Subsets II</h2></a>
-        <div class= "well small"> 2015-10-13
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Subsets II#</h1>
-<h2>Problem</h2>
-<p>Given a collection of integers that might contain duplicates, nums, return all possible subsets.</p>
-<p>Note:
-- Elements in a subset must be in non-descending order.</p>
-<ul>
-<li>The solution set must not contain duplicate subsets.</li>
-</ul>
-<p>For example,</p>
-<p>If <strong>nums</strong> = <code>[1,2,2]</code>, a solution is:</p>
-<div class="highlight"><pre>[
-  [2],
-  [1],
-  [1,2,2 ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/10/13/subsets-ii.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/09/09/binary-search.html"><h2>Binary Search</h2></a>
-        <div class= "well small"> 2015-09-09
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Binary Search</h1>
-<h2>基础模板</h2>
-<p><a href="http://www.lintcode.com/zh-cn/problem/binary-search/">Binary Search</a></p>
-<p>先给一个错误的示例，原来一直这样写，但在有重复元素时无法适用</p>
-<p>错误示例：</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
-    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
-        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
-            <span class="k">return</span> -<span class="mi">1</span>;
-        }
-
-        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
-        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
-
-        <span class="k">while</span> (<span class="n">start</span> &lt;= <span class="nb">end</span>) {
-            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
-            <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] == <span class="n">target</span>) {
-                <span class="k">return</span> <span class="n">mid</span>;
-            }
-            <span class="k">else ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/09/09/binary-search.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html"><h2>Find Minimum in Rotated Sorted Array</h2></a>
-        <div class= "well small"> 2015-09-09
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Find Minimum in Rotated Sorted Array</h1>
-<h2>题目</h2>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>Find the minimum element.</p>
-<p>You may assume no duplicate exists in the ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="../author/zhangge2082.html">&larr; Previous</a></li>
@@ -256,10 +236,12 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
                 </li>
                 
                 <li><a href="../category/algorithm.html">Algorithm</a></li>
-                <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
-                <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
-                <li><a href="../category/algorithm-string-math.html">Algorithm String & Math</a></li>
+                <li><a href="../category/backtracking.html">Backtracking</a></li>
+                <li><a href="../category/binary-search.html">Binary Search</a></li>
+                <li><a href="../category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="../category/math.html">Math</a></li>
+                <li><a href="../category/string.html">String</a></li>
                    
             </ul>
             </div>

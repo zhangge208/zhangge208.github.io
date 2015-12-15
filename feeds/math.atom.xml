@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ant</title><link href="http://www.zhangge208.com/" rel="alternate"></link><link href="http://www.zhangge208.com/feeds/math.atom.xml" rel="self"></link><id>http://www.zhangge208.com/</id><updated>2015-05-26T00:00:00+08:00</updated><entry><title>Leetcode@Factorial Trailing Zeroes</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodefactorial-trailing-zeroes.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodefactorial-trailing-zeroes.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Factorial Trailing Zeroes&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Given an integer n, return the number of trailing zeroes in n!.&lt;/p&gt;
+&lt;p&gt;Note: Your solution should be in logarithmic time complexity.&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;考虑n!的质数因子。后缀0总是由质因子2和质因子5相乘得来的。如果可以计算2和5的个数，问题就解决了。考虑到2的个数总是大于等于5的个数。因此只要计录5的个数就可以了。那么如何计算n!的质因子中所有5的个数便成为难点。一个简单的方法是计算(n/5),除此之外，还有一件事情要考虑。诸如25，125之类的数字有不止一个5。处理这个问题也很简单，首先对n除以5，移除所有的单个5，然后除以25，移除额外的5，以此类推，直到 n / 5 == 0。&lt;/p&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;trailingZeroes&lt;/span&gt;(&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;numzero&lt;/span&gt; = &lt;span class="mi"&gt;0&lt;/span&gt;;
+        &lt;span class="k"&gt;while&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; &amp;gt; &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="n"&gt;numzero&lt;/span&gt; = &lt;span class="n"&gt;numzero&lt;/span&gt; + &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;5&lt;/span&gt;;
+            &lt;span class="n"&gt;n&lt;/span&gt; = &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;5&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;numzero&lt;/span&gt;;
+
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Math"></category></entry><entry><title>Leetcode@Pow(x, n)</title><link href="http://www.zhangge208.com/pages/2015/05/26/leetcodepowx-n.html" rel="alternate"></link><updated>2015-05-26T00:00:00+08:00</updated><author><name>zhangge208</name></author><id>tag:www.zhangge208.com,2015-05-26:pages/2015/05/26/leetcodepowx-n.html</id><summary type="html">&lt;hr /&gt;
+&lt;h1&gt;Leetcode@Pow(x, n)&lt;/h1&gt;
+&lt;h2&gt;题目&lt;/h2&gt;
+&lt;p&gt;Implement pow(x, n).&lt;/p&gt;
+&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;分治法&lt;/p&gt;
+&lt;p&gt;x^n = x^(n/2) * x^(n/2); x^(n/2) = x^(n/4) * x^(n/4)&lt;/p&gt;
+&lt;p&gt;不过有些细节需要注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;n = 0时 return 1&lt;/li&gt;
+&lt;li&gt;n &amp;lt; 0时 return 1 / power(x,-n)&lt;/li&gt;
+&lt;li&gt;n &amp;gt; 0时，令value = power(x,n/2),需要对n的奇偶性进行讨论。&lt;br /&gt;
+  n = 2k + 1时，返回 value * value * x；&lt;br /&gt;
+  n = 2k时，返回value * value &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; {
+&lt;span class="n"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="n"&gt;pow&lt;/span&gt;(&lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;) {
+        &lt;span class="k"&gt;if&lt;/span&gt;(&lt;span class="n"&gt;n&lt;/span&gt; &amp;lt; &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; / &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;, -&lt;span class="n"&gt;n&lt;/span&gt;);
+        }
+        &lt;span class="k"&gt;else&lt;/span&gt;
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;,&lt;span class="n"&gt;n&lt;/span&gt;);
+        }
+    }
+&lt;span class="n"&gt;private:&lt;/span&gt;
+    //&lt;span class="n"&gt;divide&lt;/span&gt; &amp;amp; &lt;span class="n"&gt;conquer&lt;/span&gt;
+    &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;)
+    {
+        &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; == &lt;span class="mi"&gt;0&lt;/span&gt;)
+        {
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;;
+        }
+        &lt;span class="k"&gt;else&lt;/span&gt;
+        {
+            &lt;span class="n"&gt;double&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; = &lt;span class="n"&gt;power&lt;/span&gt;(&lt;span class="o"&gt;x&lt;/span&gt;, &lt;span class="n"&gt;n&lt;/span&gt; / &lt;span class="mi"&gt;2&lt;/span&gt;);
+            &lt;span class="k"&gt;if&lt;/span&gt; (&lt;span class="n"&gt;n&lt;/span&gt; % &lt;span class="mi"&gt;2&lt;/span&gt; == &lt;span class="mi"&gt;0&lt;/span&gt;)
+            {
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="nb"&gt;value&lt;/span&gt;;
+            }
+            &lt;span class="k"&gt;else&lt;/span&gt;
+            {
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="nb"&gt;value&lt;/span&gt; * &lt;span class="o"&gt;x&lt;/span&gt;;
+            }
+        }
+    }
+};
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Algorithm Math"></category></entry></feed>

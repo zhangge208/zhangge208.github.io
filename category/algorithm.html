@@ -59,7 +59,7 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html"><h1>Find Minimum in Rotated Sorted Array</h1></a>
+            <a href="../pages/2015/09/09/minimum-size-subarray-sum.html"><h1>Minimum Size Subarray Sum</h1></a>
 2015-09-09
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
@@ -70,40 +70,63 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
         </div>
         
         <div><hr />
-<h1>Find Minimum in Rotated Sorted Array</h1>
+<h1>Minimum Size Subarray Sum</h1>
 <h2>题目</h2>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>Find the minimum element.</p>
-<p>You may assume no duplicate exists in the array.</p>
+<p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a subarray of which the sum ≥ <strong>s</strong>. If there isn't one, return 0 instead.</p>
+<p>For example, given the array <code>[2,3,1,2,4,3]</code> and <code>s = 7</code>,
+the subarray <code>[4,3]</code> has the minimal length under the problem  constraint.</p>
+<p>click to show more practice.</p>
+<p><strong>More practice:</strong></p>
+<p>If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(nlogn).</p>
+<p><strong>Credits:</strong></p>
+<p>Special thanks to @Freezen for adding this problem and creating all test cases.</p>
 <h2>代码</h2>
 <div class="highlight"><pre>public class Solution {
-    public int findMin(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return -1;
+    public int minSubArrayLen(int s, int[] nums) {
+        if (nums.length == 0 || nums == null) {
+            return 0;
         }
-
-        int start = 0;
-        int end = nums.length - 1;
-
-        while (start + 1 &lt; end) {
-            int mid =start + (end - start) / 2;
-            if (nums[mid] &gt; nums[end]) {
-                start = mid;
-            }
-            else {
-                end = mid;
-            }
+        int[] sum = new int[nums.length];
+        sum[0] = nums[0];
+        for (int i = 1; i &lt; nums.length; i++) {
+            sum[i] = sum[i - 1] + nums[i];
         }
-        return nums[start] &lt; nums[end] ? nums[start] : nums[end];
+        int ans = Integer.MAX_VALUE;
+        int start, end, mid;
+        for (int i = 0; i &lt; sum.length; i++) {
+            start = i;
+            end = sum.length - 1;
+            while (start + 1 &lt; end) {
+                mid = start + (end - start) / 2;
+                if (sum[mid] - sum[i] + nums[i] == s){
+                    end = mid;
+                    break;
+                }
+                else if (sum[mid] - sum[i] + nums[i] &lt; s) {
+                    start = mid;
+                }
+                else {
+                    end = mid;
+                }
+            }
+            if (sum[start] - sum[i] + nums[i] &gt;= s){
+                ans = Math.min(ans, start - i + 1);
+            }
+            if (sum[end] - sum[i] + nums[i] &gt;= s){
+                ans = Math.min(ans, end - i + 1);
+            }
+
+        }
+        return (ans == Integer.MAX_VALUE ? 0 : ans);
     }
 }
 </pre></div>
 
 
 <h2>思路</h2>
-<p>与Search in Rotated Sorted Array很类似，但我们是需要寻找最小元素，那么最小元素的位置该如何确定？</p>
-<p>只需判断nums[mid]和nums[end]的大小，如果nums[mid] &gt; nums[end]，表明前半部分有序，那么最小元素一定在后半部分，反之nums[mid] &lt; nums[end]表明后半部分有序，最小元素在前半部分，依据这个核心思路，利用二分搜索模板即可。</p></div>
+<h3>O(n) solution</h3>
+<h3>O(nlogn) solution</h3>
+<p>O(nlogn)的解法很不易想到，tag上提示为二分搜索，binary search的复杂度为O(logn)，那么在外层应该有一个for循环。</p></div>
         <hr />
     </div>
 		
@@ -114,8 +137,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/find-peak-element.html"><h2>Find Peak Element</h2></a>
-        <div class= "well small"> 2015-09-09
+        <a href="../pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted List to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-30
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -123,59 +146,14 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Find Peak Element</h1>
+<h1>Convert Sorted List to Binary Search Tree</h1>
 <h2>题目</h2>
-<p>A peak element is an element that is greater than its neighbors.</p>
-<p>Given an input array where <code>num[i] ≠ num[i+1]</code>, find a peak element and return its index.</p>
-<p>The array may contain multiple peaks, in that case return the index to any one of ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/find-peak-element.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/09/09/first-bad-version.html"><h2>First Bad Version</h2></a>
-        <div class= "well small"> 2015-09-09
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>First Bad Version</h1>
-<h2>题目</h2>
-<p>You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/first-bad-version.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2015/09/09/h-index-ii.html"><h2>H-Index II</h2></a>
-        <div class= "well small"> 2015-09-09
-
-by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>H-Index II</h1>
-<h2>题目</h2>
-<p><strong>Follow up</strong> for <a href="https://leetcode.com/problems/h-index/">H-Index</a>: What if the <code>citations</code> array is sorted in ascending order? Could you optimize your algorithm?</p>
-<p><strong>Hint:</strong></p>
-<p>Expected runtime complexity is in O(log n) and the input is sorted.</p>
+<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<h2>思路</h2>
+<p>与<a href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">Convert Sorted Array to Binary Search Tree</a>的思路很像，首先是得找到根节点，但考虑到是链表，没法直接到中间的元素，只能依次移动指针，联想到中序遍历与BST的关系，我们依据inorder来构造BST，前半部分为左子树，然后根节点，后半部分为右子树。</p>
 <h2>代码</h2>
-<div class="highlight"><pre>public class Solution {
-    public int hIndex(int[] citations) {
-        if (citations == null || citations.length ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/09/09/h-index-ii.html">read more</a></div>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html">read more</a></div>
     </div>	
 				
 
@@ -185,8 +163,8 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
 
     <div class='article'>
-        <a href="../pages/2015/09/09/minimum-size-subarray-sum.html"><h2>Minimum Size Subarray Sum</h2></a>
-        <div class= "well small"> 2015-09-09
+        <a href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted Array to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-29
 
 by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
  
@@ -194,10 +172,89 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
 
  </div>
         <div class="summary"><hr />
-<h1>Minimum Size Subarray Sum</h1>
+<h1>Convert Sorted Array to Binary Search Tree</h1>
 <h2>题目</h2>
-<p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a subarray of which the sum ≥ <strong>s</strong>. If there isn't one, return 0 instead.</p>
-<p>For example, given the array <code>[2,3,1,2,4,3]</code> and <code>s ...</code></p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/minimum-size-subarray-sum.html">read more</a></div>
+<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<h2>思路</h2>
+<p>按照题目要求，第一想法是得到树的根节点，如果没有构建平衡二叉搜索树的要求，那很容易，联想BST和binary search的关系，选择排序数组中间元素作为根节点，元素左边的全部元素作为左子树，右边全部元素作为右子树，然后用同样的方法寻找根节点，递归。</p>
+<p>需要注意对边界的处理，必须满足BST的定义。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html"><h2>Leetcode@Leetcode@Invert Binary Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Invert Binary Tree</h1>
+<h2>题目</h2>
+<p>Invert a binary tree.</p>
+<div class="highlight"><pre>     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</pre></div>
+
+
+<h2>思路</h2>
+<p>非递归的还没想出来，不会做，那就来递归的吧先，递归很简单，交换左右节点就跟交换a,b两个数一样，需要一个中间变量，先把左子树的指针赋给中间变量，然后交换。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for a binary tree node.</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/06/13/leetcodevalidate-binary-search-tree.html"><h2>Leetcode@Validate Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-13
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Leetcode@Validate Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
+<p>Assume a BST is defined as follows:</p>
+<ul>
+<li>The left subtree of a node contains only nodes with keys less - than the node's key.</li>
+<li>The right subtree of a node ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2015/06/13/leetcodevalidate-binary-search-tree.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -208,9 +265,6 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
     <li class=""><a href="../category/algorithm2.html">2</a></li>
     <li class=""><a href="../category/algorithm3.html">3</a></li>
     <li class=""><a href="../category/algorithm4.html">4</a></li>
-    <li class=""><a href="../category/algorithm5.html">5</a></li>
-    <li class=""><a href="../category/algorithm6.html">6</a></li>
-    <li class=""><a href="../category/algorithm7.html">7</a></li>
 
     <li class="next"><a href="../category/algorithm2.html">Next &rarr;</a></li>
 
@@ -246,10 +300,12 @@ by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
                 </li>
                 
                 <li><a href="../category/algorithm.html">Algorithm</a></li>
-                <li><a href="../category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
-                <li><a href="../category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
-                <li><a href="../category/algorithm-string-math.html">Algorithm String & Math</a></li>
+                <li><a href="../category/backtracking.html">Backtracking</a></li>
+                <li><a href="../category/binary-search.html">Binary Search</a></li>
+                <li><a href="../category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="../category/math.html">Math</a></li>
+                <li><a href="../category/string.html">String</a></li>
                    
             </ul>
             </div>

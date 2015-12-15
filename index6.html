@@ -59,6 +59,79 @@
  
 
     <div class='article'>
+        <a href="./pages/2015/09/09/search-in-rotated-sorted-array.html"><h2>Search in Rotated Sorted Array</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Search in Rotated Sorted Array</h1>
+<h2>题目</h2>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>You are given a target value to search. If found in the array ...</p> <a class="btn btn-info xsmall" href="./pages/2015/09/09/search-in-rotated-sorted-array.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/09/09/search-insert-position.html"><h2>Search Insert Position</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Search Insert Position</h1>
+<h2>题目</h2>
+<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p>Here are few examples.
+[1,3,5 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/09/09/search-insert-position.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted List to Binary Search Tree</h2></a>
+        <div class= "well small"> 2015-06-30
+
+by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Convert Sorted List to Binary Search Tree</h1>
+<h2>题目</h2>
+<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<h2>思路</h2>
+<p>与<a href="http://www.zhangge208.com/pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html">Convert Sorted Array to Binary Search Tree</a>的思路很像，首先是得找到根节点，但考虑到是链表，没法直接到中间的元素，只能依次移动指针，联想到中序遍历与BST的关系，我们依据inorder来构造BST，前半部分为左子树，然后根节点，后半部分为右子树。</p>
+<h2>代码</h2>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/30/leetcodeconvert-sorted-list-to-binary-search-tree.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./pages/2015/06/29/leetcodeconvert-sorted-array-to-binary-search-tree.html"><h2>Leetcode@Convert Sorted Array to Binary Search Tree</h2></a>
         <div class= "well small"> 2015-06-29
 
@@ -128,101 +201,6 @@ by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
 <span class="cm"> *     TreeNode right ...</span></pre></div> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodeleetcodeinvert-binary-tree.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html"><h2>Leetcode@Validate Binary Search Tree</h2></a>
-        <div class= "well small"> 2015-06-13
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Validate Binary Search Tree</h1>
-<h2>题目</h2>
-<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
-<p>Assume a BST is defined as follows:</p>
-<ul>
-<li>The left subtree of a node contains only nodes with keys less - than the node's key.</li>
-<li>The right subtree of a node ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2015/06/13/leetcodevalidate-binary-search-tree.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html"><h2>Leetcode@Binary Tree Inorder Traversal</h2></a>
-        <div class= "well small"> 2015-06-12
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Binary Tree Inorder Traversal</h1>
-<h2>题目</h2>
-<p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
-<p>For example:
-Given binary tree {1,#,2,3},</p>
-<div class="highlight"><pre>   1
-    \
-     2
-    /
-   3
-</pre></div>
-
-
-<p>return [1,3,2].</p>
-<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
-<h2>思路</h2>
-<p>三种做法：1.非递归（推荐） 2.递归：遍历 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/06/12/leetcodebinary-tree-inorder-traversal.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html"><h2>Leetcode@Binary Tree Preorder Traversal</h2></a>
-        <div class= "well small"> 2015-06-11
-
-by <a class="url fn" href="./author/zhangge208.html">zhangge208</a>
- 
-
-
- </div>
-        <div class="summary"><hr />
-<h1>Leetcode@Binary Tree Preorder Traversal</h1>
-<h2>题目</h2>
-<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
-<p>For example:
-Given binary tree {1,#,2,3},</p>
-<div class="highlight"><pre>　　1
- 　　\
-  　　2
- 　　/
-　　3
-</pre></div>
-
-
-<p>return [1,2,3].</p>
-<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
-<h2>思路</h2>
-<p>三种做法：1.非递归（推荐） 2.递归 ...</p> <a class="btn btn-info xsmall" href="./pages/2015/06/11/leetcodebinary-tree-preorder-traversal.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="./index5.html">&larr; Previous</a></li>
@@ -272,10 +250,12 @@ Given binary tree {1,#,2,3},</p>
                 </li>
                 
                 <li><a href="./category/algorithm.html">Algorithm</a></li>
-                <li><a href="./category/algorithm-backtracking.html">Algorithm Backtracking</a></li>
-                <li><a href="./category/algorithm-binary-search.html">Algorithm Binary Search</a></li>
                 <li><a href="./category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
-                <li><a href="./category/algorithm-string-math.html">Algorithm String & Math</a></li>
+                <li><a href="./category/backtracking.html">Backtracking</a></li>
+                <li><a href="./category/binary-search.html">Binary Search</a></li>
+                <li><a href="./category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="./category/math.html">Math</a></li>
+                <li><a href="./category/string.html">String</a></li>
                    
             </ul>
             </div>

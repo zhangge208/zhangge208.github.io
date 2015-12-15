@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Ant</title>
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../../theme/local.css" rel="stylesheet">
+    <link href="../../../../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../../..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Leetcode@Binary Tree Inorder Traversal</h1>
+2015-12-15
+
+by <a class="url fn" href="../../../../author/zhangge208.html">zhangge208</a>
+ 
+
+
+        </div>
+	
+        <div><hr />
+<h1>Binary Tree Inorder Traversal</h1>
+<h2>题目</h2>
+<p>Given a binary tree, return the inorder traversal of its nodes' values.</p>
+<p>For example:
+Given binary tree {1,#,2,3},</p>
+<div class="highlight"><pre>   1
+    \
+     2
+    /
+   3
+</pre></div>
+
+
+<p>return [1,3,2].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<h2>思路</h2>
+<p>三种做法：1.非递归（推荐） 2.递归：遍历 3.递归：分治法</p>
+<h3>非递归</h3>
+<p>运用栈和迭代。值得注意的是，入栈的先后顺序，栈是先入后出的数据结构，为保证是中序遍历，首先需要对左子树进行迭代并将非空节点入栈，直到节点为空，当前节点为空时进行出栈操作，并访问栈顶节点，将当前节点用右子节点代替。</p>
+<h3>递归：遍历</h3>
+<p>运用遍历的方法</p>
+<p>先左再中最后右</p>
+<h3>递归：分治法</h3>
+<p>运用分治法，这是大多数树问题均可使用的办法</p>
+<p>分为左子树和右子树，不断地减小问题的规模</p>
+<h2>代码</h2>
+<div class="highlight"><pre>version 1：Non-recursion（recommended）
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
+        Stack&lt;TreeNode&gt; stack = new Stack&lt;TreeNode&gt;();
+        List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
+        TreeNode cur = root;
+        while (cur != null || !stack.empty()){
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            result.add(cur.val);
+            cur = cur.right;
+
+        }
+        return result;
+    }
+}
+
+version 2：Traversal
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
+        List&lt;Integer&gt; inorderTraversal = new ArrayList&lt;Integer&gt;();
+        traversal(root,inorderTraversal);
+        return inorderTraversal;
+    }
+    private void traversal(TreeNode root,List&lt;Integer&gt; result){
+        if (root == null){
+            return;
+        }
+
+        traversal(root.left,result);
+        result.add(root.val);
+        traversal(root.right,result);
+
+    }
+}
+
+version 3：Divide &amp; Conquer
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
+        List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
+        if (root == null){
+            return result;
+        }
+        //Divide &amp; Conquer
+
+        //Divide
+        List&lt;Integer&gt; left = inorderTraversal(root.left);
+        List&lt;Integer&gt; right = inorderTraversal(root.right);
+        //Conquer
+        result.addAll(left);
+        result.add(root.val);
+        result.addAll(right);
+
+        return result;
+    }
+}
+</pre></div></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'zhangge208githubio'; 
+    var disqus_title = 'Leetcode@Binary Tree Inorder Traversal';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../../archives.html">Archives</a>
+                <li><a href="../../../../tags.html">Tags</a>
+
+
+
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../../../../category/algorithm.html">Algorithm</a></li>
+                <li><a href="../../../../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
+                <li><a href="../../../../category/backtracking.html">Backtracking</a></li>
+                <li><a href="../../../../category/binary-search.html">Binary Search</a></li>
+                <li><a href="../../../../category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="../../../../category/math.html">Math</a></li>
+                <li><a href="../../../../category/string.html">String</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../../..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

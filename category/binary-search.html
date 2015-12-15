@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Ant</title>
+    <meta name="description" content="">
+    <meta name="author" content="zhangge208">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="feeds/all.atom.xml" rel="alternate" title="Ant" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Ant</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2015/09/09/binary-search.html"><h1>Binary Search</h1></a>
+2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><hr />
+<h1>Binary Search</h1>
+<h2>基础模板</h2>
+<p><a href="http://www.lintcode.com/zh-cn/problem/binary-search/">Binary Search</a></p>
+<p>先给一个错误的示例，原来一直这样写，但在有重复元素时无法适用</p>
+<p>错误示例：</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
+            <span class="k">return</span> -<span class="mi">1</span>;
+        }
+
+        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
+        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
+
+        <span class="k">while</span> (<span class="n">start</span> &lt;= <span class="nb">end</span>) {
+            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
+            <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] == <span class="n">target</span>) {
+                <span class="k">return</span> <span class="n">mid</span>;
+            }
+            <span class="k">else</span> <span class="k">if</span> (<span class="n">nums</span>[<span class="n">mid</span>] &lt; <span class="n">target</span>) {
+                <span class="n">start</span> = <span class="n">mid</span>;
+            }
+            <span class="k">else</span> {
+                <span class="nb">end</span> = <span class="n">mid</span>;
+            }
+        } 
+        <span class="k">return</span> -<span class="mi">1</span>;
+    }
+}
+</pre></div>
+
+
+<p>考虑下面的测试用例：</p>
+<div class="highlight"><pre>input：
+[3,4,5,8,8,8,8,10,13,14], 8
+output：
+4
+expect：
+3
+</pre></div>
+
+
+<p>在有重复元素时会出现问题</p>
+<p><a href="http://www.jiuzhang.com/solutions/binary-search/">Binary Search模板（参考九章算法）</a>：</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="n">Solution</span> {
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">binarySearch</span>(<span class="nb">int</span>[] <span class="n">nums</span>, <span class="nb">int</span> <span class="n">target</span>) {
+        <span class="k">if</span> (<span class="n">nums</span> == <span class="n">null</span> || <span class="n">nums</span>.<span class="n">length</span> == <span class="mi">0</span>) {
+            <span class="k">return</span> -<span class="mi">1</span>;
+        }
+
+        <span class="nb">int</span> <span class="n">start</span> = <span class="mi">0</span>;
+        <span class="nb">int</span> <span class="nb">end</span> = <span class="n">nums</span>.<span class="n">length</span> - <span class="mi">1</span>;
+
+        <span class="k">while</span> (<span class="n">start</span> + <span class="mi">1</span> &lt; <span class="nb">end</span>) {
+            <span class="nb">int</span> <span class="n">mid</span> = <span class="n">start</span> + (<span class="nb">end</span> - <span class="n">start</span>) / <span class="mi">2</span>;
+            <span class="k">if</span> (<span class="n">target</span> &lt; <span class="n">nums</span>[<span class="n">mid</span>]) {
+                <span class="nb">end</span> = <span class="n">mid</span>;
+            }
+            <span class="k">else</span> <span class="k">if</span> (<span class="n">target</span> &gt; <span class="n">nums</span>[<span class="n">mid</span>]) {
+                <span class="n">start</span> = <span class="n">mid</span>;
+            }
+            <span class="k">else</span> {
+                <span class="nb">end</span> = <span class="n">mid</span>;
+            }
+        }
+
+        <span class="k">if</span> (<span class="n">nums</span>[<span class="n">start</span>] == <span class="n">target</span>) {
+            <span class="k">return</span> <span class="n">start</span>;
+        }
+        <span class="k">if</span> (<span class="n">nums</span>[<span class="nb">end</span>] == <span class="n">target</span>) {
+            <span class="k">return</span> <span class="nb">end</span>;
+        }
+
+        <span class="k">return</span> -<span class="mi">1</span>;
+    }
+}
+</pre></div>
+
+
+<p>Keypoints：</p>
+<ol>
+<li>对输入做异常处理：数组为空或者数组长度为0。</li>
+<li>int mid = start + (end - start) / 2 这种表示方法可以防止两个整型值相加时溢出。</li>
+<li>Recursion or While-Loop：使用迭代而不是递归进行二分查找，因为工程中递归写法存在潜在溢出的可能</li>
+<li>while循环终止条件：while终止条件应为start + 1 &lt; end而不是start &lt;= end，start == end时可能出现死循环，即循环终止条件是相邻或相交元素时退出。配合while终止条件start + 1 &lt; end（相邻即退出）的赋值语句mid永远没有+1或者-1，这样不会死循环。</li>
+<li>迭代终止时target应为start或者end中的一个。循环终止条件有两个，具体应看是找第一个还是最后一个而定。</li>
+</ol>
+<h2>Problem List</h2>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-insert-position.html">Search Insert Position</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-for-a-range.html">Search for a Range</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-in-rotated-sorted-array.html">Search in Rotated Sorted Array</a></p>
+<p><a href="">Search in Rotated Sorted Array II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-a-2d-matrix.html">Search a 2D Matrix</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/search-a-2d-matrix-ii.html">Search a 2D Matrix II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/first-bad-version.html">First Bad Version</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/find-peak-element.html">Find Peak Element</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/find-minimum-in-rotated-sorted-array.html">Find Minimum in Rotated Sorted Array</a></p>
+<p><a href="">Find Minimum in Rotated Sorted Array II</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/minimum-size-subarray-sum.html">Minimum Size Subarray Sum</a></p>
+<p><a href="http://www.zhangge208.com/pages/2015/09/09/h-index-ii.html">H-Index II</a></p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html"><h2>Find Minimum in Rotated Sorted Array</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Find Minimum in Rotated Sorted Array</h1>
+<h2>题目</h2>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/find-minimum-in-rotated-sorted-array.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/09/09/find-peak-element.html"><h2>Find Peak Element</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>Find Peak Element</h1>
+<h2>题目</h2>
+<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where <code>num[i] ≠ num[i+1]</code>, find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one of ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/find-peak-element.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/09/09/first-bad-version.html"><h2>First Bad Version</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>First Bad Version</h1>
+<h2>题目</h2>
+<p>You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad ...</p> <a class="btn btn-info xsmall" href="../pages/2015/09/09/first-bad-version.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2015/09/09/h-index-ii.html"><h2>H-Index II</h2></a>
+        <div class= "well small"> 2015-09-09
+
+by <a class="url fn" href="../author/zhangge208.html">zhangge208</a>
+ 
+
+
+ </div>
+        <div class="summary"><hr />
+<h1>H-Index II</h1>
+<h2>题目</h2>
+<p><strong>Follow up</strong> for <a href="https://leetcode.com/problems/h-index/">H-Index</a>: What if the <code>citations</code> array is sorted in ascending order? Could you optimize your algorithm?</p>
+<p><strong>Hint:</strong></p>
+<p>Expected runtime complexity is in O(log n) and the input is sorted.</p>
+<h2>代码</h2>
+<div class="highlight"><pre>public class Solution {
+    public int hIndex(int[] citations) {
+        if (citations == null || citations.length ...</pre></div> <a class="btn btn-info xsmall" href="../pages/2015/09/09/h-index-ii.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../category/binary-search.html">1</a></li>
+    <li class=""><a href="../category/binary-search2.html">2</a></li>
+    <li class=""><a href="../category/binary-search3.html">3</a></li>
+
+    <li class="next"><a href="../category/binary-search2.html">Next &rarr;</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+
+
+
+                <li><a href="http://www.zhangge208.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/algorithm.html">Algorithm</a></li>
+                <li><a href="../category/algorithm-linkedlist.html">Algorithm LinkedList</a></li>
+                <li><a href="../category/backtracking.html">Backtracking</a></li>
+                <li><a href="../category/binary-search.html">Binary Search</a></li>
+                <li><a href="../category/binary-tree.html">Binary Tree</a></li>
+                <li><a href="../category/math.html">Math</a></li>
+                <li><a href="../category/string.html">String</a></li>
+                   
+            </ul>
+            </div>
+
+
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/zhangge208">Github</a></li>
+                <li><a href="http://www.linkedin.com/profile/view?id=222151936">Linkedin</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Ant</a> &copy; zhangge208 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-58197143-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/zhangge208"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>
